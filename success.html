@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Gracias por tu mensaje! - Chatably</title>
+    <meta name="description" content="Hemos recibido tu mensaje. Te contactaremos pronto para ayudarte a automatizar tu WhatsApp Business.">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background: #f8f9fa;
+            padding: 1rem;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: bounce 0.6s ease;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        h1 {
+            color: #4D8DFF;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .highlight {
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        
+        .button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .button-primary {
+            background: #4D8DFF;
+            color: white;
+        }
+        
+        .button-primary:hover {
+            background: #3A7AED;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(77, 141, 255, 0.3);
+        }
+        
+        .button-whatsapp {
+            background: #25D366;
+            color: white;
+        }
+        
+        .button-whatsapp:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+        }
+        
+        .timer {
+            display: inline-block;
+            background: #f0f7ff;
+            color: #4D8DFF;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+        
+        .social-proof {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .social-proof p {
+            font-size: 0.9rem;
+            color: #999;
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 2rem 1.5rem;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">✅</div>
+        <h1>¡Mensaje recibido!</h1>
+        <p>Gracias por tu interés en <span class="highlight">Chatably</span>.</p>
+        <p>Te contactaremos en las próximas <span class="highlight">24 horas</span> para mostrarte cómo automatizar tu WhatsApp y multiplicar tus ventas.</p>
+        
+        <div class="timer">⏱️ Tiempo promedio de respuesta: 2-4 horas</div>
+        
+        <p style="margin-top: 1.5rem;">¿Tienes prisa? Escríbenos directamente:</p>
+        
+        <div class="buttons">
+            <a href="/" class="button button-primary">Volver al inicio</a>
+            <a href="https://wa.me/436765748509?text=Hola,%20acabo%20de%20enviar%20el%20formulario%20y%20quiero%20más%20información%20sobre%20Chatably" 
+               class="button button-whatsapp" 
+               target="_blank">
+                💬 WhatsApp directo
+            </a>
+        </div>
+        
+        <div class="social-proof">
+            <p>Más de 150 negocios ya automatizan con Chatably</p>
+        </div>
+    </div>
+    
+    <script>
+        // Redirigir al inicio después de 10 segundos
+        setTimeout(() => {
+            window.location.href = '/';
+        }, 10000);
+    </script>
+</body>
+</html>
