@@ -18,9 +18,22 @@ window.ConversionFeatures.RoiCalculator = {
     init() {
         if (this.enabled) return;
         
+        // Start performance tracking
+        if (window.performanceMetrics) {
+            window.performanceMetrics.startFeatureTracking('roiCalculator');
+        }
+        
         this.createCalculator();
         this.setupEventListeners();
         this.enabled = true;
+        
+        // End performance tracking
+        if (window.performanceMetrics) {
+            setTimeout(() => {
+                window.performanceMetrics.endFeatureTracking('roiCalculator');
+            }, 100);
+        }
+        
         console.log('📊 ROI Calculator initialized');
     },
 
@@ -32,6 +45,12 @@ window.ConversionFeatures.RoiCalculator = {
             this.container = null;
         }
         this.enabled = false;
+        
+        // Mark feature as disabled in performance metrics
+        if (window.performanceMetrics) {
+            window.performanceMetrics.markFeatureDisabled('roiCalculator');
+        }
+        
         console.log('📊 ROI Calculator destroyed');
     },
 
@@ -209,8 +228,21 @@ window.ConversionFeatures.Integrations = {
     init() {
         if (this.enabled) return;
         
+        // Start performance tracking
+        if (window.performanceMetrics) {
+            window.performanceMetrics.startFeatureTracking('integrations');
+        }
+        
         this.createIntegrationsSection();
         this.enabled = true;
+        
+        // End performance tracking
+        if (window.performanceMetrics) {
+            setTimeout(() => {
+                window.performanceMetrics.endFeatureTracking('integrations');
+            }, 100);
+        }
+        
         console.log('🔗 Integrations section initialized');
     },
 
@@ -222,6 +254,12 @@ window.ConversionFeatures.Integrations = {
             this.container = null;
         }
         this.enabled = false;
+        
+        // Mark feature as disabled in performance metrics
+        if (window.performanceMetrics) {
+            window.performanceMetrics.markFeatureDisabled('integrations');
+        }
+        
         console.log('🔗 Integrations section destroyed');
     },
 
@@ -356,9 +394,22 @@ window.ConversionFeatures.UrgencyBanner = {
     init() {
         if (this.enabled) return;
         
+        // Start performance tracking
+        if (window.performanceMetrics) {
+            window.performanceMetrics.startFeatureTracking('urgencyBanner');
+        }
+        
         this.createUrgencyBanner();
         this.startCountdown();
         this.enabled = true;
+        
+        // End performance tracking
+        if (window.performanceMetrics) {
+            setTimeout(() => {
+                window.performanceMetrics.endFeatureTracking('urgencyBanner');
+            }, 100);
+        }
+        
         console.log('🔥 Urgency banner initialized');
     },
 
@@ -375,6 +426,12 @@ window.ConversionFeatures.UrgencyBanner = {
             this.container = null;
         }
         this.enabled = false;
+        
+        // Mark feature as disabled in performance metrics
+        if (window.performanceMetrics) {
+            window.performanceMetrics.markFeatureDisabled('urgencyBanner');
+        }
+        
         console.log('🔥 Urgency banner destroyed');
     },
 
@@ -456,10 +513,23 @@ window.ConversionFeatures.SocialProof = {
     init() {
         if (this.enabled) return;
         
+        // Start performance tracking
+        if (window.performanceMetrics) {
+            window.performanceMetrics.startFeatureTracking('socialProof');
+        }
+        
         this.enhanceExistingTestimonials();
         this.addSocialProofStats();
         this.addClientLogos();
         this.enabled = true;
+        
+        // End performance tracking
+        if (window.performanceMetrics) {
+            setTimeout(() => {
+                window.performanceMetrics.endFeatureTracking('socialProof');
+            }, 100);
+        }
+        
         console.log('👥 Social proof enhanced');
     },
 
@@ -470,6 +540,12 @@ window.ConversionFeatures.SocialProof = {
         this.containers = [];
         this.restoreOriginalTestimonials();
         this.enabled = false;
+        
+        // Mark feature as disabled in performance metrics
+        if (window.performanceMetrics) {
+            window.performanceMetrics.markFeatureDisabled('socialProof');
+        }
+        
         console.log('👥 Social proof destroyed');
     },
 
@@ -627,9 +703,22 @@ window.ConversionFeatures.SearchableFAQ = {
     init() {
         if (this.enabled) return;
         
+        // Start performance tracking
+        if (window.performanceMetrics) {
+            window.performanceMetrics.startFeatureTracking('searchableFAQ');
+        }
+        
         this.enhanceFAQSection();
         this.setupSearch();
         this.enabled = true;
+        
+        // End performance tracking
+        if (window.performanceMetrics) {
+            setTimeout(() => {
+                window.performanceMetrics.endFeatureTracking('searchableFAQ');
+            }, 100);
+        }
+        
         console.log('🔍 Searchable FAQ initialized');
     },
 
@@ -642,6 +731,12 @@ window.ConversionFeatures.SearchableFAQ = {
         }
         this.restoreOriginalFAQ();
         this.enabled = false;
+        
+        // Mark feature as disabled in performance metrics
+        if (window.performanceMetrics) {
+            window.performanceMetrics.markFeatureDisabled('searchableFAQ');
+        }
+        
         console.log('🔍 Searchable FAQ destroyed');
     },
 
