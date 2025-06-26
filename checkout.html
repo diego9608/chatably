@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Chatably | Confirma tu Suscripción</title>
+    <meta name="description" content="Completa tu suscripción a Chatably y comienza a automatizar tu WhatsApp Business hoy mismo.">
+    
+    <!-- Stripe.js -->
+    <script src="https://js.stripe.com/v3/"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <div class="logo-icon">🤖</div>
+                <a href="index.html" style="text-decoration: none; color: inherit;">Chatably</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Volver al inicio</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+            </ul>
+            <button class="mobile-menu-toggle">☰</button>
+        </nav>
+    </header>
+
+    <!-- Checkout Container -->
+    <div class="checkout-container">
+        <div class="checkout-header">
+            <h1>Confirma tu Suscripción</h1>
+            <p>Estás a un paso de transformar tu atención al cliente con Chatably</p>
+        </div>
+
+        <div class="checkout-grid">
+            <!-- Plan Summary -->
+            <div class="plan-summary">
+                <h3>Resumen del Plan</h3>
+                
+                <div class="plan-details">
+                    <h4 id="plan-name">Plan Seleccionado</h4>
+                    <div class="plan-price" id="plan-price">$0</div>
+                    <span style="color: #666; font-size: 0.9rem;">por mes</span>
+                </div>
+
+                <div style="margin: 2rem 0;">
+                    <h5 style="margin-bottom: 1rem; color: #1a1a1a;">Incluye:</h5>
+                    <ul id="plan-features" class="plan-features">
+                        <!-- Features will be populated by JavaScript -->
+                    </ul>
+                </div>
+
+                <div class="plan-total">
+                    <strong>Total: <span id="plan-total">$0 MXN/mes</span></strong>
+                </div>
+
+                <div style="margin-top: 1.5rem; padding: 1rem; background: #e3f2fd; border-radius: 8px; font-size: 0.9rem;">
+                    ✓ 7 días de prueba gratis<br>
+                    ✓ Cancela en cualquier momento<br>
+                    ✓ Soporte incluido
+                </div>
+            </div>
+
+            <!-- Payment Form -->
+            <div class="payment-form">
+                <h3>Información de Pago</h3>
+                
+                <form id="payment-form">
+                    <!-- Customer Information -->
+                    <div class="form-group">
+                        <label for="customer-name">Nombre completo</label>
+                        <input type="text" id="customer-name" name="customer-name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customer-email">Email</label>
+                        <input type="email" id="customer-email" name="customer-email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="business-name">Nombre del negocio</label>
+                        <input type="text" id="business-name" name="business-name" required>
+                    </div>
+
+                    <!-- Stripe Payment Element -->
+                    <div class="form-group">
+                        <label>Información de la tarjeta</label>
+                        <div id="payment-element">
+                            <!-- Stripe Elements will create payment form here -->
+                        </div>
+                    </div>
+
+                    <!-- Error/Success Messages -->
+                    <div id="payment-errors" class="error-message"></div>
+                    <div id="payment-success" class="success-message"></div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" id="submit-payment" class="cta-button checkout-button">
+                        Confirmar Suscripción
+                    </button>
+                </form>
+
+                <!-- Security Notice -->
+                <div style="margin-top: 1.5rem; padding: 1rem; background: #f8f9fa; border-radius: 8px; font-size: 0.85rem; color: #666;">
+                    🔒 Tu información está protegida con encriptación SSL de 256-bit. 
+                    Procesamos pagos de forma segura a través de Stripe.
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Information -->
+        <div style="margin-top: 3rem; text-align: center; color: #666;">
+            <p>¿Tienes preguntas? <a href="https://wa.me/436765748509?text=Tengo%20una%20pregunta%20sobre%20el%20checkout" style="color: #4D8DFF;">Contáctanos por WhatsApp</a></p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="margin-top: 3rem;">
+        <p>&copy; 2024 Chatably. Todos los derechos reservados.</p>
+        <p style="margin-top: 1rem;">
+            <a href="#">Aviso de Privacidad</a>
+            <a href="#">Términos de Servicio</a>
+            <a href="https://wa.me/436765748509?text=Necesito%20ayuda%20con%20mi%20suscripción">Soporte</a>
+        </p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/stripe-integration.js"></script>
+
+    <script>
+        // Additional checkout page specific functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if no plan is selected
+            const urlParams = new URLSearchParams(window.location.search);
+            const planParam = urlParams.get('plan');
+            
+            if (!planParam) {
+                // Redirect to pricing if no plan selected
+                alert('Por favor selecciona un plan primero');
+                window.location.href = 'index.html#planes';
+            }
+
+            // Pre-fill form if user data exists in localStorage
+            const userData = localStorage.getItem('chatably_user_data');
+            if (userData) {
+                try {
+                    const data = JSON.parse(userData);
+                    if (data.name) document.getElementById('customer-name').value = data.name;
+                    if (data.email) document.getElementById('customer-email').value = data.email;
+                    if (data.business) document.getElementById('business-name').value = data.business;
+                } catch (e) {
+                    console.log('Could not parse user data');
+                }
+            }
+
+            // Save form data to localStorage on input
+            const saveFormData = () => {
+                const formData = {
+                    name: document.getElementById('customer-name').value,
+                    email: document.getElementById('customer-email').value,
+                    business: document.getElementById('business-name').value
+                };
+                localStorage.setItem('chatably_user_data', JSON.stringify(formData));
+            };
+
+            document.getElementById('customer-name').addEventListener('input', saveFormData);
+            document.getElementById('customer-email').addEventListener('input', saveFormData);
+            document.getElementById('business-name').addEventListener('input', saveFormData);
+        });
+    </script>
+</body>
+</html>
