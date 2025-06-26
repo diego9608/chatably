@@ -1,0 +1,119 @@
+{
+    "name": "Chatably - Automatización WhatsApp",
+    "short_name": "Chatably",
+    "description": "Automatización inteligente para WhatsApp Business. Responde 24/7 con IA conversacional.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#4D8DFF",
+    "theme_color": "#4D8DFF",
+    "orientation": "portrait-primary",
+    "scope": "/",
+    "lang": "es-MX",
+    "dir": "ltr",
+    "categories": ["business", "productivity", "communication"],
+    "icons": [
+        {
+            "src": "assets/images/icon-72x72.png",
+            "sizes": "72x72",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "assets/images/icon-96x96.png",
+            "sizes": "96x96",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "assets/images/icon-128x128.png",
+            "sizes": "128x128",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "assets/images/icon-144x144.png",
+            "sizes": "144x144",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "assets/images/icon-152x152.png",
+            "sizes": "152x152",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "assets/images/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "assets/images/icon-384x384.png",
+            "sizes": "384x384",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "assets/images/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Calculadora ROI",
+            "short_name": "ROI",
+            "description": "Calcula tu retorno de inversión",
+            "url": "/?utm_source=pwa&utm_medium=shortcut&utm_campaign=roi_calculator#roi-calculator",
+            "icons": [
+                {
+                    "src": "assets/images/shortcut-roi.png",
+                    "sizes": "96x96"
+                }
+            ]
+        },
+        {
+            "name": "Ver Planes",
+            "short_name": "Planes",
+            "description": "Conoce nuestros planes de suscripción",
+            "url": "/?utm_source=pwa&utm_medium=shortcut&utm_campaign=pricing#planes",
+            "icons": [
+                {
+                    "src": "assets/images/shortcut-pricing.png",
+                    "sizes": "96x96"
+                }
+            ]
+        },
+        {
+            "name": "Demo Interactiva",
+            "short_name": "Demo",
+            "description": "Prueba nuestro chatbot demo",
+            "url": "/?utm_source=pwa&utm_medium=shortcut&utm_campaign=demo#demo",
+            "icons": [
+                {
+                    "src": "assets/images/shortcut-demo.png",
+                    "sizes": "96x96"
+                }
+            ]
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "assets/images/screenshot-desktop-1.png",
+            "sizes": "1280x720",
+            "type": "image/png",
+            "form_factor": "wide",
+            "label": "Página principal de Chatably en desktop"
+        },
+        {
+            "src": "assets/images/screenshot-mobile-1.png",
+            "sizes": "390x844",
+            "type": "image/png",
+            "form_factor": "narrow",
+            "label": "Página principal de Chatably en móvil"
+        }
+    ],
+    "prefer_related_applications": false
+}
