@@ -6,7 +6,7 @@ const PLANS = {
     'básico': {
         name: 'Básico',
         price: 1200,
-        priceId: 'price_basico_test',
+        checkoutUrl: 'https://buy.stripe.com/28E9AS1T99SQcW18Qz7ok0b',
         currency: 'mxn',
         features: [
             'Hasta 1,000 conversaciones/mes',
@@ -19,7 +19,7 @@ const PLANS = {
     'pro': {
         name: 'Pro',
         price: 2400,
-        priceId: 'price_pro_test',
+        checkoutUrl: 'https://buy.stripe.com/7sYfZgcxN3usbRX0k37ok0c',
         currency: 'mxn',
         features: [
             'Hasta 5,000 conversaciones/mes',
@@ -33,7 +33,7 @@ const PLANS = {
     'ultra': {
         name: 'Ultra',
         price: 3500,
-        priceId: 'price_ultra_test',
+        checkoutUrl: 'https://buy.stripe.com/cNifZg0P54yw2hnfeX7ok0d',
         currency: 'mxn',
         features: [
             'Conversaciones ilimitadas',
@@ -321,9 +321,35 @@ function formatPrice(price, currency = 'MXN') {
     }).format(price);
 }
 
+// Redirect to Stripe checkout
+function redirectToCheckout(planKey) {
+    if (PLANS[planKey] && PLANS[planKey].checkoutUrl) {
+        // Track conversion event
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'begin_checkout', {
+                'currency': 'MXN',
+                'value': PLANS[planKey].price,
+                'items': [{
+                    'item_id': planKey,
+                    'item_name': PLANS[planKey].name,
+                    'category': 'subscription',
+                    'quantity': 1,
+                    'price': PLANS[planKey].price
+                }]
+            });
+        }
+        
+        // Redirect to Stripe checkout
+        window.location.href = PLANS[planKey].checkoutUrl;
+    } else {
+        console.error('Plan not found:', planKey);
+    }
+}
+
 // Export functions for use in other files
 window.StripeIntegration = {
     PLANS,
     formatPrice,
-    StripeCheckout
+    StripeCheckout,
+    redirectToCheckout
 };
