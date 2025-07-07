@@ -3,42 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Gracias por tu mensaje! - Chatably</title>
-    <meta name="description" content="Hemos recibido tu mensaje. Te contactaremos pronto para ayudarte a automatizar tu WhatsApp Business.">
+    <title>¡Bienvenido a Chatably! - Pago Exitoso</title>
+    <meta name="description" content="¡Gracias por tu compra! Tu plan de Chatably ha sido activado exitosamente.">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Confetti Animation -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        .success-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        .success-header {
+            margin-bottom: 3rem;
+        }
+        
+        .success-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .success-header h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+        
+        .success-header p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+        
+        .plan-confirmation {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem;
+            border-radius: 16px;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease-out 0.9s both;
+        }
+        
+        .plan-confirmation h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .plan-confirmation p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .success-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .step {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: left;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out calc(1.2s + var(--delay)) both;
+        }
+        
+        .step:nth-child(1) { --delay: 0s; }
+        .step:nth-child(2) { --delay: 0.2s; }
+        .step:nth-child(3) { --delay: 0.4s; }
+        
+        .step:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        .step-number {
+            background: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            background: #f8f9fa;
-            padding: 1rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
         }
         
-        .container {
-            text-align: center;
-            padding: 3rem 2rem;
+        .step h3 {
+            color: var(--text-dark);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .step p {
+            color: var(--text-gray);
+            line-height: 1.5;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 1.8s both;
+        }
+        
+        .cta-button.primary {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(77, 141, 255, 0.3);
+        }
+        
+        .cta-button.primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(77, 141, 255, 0.4);
+        }
+        
+        .cta-button.secondary {
             background: white;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            max-width: 500px;
-            width: 100%;
-            animation: fadeIn 0.5s ease;
+            color: var(--primary-color);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            border: 2px solid var(--primary-color);
+            transition: all 0.3s ease;
         }
         
-        @keyframes fadeIn {
+        .cta-button.secondary:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .support-info {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-top: 3rem;
+            animation: fadeInUp 1s ease-out 2.1s both;
+        }
+        
+        .support-info h3 {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+        
+        .support-info p {
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+        }
+        
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
@@ -46,145 +203,151 @@
             }
         }
         
-        .icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            animation: bounce 0.6s ease;
-        }
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        h1 {
-            color: #4D8DFF;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        p {
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-        
-        .highlight {
-            color: #333;
-            font-weight: 600;
-        }
-        
-        .buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-        
-        .button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .button-primary {
-            background: #4D8DFF;
-            color: white;
-        }
-        
-        .button-primary:hover {
-            background: #3A7AED;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(77, 141, 255, 0.3);
-        }
-        
-        .button-whatsapp {
-            background: #25D366;
-            color: white;
-        }
-        
-        .button-whatsapp:hover {
-            background: #128C7E;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
-        }
-        
-        .timer {
-            display: inline-block;
-            background: #f0f7ff;
-            color: #4D8DFF;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-top: 1rem;
-        }
-        
-        .social-proof {
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid #eee;
-        }
-        
-        .social-proof p {
-            font-size: 0.9rem;
-            color: #999;
-        }
-        
-        @media (max-width: 480px) {
-            .container {
-                padding: 2rem 1.5rem;
+        @media (max-width: 768px) {
+            .success-container {
+                padding: 1rem;
             }
             
-            h1 {
-                font-size: 1.5rem;
+            .success-header h1 {
+                font-size: 2rem;
             }
             
-            .buttons {
+            .plan-confirmation {
+                padding: 1.5rem;
+            }
+            
+            .action-buttons {
                 flex-direction: column;
-                width: 100%;
+                align-items: center;
             }
             
-            .button {
+            .cta-button.primary,
+            .cta-button.secondary {
                 width: 100%;
+                max-width: 300px;
                 text-align: center;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="icon">✅</div>
-        <h1>¡Mensaje recibido!</h1>
-        <p>Gracias por tu interés en <span class="highlight">Chatably</span>.</p>
-        <p>Te contactaremos en las próximas <span class="highlight">24 horas</span> para mostrarte cómo automatizar tu WhatsApp y multiplicar tus ventas.</p>
-        
-        <div class="timer">⏱️ Tiempo promedio de respuesta: 2-4 horas</div>
-        
-        <p style="margin-top: 1.5rem;">¿Tienes prisa? Escríbenos directamente:</p>
-        
-        <div class="buttons">
-            <a href="/" class="button button-primary">Volver al inicio</a>
-            <a href="https://wa.me/436765748509?text=Hola,%20acabo%20de%20enviar%20el%20formulario%20y%20quiero%20más%20información%20sobre%20Chatably" 
-               class="button button-whatsapp" 
-               target="_blank">
-                💬 WhatsApp directo
-            </a>
+    <div class="success-container">
+        <div class="success-header">
+            <div class="success-icon">🎉</div>
+            <h1 id="welcome-message">¡Bienvenido a Chatably!</h1>
+            <p>Tu pago fue procesado exitosamente</p>
         </div>
         
-        <div class="social-proof">
-            <p>Más de 150 negocios ya automatizan con Chatably</p>
+        <div class="plan-confirmation">
+            <h2 id="plan-title">Plan activado</h2>
+            <p>Tienes 7 días de prueba gratis para explorar todas las funcionalidades</p>
+        </div>
+        
+        <div class="success-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Revisa tu email</h3>
+                <p>Te enviamos los detalles de acceso y configuración inicial a tu correo electrónico</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Configura tu WhatsApp</h3>
+                <p>Conecta tu número de WhatsApp Business en menos de 5 minutos siguiendo nuestra guía</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Personaliza tu chatbot</h3>
+                <p>Adapta las respuestas automáticas al tono y estilo de tu negocio</p>
+            </div>
+        </div>
+        
+        <div class="action-buttons">
+            <a href="#" class="cta-button primary" id="dashboard-btn">Ir al Dashboard</a>
+            <a href="https://wa.me/436765748509?text=Hola,%20acabo%20de%20comprar%20Chatably%20y%20necesito%20ayuda%20con%20la%20configuración" class="cta-button secondary" target="_blank">¿Necesitas ayuda?</a>
+        </div>
+        
+        <div class="support-info">
+            <h3>🚀 ¿Listo para comenzar?</h3>
+            <p>Nuestro equipo está aquí para ayudarte a sacar el máximo provecho de Chatably. Si tienes alguna pregunta o necesitas asistencia con la configuración, no dudes en contactarnos.</p>
+            <p><strong>Tiempo de respuesta promedio:</strong> Menos de 2 horas</p>
         </div>
     </div>
-    
+
     <script>
-        // Redirigir al inicio después de 10 segundos
-        setTimeout(() => {
-            window.location.href = '/';
-        }, 10000);
+        // Launch confetti on page load
+        function launchConfetti() {
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+            
+            // Second burst after 1 second
+            setTimeout(() => {
+                confetti({
+                    particleCount: 50,
+                    spread: 100,
+                    origin: { y: 0.4 }
+                });
+            }, 1000);
+        }
+        
+        // Detect purchased plan and personalize content
+        function personalizePage() {
+            const selectedPlan = localStorage.getItem('chatably_selected_plan');
+            const urlParams = new URLSearchParams(window.location.search);
+            const planFromUrl = urlParams.get('plan');
+            
+            const plan = selectedPlan || planFromUrl || 'pro'; // Default to pro if not found
+            
+            const planTitles = {
+                'básico': 'Plan Básico',
+                'pro': 'Plan Pro',
+                'ultra': 'Plan Ultra'
+            };
+            
+            const planPrices = {
+                'básico': '$1,200',
+                'pro': '$2,400',
+                'ultra': '$3,500'
+            };
+            
+            // Update plan title
+            document.getElementById('plan-title').textContent = `${planTitles[plan] || 'Plan Pro'} activado`;
+            
+            // Add plan-specific messaging
+            if (plan === 'ultra') {
+                document.getElementById('welcome-message').textContent = '¡Bienvenido a Chatably Ultra!';
+                document.querySelector('.plan-confirmation p').textContent = 'Tienes acceso completo a todas las funcionalidades premium y soporte dedicado';
+            } else if (plan === 'pro') {
+                document.getElementById('welcome-message').textContent = '¡Bienvenido a Chatably Pro!';
+                document.querySelector('.plan-confirmation p').textContent = 'Tienes 7 días de prueba gratis para explorar todas las funcionalidades avanzadas';
+            } else {
+                document.getElementById('welcome-message').textContent = '¡Bienvenido a Chatably!';
+            }
+            
+            console.log(`Plan detectado: ${plan}`);
+        }
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            personalizePage();
+            
+            // Launch confetti after a short delay
+            setTimeout(launchConfetti, 500);
+            
+            // Clear the selected plan from localStorage after showing success
+            // This prevents confusion if user visits the page again
+            setTimeout(() => {
+                localStorage.removeItem('chatably_selected_plan');
+            }, 5000);
+        });
+        
+        // Handle dashboard button click
+        document.getElementById('dashboard-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('¡Genial! Te redirigiremos al dashboard una vez que esté listo. Por ahora, revisa tu email para los próximos pasos.');
+        });
     </script>
 </body>
 </html>
