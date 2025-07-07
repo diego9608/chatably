@@ -1,3 +1,5 @@
+console.log('Main.js cargado correctamente');
+
 // Mobile menu toggle
 const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
 const navLinks = document.querySelector('.nav-links');
@@ -103,19 +105,23 @@ if (whatsappLink) {
     whatsappLink.href = 'https://wa.me/436765748509?text=Hola,%20quiero%20información%20sobre%20Chatably';
 }
 
-// Plan selection function for direct Stripe Payment Links
-function selectPlan(planType) {
+// Plan selection function for direct Stripe Payment Links - GLOBAL
+window.selectPlan = function(planType) {
     const paymentLinks = {
         'básico': 'https://buy.stripe.com/28E9AS1T99SQcW18Qz7ok0b',
         'pro': 'https://buy.stripe.com/7sYfZgcxN3usbRX0k37ok0c',
         'ultra': 'https://buy.stripe.com/cNifZg0P54yw2hnfeX7ok0d'
     };
     
+    console.log(`selectPlan llamado con: ${planType}`);
+    
     if (paymentLinks[planType]) {
         localStorage.setItem('chatably_selected_plan', planType);
         console.log(`Usuario seleccionó plan: ${planType}`);
+        console.log(`Redirigiendo a: ${paymentLinks[planType]}`);
         window.location.href = paymentLinks[planType];
     } else {
+        console.error(`Plan no válido: ${planType}`);
         alert('Por favor selecciona un plan válido');
     }
 }
