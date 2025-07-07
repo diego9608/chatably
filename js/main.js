@@ -103,21 +103,19 @@ if (whatsappLink) {
     whatsappLink.href = 'https://wa.me/436765748509?text=Hola,%20quiero%20información%20sobre%20Chatably';
 }
 
-// Pricing plan buttons - redirect to checkout
-document.addEventListener('DOMContentLoaded', function() {
-    // Add click handlers to pricing buttons
-    const pricingButtons = document.querySelectorAll('.pricing-card .cta-button');
+// Plan selection function for direct Stripe Payment Links
+function selectPlan(planType) {
+    const paymentLinks = {
+        'básico': 'https://buy.stripe.com/28E9AS1T99SQcW18Qz7ok0b',
+        'pro': 'https://buy.stripe.com/7sYfZgcxN3usbRX0k37ok0c',
+        'ultra': 'https://buy.stripe.com/cNifZg0P54yw2hnfeX7ok0d'
+    };
     
-    pricingButtons.forEach((button, index) => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Determine plan based on button index or parent card
-            const pricingCard = button.closest('.pricing-card');
-            const planName = pricingCard.querySelector('.plan-name').textContent.toLowerCase();
-            
-            // Redirect to checkout with plan parameter
-            window.location.href = `checkout.html?plan=${planName}`;
-        });
-    });
-});
+    if (paymentLinks[planType]) {
+        localStorage.setItem('chatably_selected_plan', planType);
+        console.log(`Usuario seleccionó plan: ${planType}`);
+        window.location.href = paymentLinks[planType];
+    } else {
+        alert('Por favor selecciona un plan válido');
+    }
+}
