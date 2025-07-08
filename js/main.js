@@ -774,3 +774,320 @@ document.addEventListener('DOMContentLoaded', () => {
         window.socialProofManager = new SocialProofManager();
     }
 });
+
+// ===========================
+// URGENCY & SCARCITY SYSTEM
+// ===========================
+
+class UrgencyScarcityManager {
+    constructor() {
+        this.endDate = this.calculateEndDate();
+        this.timerInterval = null;
+        this.activityInterval = null;
+        this.spotsTaken = 8; // Initial spots taken
+        this.maxSpots = 20;
+        
+        this.activities = [
+            { avatar: '🏪', business: 'Farmacia San Juan', action: 'activó Chatably Pro', time: '2 horas' },
+            { avatar: '🍕', business: 'Pizzería Della Nonna', action: 'generó $47,000 en ventas', time: '4 horas' },
+            { avatar: '👗', business: 'Boutique Elegance', action: 'aumentó conversión 284%', time: '6 horas' },
+            { avatar: '🏥', business: 'Clínica Dental Sonrisas', action: 'automatizó citas médicas', time: '8 horas' },
+            { avatar: '🚗', business: 'AutoDealer Pro', action: 'cerró 12 ventas mientras dormía', time: '10 horas' },
+            { avatar: '🏋️', business: 'Gimnasio FitLife', action: 'triplicó leads de WhatsApp', time: '12 horas' },
+            { avatar: '🍽️', business: 'Restaurante El Buen Sabor', action: 'aumentó pedidos 156%', time: '14 horas' },
+            { avatar: '🏠', business: 'Inmobiliaria Prime', action: 'automatizó calificación de leads', time: '16 horas' },
+            { avatar: '💄', business: 'Beauty Center Glamour', action: 'redujo tiempo respuesta 95%', time: '18 horas' },
+            { avatar: '📱', business: 'TechStore México', action: 'multiplicó ventas x4', time: '20 horas' }
+        ];
+        
+        this.init();
+    }
+    
+    init() {
+        this.startCountdownTimer();
+        this.initializeActivityFeed();
+        this.initializeSpotsAnimation();
+        this.initializeScrollTriggers();
+        this.trackUrgencySection();
+    }
+    
+    calculateEndDate() {
+        // Set countdown to end of current month + 23 days
+        const now = new Date();
+        const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+        endOfMonth.setDate(31); // October 31st
+        endOfMonth.setHours(23, 59, 59, 999);
+        return endOfMonth;
+    }
+    
+    startCountdownTimer() {
+        const timer = document.getElementById('countdown-timer');
+        if (!timer) return;
+        
+        this.updateTimer();
+        this.timerInterval = setInterval(() => {
+            this.updateTimer();
+        }, 1000);
+    }
+    
+    updateTimer() {
+        const now = new Date().getTime();
+        const distance = this.endDate.getTime() - now;
+        
+        if (distance < 0) {
+            // Timer expired - reset to next month
+            this.endDate = this.calculateEndDate();
+            return;
+        }
+        
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        // Update timer display
+        const daysEl = document.getElementById('days');
+        const hoursEl = document.getElementById('hours');
+        const minutesEl = document.getElementById('minutes');
+        const secondsEl = document.getElementById('seconds');
+        
+        if (daysEl) daysEl.textContent = days.toString().padStart(2, '0');
+        if (hoursEl) hoursEl.textContent = hours.toString().padStart(2, '0');
+        if (minutesEl) minutesEl.textContent = minutes.toString().padStart(2, '0');
+        if (secondsEl) secondsEl.textContent = seconds.toString().padStart(2, '0');
+    }
+    
+    initializeActivityFeed() {
+        // Rotate activities every 8 seconds
+        this.activityInterval = setInterval(() => {
+            this.updateActivityFeed();
+        }, 8000);
+        
+        // Update activity counter with animation
+        this.animateActivityCounter();
+    }
+    
+    updateActivityFeed() {
+        const feed = document.getElementById('activity-feed');
+        if (!feed) return;
+        
+        // Get random activity
+        const randomActivity = this.activities[Math.floor(Math.random() * this.activities.length)];
+        
+        // Create new activity item
+        const newItem = document.createElement('div');
+        newItem.className = 'activity-item';
+        newItem.style.opacity = '0';
+        newItem.style.transform = 'translateX(-20px)';
+        newItem.innerHTML = `
+            <div class="activity-avatar">${randomActivity.avatar}</div>
+            <div class="activity-text">
+                <strong>${randomActivity.business}</strong> ${randomActivity.action}
+                <span class="activity-time">hace ${this.getRandomTime()}</span>
+            </div>
+        `;
+        
+        // Add to top of feed
+        feed.insertBefore(newItem, feed.firstChild);
+        
+        // Animate in
+        setTimeout(() => {
+            newItem.style.transition = 'all 0.5s ease';
+            newItem.style.opacity = '1';
+            newItem.style.transform = 'translateX(0)';
+        }, 100);
+        
+        // Remove last item if more than 3
+        const items = feed.querySelectorAll('.activity-item');
+        if (items.length > 3) {
+            const lastItem = items[items.length - 1];
+            lastItem.style.transition = 'all 0.5s ease';
+            lastItem.style.opacity = '0';
+            lastItem.style.transform = 'translateX(20px)';
+            setTimeout(() => {
+                if (lastItem.parentNode) {
+                    lastItem.remove();
+                }
+            }, 500);
+        }
+        
+        // Track activity updates
+        this.trackActivityUpdate(randomActivity.business, randomActivity.action);
+    }
+    
+    getRandomTime() {
+        const times = ['1 hora', '2 horas', '3 horas', '4 horas', '5 horas', '6 horas'];
+        return times[Math.floor(Math.random() * times.length)];
+    }
+    
+    animateActivityCounter() {
+        const counter = document.getElementById('activity-counter');
+        if (!counter) return;
+        
+        let currentCount = 2847;
+        const increment = () => {
+            currentCount += Math.floor(Math.random() * 3) + 1;
+            counter.textContent = currentCount.toLocaleString();
+        };
+        
+        // Update counter every 30 seconds
+        setInterval(increment, 30000);
+    }
+    
+    initializeSpotsAnimation() {
+        // Occasionally "take" a spot to create urgency
+        setInterval(() => {
+            if (this.spotsTaken < this.maxSpots - 2) { // Leave at least 2 spots
+                this.takeSpot();
+            }
+        }, 180000); // Every 3 minutes
+    }
+    
+    takeSpot() {
+        const availableSpots = document.querySelectorAll('.spot.available');
+        if (availableSpots.length > 2) { // Keep at least 2 available
+            const randomSpot = availableSpots[Math.floor(Math.random() * (availableSpots.length - 2))];
+            randomSpot.classList.remove('available');
+            randomSpot.classList.add('taken');
+            
+            // Update counter
+            this.spotsTaken++;
+            const spotsAvailableEl = document.querySelector('.spots-available-number');
+            if (spotsAvailableEl) {
+                spotsAvailableEl.textContent = (this.maxSpots - this.spotsTaken).toString();
+            }
+            
+            // Add flash effect
+            randomSpot.style.animation = 'none';
+            setTimeout(() => {
+                randomSpot.style.animation = 'flash 0.5s ease-in-out';
+            }, 10);
+            
+            // Track spot taken
+            this.trackSpotTaken(this.maxSpots - this.spotsTaken);
+        }
+    }
+    
+    initializeScrollTriggers() {
+        // Animate elements when they come into view
+        const urgencyElements = document.querySelectorAll('.scarcity-card, .fomo-section, .urgency-cta');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'slideInUp 0.8s ease-out';
+                    this.trackUrgencyElementView(entry.target.className);
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        urgencyElements.forEach(element => observer.observe(element));
+    }
+    
+    trackUrgencySection() {
+        // Track when urgency section is viewed
+        const urgencySection = document.querySelector('.urgency-scarcity');
+        if (!urgencySection) return;
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    this.trackUrgencySectionView();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        observer.observe(urgencySection);
+    }
+    
+    // Analytics tracking methods
+    trackUrgencySectionView() {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'urgency_section_view', {
+                'event_category': 'engagement',
+                'event_label': 'urgency_scarcity_section',
+                'value': this.maxSpots - this.spotsTaken
+            });
+        }
+    }
+    
+    trackActivityUpdate(business, action) {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'urgency_activity_update', {
+                'event_category': 'engagement', 
+                'event_label': business,
+                'custom_parameter_1': action
+            });
+        }
+    }
+    
+    trackSpotTaken(spotsRemaining) {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'urgency_spot_taken', {
+                'event_category': 'conversion',
+                'event_label': 'scarcity_spots',
+                'value': spotsRemaining
+            });
+        }
+    }
+    
+    trackUrgencyElementView(elementClass) {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'urgency_element_view', {
+                'event_category': 'engagement',
+                'event_label': elementClass
+            });
+        }
+    }
+    
+    // Cleanup method
+    destroy() {
+        if (this.timerInterval) {
+            clearInterval(this.timerInterval);
+        }
+        if (this.activityInterval) {
+            clearInterval(this.activityInterval);
+        }
+    }
+}
+
+// Global function for tracking urgency CTA clicks
+window.trackUrgencyClick = function(action) {
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'urgency_cta_click', {
+            'event_category': 'conversion',
+            'event_label': action,
+            'value': 1
+        });
+    }
+}
+
+// Initialize urgency & scarcity system
+document.addEventListener('DOMContentLoaded', () => {
+    const urgencySection = document.querySelector('.urgency-scarcity');
+    if (urgencySection) {
+        window.urgencyScarcityManager = new UrgencyScarcityManager();
+    }
+});
+
+// Add slideInUp animation keyframes via JavaScript
+const urgencyStyles = document.createElement('style');
+urgencyStyles.textContent = `
+    @keyframes slideInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @keyframes flash {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+    }
+`;
+document.head.appendChild(urgencyStyles);

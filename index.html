@@ -584,6 +584,230 @@
         </div>
     </section>
 
+    <!-- Urgency & Scarcity Section -->
+    <section class="urgency-scarcity" id="urgencia">
+        <div class="urgency-container">
+            <!-- Limited Time Offer Banner -->
+            <div class="urgency-banner">
+                <div class="urgency-icon">🚨</div>
+                <div class="urgency-content">
+                    <h2 class="urgency-title">⏰ OFERTA LIMITADA: Solo quedan 12 cupos para octubre</h2>
+                    <p class="urgency-subtitle">
+                        Para garantizar implementación exitosa, limitamos a 20 empresas nuevas por mes
+                    </p>
+                </div>
+                <div class="urgency-timer">
+                    <div class="timer-label">Tiempo restante:</div>
+                    <div class="countdown-timer" id="countdown-timer">
+                        <div class="timer-segment">
+                            <span class="timer-number" id="days">23</span>
+                            <span class="timer-unit">días</span>
+                        </div>
+                        <div class="timer-separator">:</div>
+                        <div class="timer-segment">
+                            <span class="timer-number" id="hours">14</span>
+                            <span class="timer-unit">horas</span>
+                        </div>
+                        <div class="timer-separator">:</div>
+                        <div class="timer-segment">
+                            <span class="timer-number" id="minutes">37</span>
+                            <span class="timer-unit">min</span>
+                        </div>
+                        <div class="timer-separator">:</div>
+                        <div class="timer-segment">
+                            <span class="timer-number" id="seconds">52</span>
+                            <span class="timer-unit">seg</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scarcity Elements -->
+            <div class="scarcity-grid">
+                <!-- Spots Available -->
+                <div class="scarcity-card spots-available">
+                    <div class="scarcity-header">
+                        <div class="scarcity-icon">🎯</div>
+                        <h3>Cupos Disponibles</h3>
+                    </div>
+                    <div class="spots-counter">
+                        <div class="spots-visual">
+                            <div class="spots-row">
+                                <span class="spot taken">●</span>
+                                <span class="spot taken">●</span>
+                                <span class="spot taken">●</span>
+                                <span class="spot taken">●</span>
+                                <span class="spot taken">●</span>
+                            </div>
+                            <div class="spots-row">
+                                <span class="spot taken">●</span>
+                                <span class="spot taken">●</span>
+                                <span class="spot taken">●</span>
+                                <span class="spot available">●</span>
+                                <span class="spot available">●</span>
+                            </div>
+                            <div class="spots-row">
+                                <span class="spot available">●</span>
+                                <span class="spot available">●</span>
+                                <span class="spot available">●</span>
+                                <span class="spot available">●</span>
+                                <span class="spot available">●</span>
+                            </div>
+                            <div class="spots-row">
+                                <span class="spot available">●</span>
+                                <span class="spot available">●</span>
+                                <span class="spot available">●</span>
+                                <span class="spot available">●</span>
+                                <span class="spot available">●</span>
+                            </div>
+                        </div>
+                        <div class="spots-text">
+                            <span class="spots-available-number">12</span>
+                            <span class="spots-total">de 20 cupos disponibles</span>
+                        </div>
+                    </div>
+                    <div class="scarcity-note">
+                        ⚡ <strong>8 empresas</strong> ya reservaron su cupo esta semana
+                    </div>
+                </div>
+
+                <!-- Bonus Expiring -->
+                <div class="scarcity-card bonus-expiring">
+                    <div class="scarcity-header">
+                        <div class="scarcity-icon">🎁</div>
+                        <h3>Bonus por Tiempo Limitado</h3>
+                    </div>
+                    <div class="bonus-list">
+                        <div class="bonus-item">
+                            <span class="bonus-value">$12,000</span>
+                            <span class="bonus-description">Setup personalizado por experto IA</span>
+                        </div>
+                        <div class="bonus-item">
+                            <span class="bonus-value">$8,000</span>
+                            <span class="bonus-description">3 meses de optimización incluidos</span>
+                        </div>
+                        <div class="bonus-item">
+                            <span class="bonus-value">$5,000</span>
+                            <span class="bonus-description">Training intensivo para tu equipo</span>
+                        </div>
+                    </div>
+                    <div class="bonus-total">
+                        <span class="bonus-total-value">$25,000</span>
+                        <span class="bonus-total-text">en valor agregado GRATIS</span>
+                    </div>
+                    <div class="bonus-expiry">
+                        🔥 Solo hasta el <strong>31 de octubre</strong>
+                    </div>
+                </div>
+
+                <!-- Social Pressure -->
+                <div class="scarcity-card social-pressure">
+                    <div class="scarcity-header">
+                        <div class="scarcity-icon">👥</div>
+                        <h3>Actividad Reciente</h3>
+                    </div>
+                    <div class="activity-feed" id="activity-feed">
+                        <div class="activity-item">
+                            <div class="activity-avatar">🏪</div>
+                            <div class="activity-text">
+                                <strong>Farmacia San Juan</strong> activó Chatably Pro
+                                <span class="activity-time">hace 2 horas</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-avatar">🍕</div>
+                            <div class="activity-text">
+                                <strong>Pizzería Della Nonna</strong> generó $47,000 en ventas
+                                <span class="activity-time">hace 4 horas</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-avatar">👗</div>
+                            <div class="activity-text">
+                                <strong>Boutique Elegance</strong> aumentó conversión 284%
+                                <span class="activity-time">hace 6 horas</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="activity-counter">
+                        <span class="activity-number" id="activity-counter">2,847</span>
+                        <span class="activity-text">empresas activas hoy</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fear of Missing Out (FOMO) -->
+            <div class="fomo-section">
+                <div class="fomo-content">
+                    <h3>🚀 ¿Qué pasará si no actúas hoy?</h3>
+                    <div class="fomo-comparison">
+                        <div class="fomo-without">
+                            <h4>❌ Sin Chatably:</h4>
+                            <ul>
+                                <li>Pierdes 60% de leads nocturnos</li>
+                                <li>Competencia te roba clientes</li>
+                                <li>Equipo saturado y estresado</li>
+                                <li>Ventas estancadas</li>
+                                <li>Oportunidades perdidas = $18,000/mes</li>
+                            </ul>
+                        </div>
+                        <div class="fomo-with">
+                            <h4>✅ Con Chatably:</h4>
+                            <ul>
+                                <li>Atención 24/7 sin costo adicional</li>
+                                <li>Ventas automáticas mientras duermes</li>
+                                <li>Equipo enfocado en tareas importantes</li>
+                                <li>Crecimiento exponencial</li>
+                                <li>ROI promedio: $67,000/mes</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Urgency CTA -->
+            <div class="urgency-cta">
+                <div class="urgency-cta-content">
+                    <h3>⚡ No te quedes sin tu cupo</h3>
+                    <p>Solo 12 empresas podrán implementar Chatably en octubre con bonus completo</p>
+                    <div class="urgency-buttons">
+                        <a href="#planes" class="urgency-button primary" onclick="trackUrgencyClick('reserve_spot')">
+                            🎯 Reservar mi cupo ahora
+                        </a>
+                        <a href="#contacto" class="urgency-button secondary" onclick="trackUrgencyClick('speak_expert')">
+                            📞 Hablar con experto (2 min)
+                        </a>
+                    </div>
+                    <div class="urgency-guarantee">
+                        <span class="guarantee-text">
+                            🛡️ Sin compromisos. Si no calificas, te reembolsamos 100%
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Risk Reversal with Urgency -->
+                <div class="urgency-risk-reversal">
+                    <div class="risk-item">
+                        <span class="risk-icon">⏰</span>
+                        <span class="risk-text">Setup en 24 horas o gratis</span>
+                    </div>
+                    <div class="risk-item">
+                        <span class="risk-icon">💰</span>
+                        <span class="risk-text">ROI en 30 días o reembolso</span>
+                    </div>
+                    <div class="risk-item">
+                        <span class="risk-icon">🎁</span>
+                        <span class="risk-text">$25,000 en bonus hasta oct 31</span>
+                    </div>
+                    <div class="risk-item">
+                        <span class="risk-icon">🏆</span>
+                        <span class="risk-text">Solo 12 cupos restantes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Social Proof Section -->
     <section class="social-proof" id="casos-exito">
         <div class="social-proof-container">
