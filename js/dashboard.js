@@ -2567,5 +2567,18 @@ window.addEventListener('beforeunload', () => {
 
 // Export for module systems if needed
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { DashboardController, OmnichannelManager, OnboardingGameManager, AnalyticsProManager };
+    module.exports = { 
+        DashboardController, 
+        OmnichannelManager, 
+        OnboardingGameManager,
+        AnalyticsProManager
+    };
+}
+
+// Also make available globally for direct script inclusion
+if (typeof window !== 'undefined') {
+    window.DashboardController = DashboardController;
+    window.OmnichannelManager = OmnichannelManager;
+    window.OnboardingGameManager = OnboardingGameManager;
+    window.AnalyticsProManager = AnalyticsProManager;
 }
