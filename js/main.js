@@ -533,3 +533,244 @@ window.trackROICTA = function() {
         });
     }
 }
+
+// ===========================
+// SOCIAL PROOF INTERACTIONS
+// ===========================
+
+class SocialProofManager {
+    constructor() {
+        this.init();
+    }
+
+    init() {
+        this.initializeVideoTestimonials();
+        this.initializeCaseStudyTracking();
+        this.initializeScrollAnimations();
+        this.initializeLogoCarousel();
+        this.initializeTrustSignals();
+    }
+
+    initializeVideoTestimonials() {
+        document.querySelectorAll('.video-testimonial').forEach(video => {
+            video.addEventListener('click', (e) => {
+                const name = video.querySelector('h4').textContent;
+                const company = video.querySelector('p').textContent;
+                
+                // Track video interaction
+                this.trackVideoClick(name, company);
+                
+                // Show modal or redirect to video
+                this.showVideoModal(name, company);
+            });
+        });
+    }
+
+    showVideoModal(name, company) {
+        // Create modal for video testimonial
+        const modal = document.createElement('div');
+        modal.className = 'modal video-modal';
+        modal.innerHTML = `
+            <div class="modal-backdrop"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>🎥 Testimonio de ${name}</h2>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="video-placeholder-large">
+                        <p>Video testimonial de <strong>${name}</strong> de ${company}</p>
+                        <p>🎬 Video disponible próximamente</p>
+                        <button class="schedule-demo-btn" onclick="this.closest('.modal').remove(); document.getElementById('contacto').scrollIntoView({behavior: 'smooth'});">
+                            📞 Hablar con Experto Ahora
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        setTimeout(() => modal.classList.add('show'), 10);
+        
+        // Close modal functionality
+        const closeBtn = modal.querySelector('.modal-close');
+        const backdrop = modal.querySelector('.modal-backdrop');
+        
+        [closeBtn, backdrop].forEach(el => {
+            el.addEventListener('click', () => {
+                modal.classList.remove('show');
+                setTimeout(() => modal.remove(), 300);
+            });
+        });
+    }
+
+    initializeCaseStudyTracking() {
+        // Track when case studies come into view
+        const caseStudies = document.querySelectorAll('.case-study');
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const businessName = entry.target.querySelector('h3').textContent;
+                    this.trackCaseStudyView(businessName);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        caseStudies.forEach(study => observer.observe(study));
+
+        // Track case study interactions
+        caseStudies.forEach(study => {
+            study.addEventListener('click', () => {
+                const businessName = study.querySelector('h3').textContent;
+                const metric = study.querySelector('.metric-value').textContent;
+                this.trackCaseStudyClick(businessName, metric);
+            });
+        });
+    }
+
+    initializeScrollAnimations() {
+        // Animate stats on scroll
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    this.animateStatsNumbers();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        const successStats = document.querySelector('.success-stats');
+        if (successStats) {
+            statsObserver.observe(successStats);
+        }
+    }
+
+    animateStatsNumbers() {
+        const statNumbers = document.querySelectorAll('.stat-number');
+        statNumbers.forEach(stat => {
+            const finalValue = stat.textContent;
+            
+            // Only animate numeric values
+            if (/^\d+/.test(finalValue)) {
+                const numericValue = parseInt(finalValue.replace(/[^\d]/g, ''));
+                this.animateNumber(stat, 0, numericValue, finalValue);
+            }
+        });
+    }
+
+    animateNumber(element, start, end, originalText) {
+        const duration = 2000;
+        const increment = (end - start) / (duration / 16);
+        let current = start;
+        
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= end) {
+                current = end;
+                clearInterval(timer);
+            }
+            
+            // Preserve original formatting
+            const newText = originalText.replace(/\d+/, Math.floor(current).toLocaleString());
+            element.textContent = newText;
+        }, 16);
+    }
+
+    initializeLogoCarousel() {
+        // Duplicate logos for seamless loop
+        const logoScrolls = document.querySelectorAll('.logos-scroll');
+        logoScrolls.forEach(scroll => {
+            const logos = scroll.innerHTML;
+            scroll.innerHTML = logos + logos; // Duplicate for seamless loop
+        });
+
+        // Pause animation on hover
+        const logoMarquees = document.querySelectorAll('.logos-marquee');
+        logoMarquees.forEach(marquee => {
+            marquee.addEventListener('mouseenter', () => {
+                marquee.style.animationPlayState = 'paused';
+            });
+            
+            marquee.addEventListener('mouseleave', () => {
+                marquee.style.animationPlayState = 'running';
+            });
+        });
+    }
+
+    initializeTrustSignals() {
+        document.querySelectorAll('.trust-item').forEach(trust => {
+            trust.addEventListener('click', () => {
+                const trustType = trust.querySelector('h4').textContent;
+                this.trackTrustSignalClick(trustType);
+                
+                // Show more info or redirect
+                if (trustType.includes('ISO')) {
+                    this.showSecurityInfo();
+                } else if (trustType.includes('Partner')) {
+                    this.showPartnerInfo();
+                }
+            });
+        });
+    }
+
+    showSecurityInfo() {
+        alert('🔒 Chatably cumple con los más altos estándares de seguridad:\n\n• Certificación ISO 27001\n• Datos encriptados end-to-end\n• Servidores en México\n• Auditorías regulares\n• Cumplimiento GDPR');
+    }
+
+    showPartnerInfo() {
+        alert('🚀 Chatably es Partner Oficial de Meta:\n\n• Acceso directo a WhatsApp Business API\n• Soporte técnico prioritario\n• Nuevas funciones antes que nadie\n• Integración certificada y segura');
+    }
+
+    // Analytics tracking methods
+    trackVideoClick(name, company) {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'video_testimonial_click', {
+                'event_category': 'engagement',
+                'event_label': name,
+                'custom_parameter_1': company
+            });
+        }
+    }
+
+    trackCaseStudyView(businessName) {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'case_study_view', {
+                'event_category': 'engagement',
+                'event_label': businessName
+            });
+        }
+    }
+
+    trackCaseStudyClick(businessName, metric) {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'case_study_click', {
+                'event_category': 'engagement',
+                'event_label': businessName,
+                'custom_parameter_1': metric
+            });
+        }
+    }
+
+    trackTrustSignalClick(trustType) {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'trust_signal_click', {
+                'event_category': 'engagement',
+                'event_label': trustType
+            });
+        }
+    }
+}
+
+// Initialize social proof interactions
+document.addEventListener('DOMContentLoaded', () => {
+    const socialProofSection = document.querySelector('.social-proof');
+    if (socialProofSection) {
+        window.socialProofManager = new SocialProofManager();
+    }
+});
