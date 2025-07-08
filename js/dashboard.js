@@ -640,7 +640,344 @@ window.ChatableDashboard = {
     }
 };
 
+/**
+ * OMNICHANNEL MANAGER
+ * Gestiona conexiones de TikTok, Instagram, Messenger, WhatsApp y Telegram
+ */
+class OmnichannelManager {
+    constructor() {
+        this.channels = {
+            tiktok: { 
+                connected: false, 
+                priority: 1,
+                features: ['DMs', 'Comentarios', 'Lives'],
+                responseTime: '23 seg',
+                messages: 89
+            },
+            whatsapp: { 
+                connected: true, 
+                priority: 2,
+                number: '+52 811 234 5678',
+                responseTime: '45 seg',
+                messages: 142
+            },
+            instagram: { 
+                connected: false, 
+                priority: 3,
+                features: ['DMs', 'Comentarios', 'Stories'],
+                responseTime: '1 min',
+                messages: 67
+            },
+            messenger: { 
+                connected: false, 
+                priority: 4,
+                responseTime: '2 min',
+                messages: 45
+            },
+            telegram: { 
+                connected: false, 
+                priority: 5,
+                status: 'coming_soon',
+                responseTime: 'N/A',
+                messages: 0
+            }
+        };
+        
+        this.init();
+    }
+
+    init() {
+        console.log('🚀 OmnichannelManager inicializado');
+        this.initializeChannelButtons();
+        this.initializeUnifiedInbox();
+        this.startChannelSimulation();
+    }
+
+    initializeChannelButtons() {
+        document.querySelectorAll('.connect-channel-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const channelCard = e.target.closest('.channel-card');
+                const channel = channelCard.dataset.channel;
+                this.connectChannel(channel);
+            });
+        });
+
+        // Manage buttons for connected channels
+        document.querySelectorAll('.manage-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const channelCard = e.target.closest('.channel-card');
+                const channel = channelCard.dataset.channel;
+                this.manageChannel(channel);
+            });
+        });
+    }
+
+    connectChannel(channel) {
+        if (channel === 'tiktok') {
+            this.showTikTokModal();
+        } else if (channel === 'telegram') {
+            this.showNotification('Telegram llegará pronto. ¡Sé el primero en saberlo!', 'info');
+        } else if (channel === 'instagram' || channel === 'messenger') {
+            this.showMetaConnectionModal(channel);
+        }
+    }
+
+    showTikTokModal() {
+        // Remove existing modal if any
+        const existingModal = document.querySelector('.tiktok-modal');
+        if (existingModal) {
+            existingModal.remove();
+        }
+
+        const modal = document.createElement('div');
+        modal.className = 'modal tiktok-modal';
+        modal.innerHTML = `
+            <div class="modal-backdrop"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>🎯 Conecta TikTok for Business</h2>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="tiktok-benefits">
+                        <h3>¡Sé pionero en México!</h3>
+                        <ul style="list-style: none; padding: 0; margin: 1rem 0;">
+                            <li style="padding: 0.5rem 0;">✨ Responde DMs automáticamente</li>
+                            <li style="padding: 0.5rem 0;">💬 Gestiona comentarios con IA</li>
+                            <li style="padding: 0.5rem 0;">🔥 Detecta tendencias y oportunidades</li>
+                            <li style="padding: 0.5rem 0;">📊 Analytics exclusivos</li>
+                        </ul>
+                    </div>
+                    <button class="connect-tiktok-now tiktok-gradient" style="width: 100%; padding: 1rem; border: none; border-radius: 10px; color: white; font-weight: 600; cursor: pointer; margin: 1rem 0;">
+                        <span>⚡</span> Conectar Ahora
+                    </button>
+                    <p class="exclusive-note" style="text-align: center; color: #666; font-size: 0.875rem;">
+                        🏆 Oferta especial para early adopters
+                    </p>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        
+        // Show modal
+        setTimeout(() => modal.classList.add('show'), 10);
+        
+        // Add event listeners
+        const closeBtn = modal.querySelector('.modal-close');
+        const backdrop = modal.querySelector('.modal-backdrop');
+        const connectBtn = modal.querySelector('.connect-tiktok-now');
+        
+        closeBtn.addEventListener('click', () => this.hideChannelModal(modal));
+        backdrop.addEventListener('click', () => this.hideChannelModal(modal));
+        connectBtn.addEventListener('click', () => {
+            this.simulateChannelConnection('tiktok');
+            this.hideChannelModal(modal);
+        });
+    }
+
+    showMetaConnectionModal(channel) {
+        const channelName = channel === 'instagram' ? 'Instagram' : 'Facebook Messenger';
+        
+        const modal = document.createElement('div');
+        modal.className = 'modal meta-modal';
+        modal.innerHTML = `
+            <div class="modal-backdrop"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>🔗 Conecta ${channelName}</h2>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p style="margin-bottom: 1.5rem; color: #666;">
+                        Conecta tu cuenta de ${channelName} de forma segura con Meta
+                    </p>
+                    <button class="connect-meta-now ${channel}-gradient" style="width: 100%; padding: 1rem; border: none; border-radius: 10px; color: white; font-weight: 600; cursor: pointer;">
+                        Autorizar con Meta
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        setTimeout(() => modal.classList.add('show'), 10);
+        
+        const closeBtn = modal.querySelector('.modal-close');
+        const backdrop = modal.querySelector('.modal-backdrop');
+        const connectBtn = modal.querySelector('.connect-meta-now');
+        
+        closeBtn.addEventListener('click', () => this.hideChannelModal(modal));
+        backdrop.addEventListener('click', () => this.hideChannelModal(modal));
+        connectBtn.addEventListener('click', () => {
+            this.simulateChannelConnection(channel);
+            this.hideChannelModal(modal);
+        });
+    }
+
+    hideChannelModal(modal) {
+        modal.classList.remove('show');
+        setTimeout(() => modal.remove(), 300);
+    }
+
+    simulateChannelConnection(channel) {
+        this.showNotification(`Conectando ${channel}...`, 'info');
+        
+        setTimeout(() => {
+            this.channels[channel].connected = true;
+            this.updateChannelCard(channel);
+            this.updateUnifiedStats();
+            this.showNotification(`¡${channel} conectado exitosamente! 🎉`, 'success');
+            
+            // Add some activity
+            this.addChannelActivity(channel);
+        }, 2000);
+    }
+
+    updateChannelCard(channel) {
+        const channelCard = document.querySelector(`[data-channel="${channel}"]`);
+        if (!channelCard) return;
+        
+        const button = channelCard.querySelector('.connect-channel-btn');
+        const channelInfo = channelCard.querySelector('.channel-info');
+        
+        if (button && channelInfo) {
+            button.outerHTML = `
+                <div class="channel-status connected">
+                    <span>✅ Conectado</span>
+                    <button class="manage-btn">Gestionar</button>
+                </div>
+            `;
+            
+            // Re-attach event listener
+            const newManageBtn = channelCard.querySelector('.manage-btn');
+            if (newManageBtn) {
+                newManageBtn.addEventListener('click', () => this.manageChannel(channel));
+            }
+        }
+        
+        // Update channel count in sidebar
+        this.updateChannelCount();
+    }
+
+    updateChannelCount() {
+        const connectedChannels = Object.values(this.channels).filter(ch => ch.connected).length;
+        const channelCountEl = document.querySelector('.channel-count');
+        if (channelCountEl) {
+            channelCountEl.textContent = `${connectedChannels}/5`;
+        }
+    }
+
+    updateUnifiedStats() {
+        const connectedChannels = Object.values(this.channels).filter(ch => ch.connected).length;
+        const totalMessages = Object.values(this.channels).reduce((sum, ch) => sum + ch.messages, 0);
+        
+        // Update stats in the hub
+        const stats = document.querySelectorAll('.unified-stats .stat');
+        if (stats[0]) {
+            stats[0].querySelector('.stat-value').textContent = totalMessages;
+        }
+        if (stats[1]) {
+            stats[1].querySelector('.stat-value').textContent = connectedChannels;
+        }
+    }
+
+    manageChannel(channel) {
+        this.showNotification(`Gestión de ${channel} próximamente disponible`, 'info');
+    }
+
+    initializeUnifiedInbox() {
+        // Simular mensajes de diferentes canales
+        const unifiedMessages = [
+            {
+                channel: 'tiktok',
+                user: '@trendy_user',
+                message: '¿Hacen envíos? Vi tu video',
+                time: 'Hace 2 min',
+                priority: 'high'
+            },
+            {
+                channel: 'whatsapp',
+                user: 'María García',
+                message: 'Quiero información sobre precios',
+                time: 'Hace 5 min',
+                priority: 'medium'
+            },
+            {
+                channel: 'instagram',
+                user: '@cliente_vip',
+                message: 'Me encantó el producto del reel',
+                time: 'Hace 8 min',
+                priority: 'high'
+            }
+        ];
+        
+        this.renderUnifiedMessages(unifiedMessages);
+    }
+
+    renderUnifiedMessages(messages) {
+        // Actualizar actividades con badges de canal
+        messages.forEach(msg => {
+            const channelEmojis = {
+                tiktok: '📺',
+                whatsapp: '📱',
+                instagram: '📷',
+                messenger: '💬',
+                telegram: '✈️'
+            };
+            
+            if (window.dashboardController) {
+                window.dashboardController.addActivity(
+                    'message',
+                    `${channelEmojis[msg.channel]} ${msg.user}: "${msg.message}"`,
+                    msg.time
+                );
+            }
+        });
+    }
+
+    addChannelActivity(channel) {
+        const activities = {
+            tiktok: 'Nuevo DM desde TikTok - @usuario_trendy',
+            instagram: 'Comentario en post - @fan_instagram',
+            messenger: 'Mensaje desde página de Facebook',
+            telegram: 'Mensaje en canal de Telegram'
+        };
+        
+        if (window.dashboardController && activities[channel]) {
+            window.dashboardController.addActivity('message', activities[channel], 'Ahora');
+        }
+    }
+
+    startChannelSimulation() {
+        // Simular actividad cada 30 segundos
+        setInterval(() => {
+            const connectedChannels = Object.entries(this.channels)
+                .filter(([_, data]) => data.connected)
+                .map(([name, _]) => name);
+            
+            if (connectedChannels.length > 0) {
+                const randomChannel = connectedChannels[Math.floor(Math.random() * connectedChannels.length)];
+                this.addChannelActivity(randomChannel);
+            }
+        }, 30000);
+    }
+
+    showNotification(message, type = 'success') {
+        if (window.dashboardController) {
+            window.dashboardController.showNotification(message, type);
+        }
+    }
+}
+
+// Initialize OmnichannelManager along with DashboardController
+document.addEventListener('DOMContentLoaded', () => {
+    // Wait a bit for DashboardController to initialize
+    setTimeout(() => {
+        window.omnichannelManager = new OmnichannelManager();
+    }, 500);
+});
+
 // Export for module systems if needed
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = DashboardController;
+    module.exports = { DashboardController, OmnichannelManager };
 }
