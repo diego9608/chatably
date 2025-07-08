@@ -698,7 +698,13 @@ class OmnichannelManager {
             btn.addEventListener('click', (e) => {
                 const channelCard = e.target.closest('.channel-card');
                 const channel = channelCard.dataset.channel;
-                this.connectChannel(channel);
+                
+                // Check if it's a premium upgrade button
+                if (btn.classList.contains('premium-upgrade')) {
+                    this.showUpgradeModal(channel);
+                } else {
+                    this.connectChannel(channel);
+                }
             });
         });
 
@@ -710,6 +716,9 @@ class OmnichannelManager {
                 this.manageChannel(channel);
             });
         });
+
+        // Initialize freemium upgrade buttons
+        this.initializeUpgradeButtons();
     }
 
     connectChannel(channel) {
@@ -968,6 +977,486 @@ class OmnichannelManager {
         }
     }
 }
+
+/**
+ * FREEMIUM UPGRADE SYSTEM
+ * Gestiona las funcionalidades de upgrade y premium features
+ */
+class FreemiumUpgradeManager {
+    constructor() {
+        this.currentPlan = 'starter';
+        this.usageData = {
+            messages: 3650,
+            maxMessages: 5000,
+            channels: 1,
+            maxChannels: 5
+        };
+        
+        this.init();
+    }
+
+    init() {
+        console.log('🚀 FreemiumUpgradeManager inicializado');
+        this.initializeUpgradeButtons();
+        this.trackFreemiumInteractions();
+        this.updateUsageDisplays();
+    }
+
+    initializeUpgradeButtons() {
+        // Main upgrade banner button
+        const upgradeMainBtn = document.querySelector('.upgrade-banner-btn');
+        if (upgradeMainBtn) {
+            upgradeMainBtn.addEventListener('click', () => this.showUpgradeModal('main_banner'));
+        }
+
+        // Sidebar upgrade button
+        const upgradeSidebarBtn = document.querySelector('.upgrade-btn');
+        if (upgradeSidebarBtn) {
+            upgradeSidebarBtn.addEventListener('click', () => this.showUpgradeModal('sidebar'));
+        }
+
+        // Mini upgrade buttons in KPIs
+        document.querySelectorAll('.upgrade-mini-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const context = e.target.closest('.kpi-card') ? 'kpi_card' : 'general';
+                this.showUpgradeModal(context);
+            });
+        });
+
+        // Premium feature upgrade buttons
+        document.querySelectorAll('.premium-upgrade').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const feature = btn.dataset.feature || 'unknown';
+                this.showUpgradeModal('premium_feature', feature);
+            });
+        });
+    }
+
+    showUpgradeModal(source, feature = null) {
+        console.log(`🎯 Usuario quiere upgrade desde: ${source}${feature ? ` (${feature})` : ''}`);
+        
+        // Track the upgrade intent
+        this.trackUpgradeIntent(source, feature);
+        
+        // Create upgrade modal
+        const modal = this.createUpgradeModal(source, feature);
+        document.body.appendChild(modal);
+        
+        // Show modal with animation
+        setTimeout(() => modal.classList.add('show'), 10);
+        
+        // Add event listeners
+        this.attachModalEventListeners(modal);
+        
+        // Show notification
+        this.showNotification('✨ ¡Descubre todo lo que puedes lograr con Pro!', 'info');
+    }
+
+    createUpgradeModal(source, feature) {
+        const modal = document.createElement('div');
+        modal.className = 'modal upgrade-modal';
+        
+        const featureMessages = {
+            'tiktok': {
+                title: '🎯 Desbloquea TikTok for Business',
+                description: 'Sé pionero en México conectando TikTok. Responde DMs automáticamente y convierte cada video viral en ventas.',
+                benefits: ['📺 Automatiza TikTok DMs', '💬 Gestiona comentarios', '🎯 Detecta leads de videos', '📊 Analytics de TikTok']
+            },
+            'instagram': {
+                title: '📷 Conecta Instagram Direct',
+                description: 'Automatiza mensajes directos y comentarios de Instagram. Convierte followers en clientes.',
+                benefits: ['📱 DMs automáticos', '💬 Gestión de comentarios', '📊 Analytics de Instagram', '🎯 Lead generation']
+            },
+            'messenger': {
+                title: '💬 Activa Facebook Messenger',
+                description: 'Conecta tu página de Facebook y automatiza todas las conversaciones de Messenger.',
+                benefits: ['💬 Chat automático', '📱 Messenger integrado', '👥 Gestión de leads', '📊 Métricas completas']
+            }
+        };
+
+        const featureData = featureMessages[feature] || {
+            title: '💎 Upgrade a Chatably Pro',
+            description: 'Desbloquea todo el potencial de Chatably con funciones premium.',
+            benefits: ['✨ +4 canales premium', '🤖 IA GPT-4 avanzada', '📊 Analytics profundos', '⚡ Respuesta < 30 seg']
+        };
+
+        modal.innerHTML = `
+            <div class="modal-backdrop"></div>
+            <div class="modal-content upgrade-modal-content">
+                <div class="modal-header">
+                    <h2>${featureData.title}</h2>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="upgrade-modal-description">
+                        <p>${featureData.description}</p>
+                    </div>
+                    
+                    <div class="upgrade-benefits-list">
+                        <h4>Con Pro obtienes:</h4>
+                        <ul>
+                            ${featureData.benefits.map(benefit => `<li>${benefit}</li>`).join('')}
+                        </ul>
+                    </div>
+                    
+                    <div class="upgrade-pricing-summary">
+                        <div class="current-plan">
+                            <span class="plan-label">Plan actual:</span>
+                            <span class="plan-name">Starter - $1,499/mes</span>
+                        </div>
+                        <div class="upgrade-arrow">↓</div>
+                        <div class="new-plan">
+                            <span class="plan-label">Upgrade a:</span>
+                            <span class="plan-name gold">Pro - $4,999/mes</span>
+                            <span class="plan-roi">Se paga solo con 2 ventas extra</span>
+                        </div>
+                    </div>
+                    
+                    <div class="upgrade-guarantee">
+                        <div class="guarantee-icon">🛡️</div>
+                        <div class="guarantee-text">
+                            <h5>Garantía Total</h5>
+                            <p>Si no generas 2x tu inversión en 30 días, te devolvemos todo tu dinero.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="upgrade-actions">
+                        <button class="upgrade-now-btn" data-source="${source}" data-feature="${feature}">
+                            💎 Upgrade Ahora - $4,999/mes
+                        </button>
+                        <button class="schedule-demo-btn">
+                            📞 Hablar con Experto
+                        </button>
+                        <p class="upgrade-note">✅ Upgrade instantáneo • 🔄 Cancela cuando quieras</p>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        return modal;
+    }
+
+    attachModalEventListeners(modal) {
+        const closeBtn = modal.querySelector('.modal-close');
+        const backdrop = modal.querySelector('.modal-backdrop');
+        const upgradeBtn = modal.querySelector('.upgrade-now-btn');
+        const demoBtn = modal.querySelector('.schedule-demo-btn');
+        
+        // Close modal handlers
+        closeBtn.addEventListener('click', () => this.closeUpgradeModal(modal));
+        backdrop.addEventListener('click', () => this.closeUpgradeModal(modal));
+        
+        // Upgrade action handlers
+        upgradeBtn.addEventListener('click', (e) => {
+            const source = e.target.dataset.source;
+            const feature = e.target.dataset.feature;
+            this.processUpgrade(source, feature);
+        });
+        
+        demoBtn.addEventListener('click', () => {
+            this.scheduleDemo();
+            this.closeUpgradeModal(modal);
+        });
+    }
+
+    closeUpgradeModal(modal) {
+        modal.classList.remove('show');
+        setTimeout(() => {
+            if (modal.parentNode) {
+                modal.remove();
+            }
+        }, 300);
+    }
+
+    processUpgrade(source, feature) {
+        console.log(`💳 Procesando upgrade desde ${source} para ${feature}`);
+        
+        // Track conversion
+        this.trackUpgradeConversion(source, feature);
+        
+        // Show loading state
+        this.showNotification('🚀 Redirigiendo a checkout...', 'info');
+        
+        // Redirect to Pro plan payment link
+        setTimeout(() => {
+            window.location.href = 'https://buy.stripe.com/7sYfZgcxN3usbRX0k37ok0c';
+        }, 1000);
+    }
+
+    scheduleDemo() {
+        this.showNotification('📞 Te contactaremos en las próximas 2 horas', 'success');
+        
+        // Track demo request
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'demo_request', {
+                'event_category': 'conversion',
+                'event_label': 'freemium_upgrade_flow'
+            });
+        }
+    }
+
+    trackFreemiumInteractions() {
+        // Track when users hover over locked features
+        document.querySelectorAll('.premium-locked').forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'premium_feature_hover', {
+                        'event_category': 'engagement',
+                        'event_label': 'freemium_exploration'
+                    });
+                }
+            });
+        });
+        
+        // Track usage bar interactions
+        const usageBar = document.querySelector('.usage-bar');
+        if (usageBar) {
+            usageBar.addEventListener('click', () => {
+                this.showUpgradeModal('usage_limit');
+            });
+        }
+    }
+
+    trackUpgradeIntent(source, feature) {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'upgrade_intent', {
+                'event_category': 'conversion',
+                'event_label': source,
+                'custom_parameter_1': feature || 'general'
+            });
+        }
+    }
+
+    trackUpgradeConversion(source, feature) {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'upgrade_conversion', {
+                'event_category': 'conversion',
+                'event_label': source,
+                'value': 4999,
+                'currency': 'MXN',
+                'custom_parameter_1': feature || 'general'
+            });
+        }
+    }
+
+    updateUsageDisplays() {
+        // Update usage percentage
+        const usagePercentage = Math.round((this.usageData.messages / this.usageData.maxMessages) * 100);
+        const usageFill = document.querySelector('.usage-fill');
+        if (usageFill) {
+            usageFill.style.width = `${usagePercentage}%`;
+        }
+        
+        // Update usage text
+        const usageText = document.querySelector('.usage-text');
+        if (usageText) {
+            usageText.textContent = `${this.usageData.messages.toLocaleString()} / ${this.usageData.maxMessages.toLocaleString()} mensajes usados`;
+        }
+        
+        // Update channel count
+        const channelCount = document.querySelector('.channel-count');
+        if (channelCount) {
+            channelCount.textContent = `${this.usageData.channels}/${this.usageData.maxChannels}`;
+        }
+        
+        // Show warning if approaching limits
+        if (usagePercentage > 85) {
+            this.showUsageLimitWarning();
+        }
+    }
+
+    showUsageLimitWarning() {
+        const warningShown = localStorage.getItem('usage_warning_shown');
+        if (!warningShown) {
+            setTimeout(() => {
+                this.showNotification('⚠️ Te quedan pocos mensajes este mes. ¡Upgrade para ilimitados!', 'warning', 6000);
+                localStorage.setItem('usage_warning_shown', 'true');
+            }, 3000);
+        }
+    }
+
+    showNotification(message, type = 'info', duration = 4000) {
+        if (window.dashboardController) {
+            window.dashboardController.showNotification(message, type, duration);
+        }
+    }
+}
+
+// Add upgrade modal styles
+const upgradeModalStyles = `
+<style>
+.upgrade-modal-content {
+    max-width: 600px;
+    margin: 3% auto;
+}
+
+.upgrade-modal-description {
+    background: var(--gray-50);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+}
+
+.upgrade-benefits-list {
+    margin-bottom: 1.5rem;
+}
+
+.upgrade-benefits-list h4 {
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+}
+
+.upgrade-benefits-list ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+}
+
+.upgrade-benefits-list li {
+    padding: 0.5rem;
+    background: rgba(77, 141, 255, 0.05);
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+.upgrade-pricing-summary {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.current-plan, .new-plan {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.plan-label {
+    font-size: 0.8rem;
+    color: var(--gray-600);
+}
+
+.plan-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.plan-name.gold {
+    color: #B45309;
+}
+
+.plan-roi {
+    font-size: 0.85rem;
+    color: var(--success-green);
+    font-weight: 600;
+}
+
+.upgrade-arrow {
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+    color: var(--primary);
+}
+
+.upgrade-guarantee {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(16, 185, 129, 0.05);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.guarantee-icon {
+    font-size: 2rem;
+}
+
+.guarantee-text h5 {
+    margin-bottom: 0.25rem;
+    color: var(--success-green);
+}
+
+.guarantee-text p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--gray-600);
+}
+
+.upgrade-actions {
+    text-align: center;
+}
+
+.upgrade-now-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: var(--text-dark);
+    border: none;
+    padding: 1.25rem 2rem;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 1rem;
+}
+
+.upgrade-now-btn:hover {
+    background: linear-gradient(135deg, #FFA500, #FF8C00);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+}
+
+.schedule-demo-btn {
+    width: 100%;
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 1rem;
+}
+
+.schedule-demo-btn:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.upgrade-note {
+    font-size: 0.8rem;
+    color: var(--gray-600);
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .upgrade-benefits-list ul {
+        grid-template-columns: 1fr;
+    }
+    
+    .upgrade-modal-content {
+        margin: 5% 1rem;
+    }
+}
+</style>
+`;
+
+// Inject styles
+document.head.insertAdjacentHTML('beforeend', upgradeModalStyles);
+
+// Initialize FreemiumUpgradeManager along with other managers
+document.addEventListener('DOMContentLoaded', () => {
+    // Wait for DashboardController to initialize
+    setTimeout(() => {
+        window.freemiumUpgradeManager = new FreemiumUpgradeManager();
+    }, 1000);
+});
 
 // Initialize OmnichannelManager along with DashboardController
 document.addEventListener('DOMContentLoaded', () => {

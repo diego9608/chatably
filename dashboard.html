@@ -87,9 +87,16 @@
                     <span class="nav-icon">⚙️</span>
                     <span class="nav-text">Configuración</span>
                 </a>
-                <div class="plan-indicator">
-                    <span class="plan-name">Plan Pro</span>
-                    <span class="plan-status">Activo</span>
+                <div class="plan-indicator freemium">
+                    <span class="plan-name">Plan Starter</span>
+                    <span class="plan-status">⚡ Actualizar a Pro</span>
+                    <div class="usage-indicator">
+                        <div class="usage-bar">
+                            <div class="usage-fill" style="width: 73%"></div>
+                        </div>
+                        <span class="usage-text">3,650 / 5,000 mensajes usados</span>
+                    </div>
+                    <button class="upgrade-btn">💎 Upgrade a Pro</button>
                 </div>
             </div>
         </aside>
@@ -98,6 +105,29 @@
         <main class="dashboard-main">
             <!-- Sección: Inicio -->
             <section id="inicio" class="dashboard-section active">
+                <!-- Freemium Upgrade Banner -->
+                <div class="upgrade-banner">
+                    <div class="upgrade-content">
+                        <div class="upgrade-info">
+                            <h3>🚀 ¿Listo para multiplicar tus ventas?</h3>
+                            <p>Conecta TikTok, Instagram y Messenger. Automatiza todo. Vende más.</p>
+                            <div class="upgrade-benefits">
+                                <span>✨ +4 canales premium</span>
+                                <span>🤖 IA GPT-4 avanzada</span>
+                                <span>📊 Analytics profundos</span>
+                                <span>⚡ Respuesta < 30 seg</span>
+                            </div>
+                        </div>
+                        <div class="upgrade-cta">
+                            <button class="upgrade-banner-btn">
+                                💎 Upgrade a Pro
+                                <span class="upgrade-price">$4,999/mes</span>
+                            </button>
+                            <p class="upgrade-guarantee">✅ ROI garantizado o 100% reembolso</p>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Omnichannel Connection Hub -->
                 <div class="omnichannel-hub">
                     <div class="hub-header">
@@ -106,8 +136,12 @@
                     </div>
                     
                     <div class="channels-grid">
-                        <!-- TikTok - DESTACADO como novedad -->
-                        <div class="channel-card featured new" data-channel="tiktok">
+                        <!-- TikTok - PREMIUM FEATURE -->
+                        <div class="channel-card featured premium-locked" data-channel="tiktok">
+                            <div class="premium-overlay">
+                                <div class="premium-lock">🔒</div>
+                                <span class="premium-label">PRO</span>
+                            </div>
                             <div class="channel-header">
                                 <div class="channel-icon tiktok">
                                     <svg viewBox="0 0 24 24" width="32" height="32">
@@ -120,8 +154,8 @@
                                     <p>Sé el primero en automatizar TikTok</p>
                                 </div>
                             </div>
-                            <button class="connect-channel-btn tiktok-gradient">
-                                <span>⚡</span> Conectar TikTok
+                            <button class="connect-channel-btn premium-upgrade" data-feature="tiktok">
+                                <span>💎</span> Upgrade para Conectar
                             </button>
                             <div class="channel-benefits">
                                 <span>• Responde DMs automáticamente</span>
@@ -149,8 +183,12 @@
                             </div>
                         </div>
 
-                        <!-- Instagram -->
-                        <div class="channel-card" data-channel="instagram">
+                        <!-- Instagram - PREMIUM FEATURE -->
+                        <div class="channel-card premium-locked" data-channel="instagram">
+                            <div class="premium-overlay">
+                                <div class="premium-lock">🔒</div>
+                                <span class="premium-label">PRO</span>
+                            </div>
                             <div class="channel-header">
                                 <div class="channel-icon instagram">
                                     <svg viewBox="0 0 24 24" width="32" height="32">
@@ -162,13 +200,17 @@
                                     <p>Mensajes y comentarios</p>
                                 </div>
                             </div>
-                            <button class="connect-channel-btn instagram-gradient">
-                                Conectar Instagram
+                            <button class="connect-channel-btn premium-upgrade" data-feature="instagram">
+                                <span>💎</span> Upgrade para Conectar
                             </button>
                         </div>
 
-                        <!-- Messenger -->
-                        <div class="channel-card" data-channel="messenger">
+                        <!-- Messenger - PREMIUM FEATURE -->
+                        <div class="channel-card premium-locked" data-channel="messenger">
+                            <div class="premium-overlay">
+                                <div class="premium-lock">🔒</div>
+                                <span class="premium-label">PRO</span>
+                            </div>
                             <div class="channel-header">
                                 <div class="channel-icon messenger">
                                     <svg viewBox="0 0 24 24" width="32" height="32">
@@ -180,8 +222,8 @@
                                     <p>Chat de tu página</p>
                                 </div>
                             </div>
-                            <button class="connect-channel-btn messenger-gradient">
-                                Conectar Messenger
+                            <button class="connect-channel-btn premium-upgrade" data-feature="messenger">
+                                <span>💎</span> Upgrade para Conectar
                             </button>
                         </div>
 
@@ -207,15 +249,16 @@
                     <!-- Unified Stats -->
                     <div class="unified-stats">
                         <div class="stat">
-                            <span class="stat-value">847</span>
+                            <span class="stat-value">142</span>
                             <span class="stat-label">Mensajes hoy</span>
                         </div>
-                        <div class="stat">
-                            <span class="stat-value">2</span>
+                        <div class="stat freemium-limited">
+                            <span class="stat-value">1/5</span>
                             <span class="stat-label">Canales activos</span>
+                            <div class="upgrade-hint">💎 +4 canales con Pro</div>
                         </div>
                         <div class="stat">
-                            <span class="stat-value">< 1 min</span>
+                            <span class="stat-value">45 seg</span>
                             <span class="stat-label">Tiempo respuesta</span>
                         </div>
                     </div>
@@ -223,17 +266,20 @@
 
                 <!-- Omnichannel KPIs Grid -->
                 <div class="kpi-grid">
-                    <div class="kpi-card">
+                    <div class="kpi-card freemium-limited">
                         <div class="kpi-header">
-                            <span class="kpi-title">Mensajes Omnicanal</span>
-                            <span class="kpi-trend up">↑ 47%</span>
+                            <span class="kpi-title">Mensajes del Mes</span>
+                            <span class="kpi-trend up">↑ 12%</span>
                         </div>
-                        <div class="kpi-value">343</div>
+                        <div class="kpi-value">3,650</div>
                         <div class="kpi-breakdown">
-                            <span class="channel-stat">📱 WhatsApp: 142</span>
-                            <span class="channel-stat">📺 TikTok: 89</span>
-                            <span class="channel-stat">📷 Instagram: 67</span>
-                            <span class="channel-stat">💬 Messenger: 45</span>
+                            <span class="channel-stat">📱 WhatsApp: 3,650</span>
+                            <span class="channel-stat locked">🔒 TikTok: Requiere Pro</span>
+                            <span class="channel-stat locked">🔒 Instagram: Requiere Pro</span>
+                            <span class="channel-stat locked">🔒 Messenger: Requiere Pro</span>
+                        </div>
+                        <div class="upgrade-mini-cta">
+                            <button class="upgrade-mini-btn">💎 Desbloquear Pro</button>
                         </div>
                     </div>
                     
