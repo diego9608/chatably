@@ -80,6 +80,11 @@
                     <span class="nav-icon">⚡</span>
                     <span class="nav-text">Campañas</span>
                 </a>
+                <a href="#analytics" class="nav-item" data-section="analytics">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">Analytics Pro</span>
+                    <span class="feature-badge new">NUEVO</span>
+                </a>
             </nav>
             
             <div class="sidebar-footer">
@@ -675,6 +680,437 @@
                         <h3>Campañas Automatizadas</h3>
                         <p>Herramientas de marketing por WhatsApp disponibles próximamente.</p>
                         <button class="setup-btn">Saber más</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección: Analytics Pro -->
+            <section id="analytics" class="dashboard-section">
+                <!-- Real-Time Revenue Dashboard -->
+                <div class="analytics-hero">
+                    <div class="revenue-overview">
+                        <div class="revenue-header">
+                            <h2>📈 Revenue Dashboard en Tiempo Real</h2>
+                            <div class="live-indicator">
+                                <span class="live-dot"></span>
+                                <span>Actualizando cada 3 segundos</span>
+                            </div>
+                        </div>
+                        
+                        <div class="revenue-metrics">
+                            <div class="revenue-card primary">
+                                <div class="revenue-icon">💰</div>
+                                <div class="revenue-data">
+                                    <span class="revenue-label">Ingresos Hoy</span>
+                                    <span class="revenue-value" id="daily-revenue">$47,389</span>
+                                    <span class="revenue-change positive">+23.4% vs ayer</span>
+                                </div>
+                                <div class="revenue-trend">
+                                    <canvas id="daily-trend" width="80" height="40"></canvas>
+                                </div>
+                            </div>
+
+                            <div class="revenue-card">
+                                <div class="revenue-icon">📊</div>
+                                <div class="revenue-data">
+                                    <span class="revenue-label">MRR (Monthly Recurring)</span>
+                                    <span class="revenue-value" id="mrr-value">$1,247,893</span>
+                                    <span class="revenue-change positive">+18.7% este mes</span>
+                                </div>
+                                <div class="revenue-chart">
+                                    <canvas id="mrr-chart" width="100" height="50"></canvas>
+                                </div>
+                            </div>
+
+                            <div class="revenue-card">
+                                <div class="revenue-icon">🎯</div>
+                                <div class="revenue-data">
+                                    <span class="revenue-label">LTV Promedio</span>
+                                    <span class="revenue-value" id="ltv-value">$23,567</span>
+                                    <span class="revenue-change positive">+41.2% vs Q anterior</span>
+                                </div>
+                                <div class="ltv-breakdown">
+                                    <div class="ltv-bar">
+                                        <div class="ltv-fill" style="width: 89%"></div>
+                                    </div>
+                                    <span class="ltv-text">89% retención anual</span>
+                                </div>
+                            </div>
+
+                            <div class="revenue-card danger">
+                                <div class="revenue-icon">⚠️</div>
+                                <div class="revenue-data">
+                                    <span class="revenue-label">Churn Risk</span>
+                                    <span class="revenue-value" id="churn-value">2.3%</span>
+                                    <span class="revenue-change negative">+0.4% esta semana</span>
+                                </div>
+                                <div class="churn-actions">
+                                    <button class="action-btn">Ver Clientes en Riesgo</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Predictive Analytics -->
+                <div class="predictive-section">
+                    <div class="section-header">
+                        <h3>🔮 Predictive Analytics con IA</h3>
+                        <div class="prediction-confidence">
+                            <span class="confidence-label">Confianza del modelo:</span>
+                            <span class="confidence-value">94.7%</span>
+                        </div>
+                    </div>
+
+                    <div class="predictions-grid">
+                        <div class="prediction-card">
+                            <h4>📈 Proyección de Ingresos (próximos 30 días)</h4>
+                            <div class="prediction-value">
+                                <span class="predicted-amount">$1,847,293</span>
+                                <span class="prediction-range">±$89,432</span>
+                            </div>
+                            <div class="prediction-chart">
+                                <canvas id="revenue-prediction" width="400" height="200"></canvas>
+                            </div>
+                            <div class="prediction-factors">
+                                <div class="factor">
+                                    <span class="factor-label">Tendencia actual</span>
+                                    <span class="factor-impact positive">+$247k</span>
+                                </div>
+                                <div class="factor">
+                                    <span class="factor-label">Estacionalidad</span>
+                                    <span class="factor-impact positive">+$89k</span>
+                                </div>
+                                <div class="factor">
+                                    <span class="factor-label">Competencia</span>
+                                    <span class="factor-impact negative">-$43k</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="prediction-card">
+                            <h4>👥 Nuevos Clientes Esperados</h4>
+                            <div class="customer-prediction">
+                                <div class="prediction-number">
+                                    <span class="big-number">847</span>
+                                    <span class="prediction-period">próximos 30 días</span>
+                                </div>
+                                <div class="customer-breakdown">
+                                    <div class="segment">
+                                        <span class="segment-name">Starter</span>
+                                        <span class="segment-count">423</span>
+                                        <span class="segment-value">$632k MRR</span>
+                                    </div>
+                                    <div class="segment">
+                                        <span class="segment-name">Pro</span>
+                                        <span class="segment-count">347</span>
+                                        <span class="segment-value">$1.7M MRR</span>
+                                    </div>
+                                    <div class="segment">
+                                        <span class="segment-name">Enterprise</span>
+                                        <span class="segment-count">77</span>
+                                        <span class="segment-value">$769k MRR</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Conversion Funnel Analysis -->
+                <div class="funnel-section">
+                    <div class="section-header">
+                        <h3>🎯 Análisis de Funnel de Conversión</h3>
+                        <div class="funnel-controls">
+                            <select class="period-selector">
+                                <option value="7d">Últimos 7 días</option>
+                                <option value="30d" selected>Últimos 30 días</option>
+                                <option value="90d">Últimos 90 días</option>
+                            </select>
+                            <button class="export-btn">📊 Exportar Reporte</button>
+                        </div>
+                    </div>
+
+                    <div class="funnel-visualization">
+                        <div class="funnel-stage">
+                            <div class="stage-header">
+                                <span class="stage-icon">👁️</span>
+                                <span class="stage-name">Visitantes Landing</span>
+                            </div>
+                            <div class="stage-metrics">
+                                <span class="stage-count">28,847</span>
+                                <span class="stage-percentage">100%</span>
+                            </div>
+                            <div class="stage-bar">
+                                <div class="stage-fill" style="width: 100%"></div>
+                            </div>
+                        </div>
+
+                        <div class="funnel-stage">
+                            <div class="stage-header">
+                                <span class="stage-icon">🎯</span>
+                                <span class="stage-name">Interacción con ROI Calculator</span>
+                            </div>
+                            <div class="stage-metrics">
+                                <span class="stage-count">12,438</span>
+                                <span class="stage-percentage">43.1%</span>
+                            </div>
+                            <div class="stage-bar">
+                                <div class="stage-fill" style="width: 43.1%"></div>
+                            </div>
+                        </div>
+
+                        <div class="funnel-stage">
+                            <div class="stage-header">
+                                <span class="stage-icon">💳</span>
+                                <span class="stage-name">Click en Pricing</span>
+                            </div>
+                            <div class="stage-metrics">
+                                <span class="stage-count">6,847</span>
+                                <span class="stage-percentage">23.7%</span>
+                            </div>
+                            <div class="stage-bar">
+                                <div class="stage-fill" style="width: 23.7%"></div>
+                            </div>
+                        </div>
+
+                        <div class="funnel-stage">
+                            <div class="stage-header">
+                                <span class="stage-icon">🚀</span>
+                                <span class="stage-name">Inicio de Checkout</span>
+                            </div>
+                            <div class="stage-metrics">
+                                <span class="stage-count">3,247</span>
+                                <span class="stage-percentage">11.3%</span>
+                            </div>
+                            <div class="stage-bar">
+                                <div class="stage-fill" style="width: 11.3%"></div>
+                            </div>
+                        </div>
+
+                        <div class="funnel-stage final">
+                            <div class="stage-header">
+                                <span class="stage-icon">✅</span>
+                                <span class="stage-name">Conversión Exitosa</span>
+                            </div>
+                            <div class="stage-metrics">
+                                <span class="stage-count">1,847</span>
+                                <span class="stage-percentage">6.4%</span>
+                            </div>
+                            <div class="stage-bar">
+                                <div class="stage-fill conversion" style="width: 6.4%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="funnel-insights">
+                        <div class="insight-card urgent">
+                            <div class="insight-icon">🔥</div>
+                            <div class="insight-content">
+                                <h4>Oportunidad Crítica</h4>
+                                <p>47% abandono entre ROI Calculator y Pricing. <strong>Implementar urgency popup puede recuperar +$234k/mes</strong></p>
+                                <button class="implement-btn">Implementar Ahora</button>
+                            </div>
+                        </div>
+
+                        <div class="insight-card success">
+                            <div class="insight-icon">🎯</div>
+                            <div class="insight-content">
+                                <h4>High Performance</h4>
+                                <p>ROI Calculator tiene 43% engagement. Es nuestro conversion driver #1.</p>
+                                <button class="optimize-btn">Optimizar Más</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-Time User Activity -->
+                <div class="activity-section">
+                    <div class="section-header">
+                        <h3>⚡ Actividad de Usuarios en Tiempo Real</h3>
+                        <div class="active-users">
+                            <span class="users-count" id="active-users">1,247</span>
+                            <span class="users-label">usuarios activos ahora</span>
+                        </div>
+                    </div>
+
+                    <div class="activity-grid">
+                        <div class="activity-map">
+                            <h4>🗺️ Mapa de Calor Global</h4>
+                            <div class="heatmap-container">
+                                <div class="country-activity">
+                                    <div class="country hot" data-country="mx">
+                                        <span class="country-name">México</span>
+                                        <span class="country-users">847 usuarios</span>
+                                    </div>
+                                    <div class="country warm" data-country="us">
+                                        <span class="country-name">Estados Unidos</span>
+                                        <span class="country-users">234 usuarios</span>
+                                    </div>
+                                    <div class="country cool" data-country="co">
+                                        <span class="country-name">Colombia</span>
+                                        <span class="country-users">89 usuarios</span>
+                                    </div>
+                                    <div class="country cool" data-country="ar">
+                                        <span class="country-name">Argentina</span>
+                                        <span class="country-users">77 usuarios</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="live-actions">
+                            <h4>🎬 Acciones en Vivo</h4>
+                            <div class="actions-feed" id="live-actions">
+                                <div class="action-item purchase">
+                                    <span class="action-icon">💰</span>
+                                    <span class="action-text">
+                                        <strong>Restaurante El Sabor</strong> se suscribió a Plan Pro
+                                        <span class="action-value">+$4,999 MRR</span>
+                                    </span>
+                                    <span class="action-time">hace 23 seg</span>
+                                </div>
+                                <div class="action-item interaction">
+                                    <span class="action-icon">🧮</span>
+                                    <span class="action-text">
+                                        <strong>TechStore CDMX</strong> completó ROI Calculator
+                                        <span class="action-result">ROI: 847%</span>
+                                    </span>
+                                    <span class="action-time">hace 1 min</span>
+                                </div>
+                                <div class="action-item signup">
+                                    <span class="action-icon">🚀</span>
+                                    <span class="action-text">
+                                        <strong>Farmacia San Juan</strong> completó onboarding
+                                        <span class="action-badge">Level 2</span>
+                                    </span>
+                                    <span class="action-time">hace 2 min</span>
+                                </div>
+                                <div class="action-item upgrade">
+                                    <span class="action-icon">⬆️</span>
+                                    <span class="action-text">
+                                        <strong>Clínica Dental Smile</strong> considerando upgrade
+                                        <span class="action-probability">89% probabilidad</span>
+                                    </span>
+                                    <span class="action-time">hace 3 min</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- A/B Testing Results -->
+                <div class="ab-testing-section">
+                    <div class="section-header">
+                        <h3>🧪 A/B Testing Results</h3>
+                        <button class="new-test-btn">+ Nuevo Test</button>
+                    </div>
+
+                    <div class="active-tests">
+                        <div class="test-card winner">
+                            <div class="test-header">
+                                <span class="test-name">Hero Section CTA Text</span>
+                                <span class="test-status winner">GANADOR</span>
+                                <span class="test-confidence">99.7% confianza</span>
+                            </div>
+                            <div class="test-variants">
+                                <div class="variant control">
+                                    <span class="variant-label">Control: "Automatiza WhatsApp"</span>
+                                    <span class="variant-conversion">4.2% conversión</span>
+                                </div>
+                                <div class="variant winner">
+                                    <span class="variant-label">Variante: "Multiplica tus ventas x4"</span>
+                                    <span class="variant-conversion">6.8% conversión</span>
+                                    <span class="variant-lift">+61.9% lift</span>
+                                </div>
+                            </div>
+                            <div class="test-impact">
+                                <span class="impact-label">Impacto proyectado:</span>
+                                <span class="impact-value">+$347,892/mes en revenue</span>
+                                <button class="implement-winner">Implementar Ganador</button>
+                            </div>
+                        </div>
+
+                        <div class="test-card running">
+                            <div class="test-header">
+                                <span class="test-name">Pricing Page Layout</span>
+                                <span class="test-status running">EN CURSO</span>
+                                <span class="test-progress">73% completo</span>
+                            </div>
+                            <div class="test-variants">
+                                <div class="variant">
+                                    <span class="variant-label">A: Layout actual</span>
+                                    <span class="variant-conversion">11.3% conversión</span>
+                                </div>
+                                <div class="variant leading">
+                                    <span class="variant-label">B: Urgency en top</span>
+                                    <span class="variant-conversion">13.7% conversión</span>
+                                    <span class="variant-lift">+21.2% lift</span>
+                                </div>
+                            </div>
+                            <div class="test-timeline">
+                                <span class="timeline-label">Tiempo restante:</span>
+                                <span class="timeline-value">4 días</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced KPIs -->
+                <div class="advanced-kpis">
+                    <h3>🎯 KPIs Avanzados de Valor</h3>
+                    <div class="kpis-grid">
+                        <div class="kpi-advanced">
+                            <div class="kpi-icon">💎</div>
+                            <div class="kpi-data">
+                                <span class="kpi-label">Customer Acquisition Cost (CAC)</span>
+                                <span class="kpi-value">$127</span>
+                                <span class="kpi-benchmark">vs $389 industria (-67%)</span>
+                            </div>
+                            <div class="kpi-trend up">
+                                <span class="trend-arrow">↗️</span>
+                                <span class="trend-value">Mejorando 23%</span>
+                            </div>
+                        </div>
+
+                        <div class="kpi-advanced">
+                            <div class="kpi-icon">⚡</div>
+                            <div class="kpi-data">
+                                <span class="kpi-label">Payback Period</span>
+                                <span class="kpi-value">2.7 meses</span>
+                                <span class="kpi-benchmark">vs 8.4 meses industria (-68%)</span>
+                            </div>
+                            <div class="kpi-trend up">
+                                <span class="trend-arrow">↗️</span>
+                                <span class="trend-value">Acelerando</span>
+                            </div>
+                        </div>
+
+                        <div class="kpi-advanced">
+                            <div class="kpi-icon">🎪</div>
+                            <div class="kpi-data">
+                                <span class="kpi-label">Net Revenue Retention</span>
+                                <span class="kpi-value">147%</span>
+                                <span class="kpi-benchmark">Target: 120% (+22%)</span>
+                            </div>
+                            <div class="kpi-trend up">
+                                <span class="trend-arrow">🚀</span>
+                                <span class="trend-value">Excepcional</span>
+                            </div>
+                        </div>
+
+                        <div class="kpi-advanced">
+                            <div class="kpi-icon">🧠</div>
+                            <div class="kpi-data">
+                                <span class="kpi-label">Product-Market Fit Score</span>
+                                <span class="kpi-value">89/100</span>
+                                <span class="kpi-benchmark">"Very Strong" PMF</span>
+                            </div>
+                            <div class="kpi-trend up">
+                                <span class="trend-arrow">🎯</span>
+                                <span class="trend-value">Elite tier</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>

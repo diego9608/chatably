@@ -1915,7 +1915,657 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 1200);
 });
 
+// ===========================
+// ANALYTICS PRO MANAGER - ELITE TIER
+// ===========================
+
+class AnalyticsProManager {
+    constructor() {
+        this.realTimeUpdates = null;
+        this.charts = {};
+        this.isActive = false;
+        
+        // Datos en tiempo real que se actualizan
+        this.realtimeData = {
+            dailyRevenue: 47389,
+            mrrValue: 1247893,
+            ltvValue: 23567,
+            churnValue: 2.3,
+            activeUsers: 1247,
+            conversionRate: 6.4
+        };
+        
+        this.init();
+    }
+    
+    init() {
+        this.isActive = true;
+        console.log('🚀 Analytics Pro Manager initialized');
+        
+        this.startRealTimeUpdates();
+        this.initializeCharts();
+        this.initializeLiveActions();
+        this.initializeCountryActivity();
+        this.bindEvents();
+        
+        // Track analytics view
+        this.trackAnalyticsView();
+    }
+    
+    startRealTimeUpdates() {
+        // Actualizar cada 3 segundos
+        this.realTimeUpdates = setInterval(() => {
+            if (!this.isActive) return;
+            
+            this.updateRevenueMetrics();
+            this.updateActiveUsers();
+            this.addNewLiveAction();
+            this.updateCharts();
+        }, 3000);
+        
+        console.log('📊 Real-time updates started');
+    }
+    
+    updateRevenueMetrics() {
+        // Simular fluctuaciones realistas en los datos
+        this.realtimeData.dailyRevenue += Math.floor(Math.random() * 2000) - 1000;
+        this.realtimeData.mrrValue += Math.floor(Math.random() * 10000) - 5000;
+        this.realtimeData.ltvValue += Math.floor(Math.random() * 500) - 250;
+        this.realtimeData.churnValue += (Math.random() - 0.5) * 0.1;
+        this.realtimeData.activeUsers += Math.floor(Math.random() * 20) - 10;
+        
+        // Actualizar UI con animaciones
+        this.animateValueUpdate('daily-revenue', `$${this.realtimeData.dailyRevenue.toLocaleString()}`);
+        this.animateValueUpdate('mrr-value', `$${this.realtimeData.mrrValue.toLocaleString()}`);
+        this.animateValueUpdate('ltv-value', `$${this.realtimeData.ltvValue.toLocaleString()}`);
+        this.animateValueUpdate('churn-value', `${this.realtimeData.churnValue.toFixed(1)}%`);
+        this.animateValueUpdate('active-users', this.realtimeData.activeUsers.toLocaleString());
+    }
+    
+    animateValueUpdate(elementId, newValue) {
+        const element = document.getElementById(elementId);
+        if (!element) return;
+        
+        // Añadir efecto de flash
+        element.style.transition = 'all 0.3s ease';
+        element.style.transform = 'scale(1.05)';
+        element.style.color = '#10B981';
+        
+        // Actualizar valor
+        setTimeout(() => {
+            element.textContent = newValue;
+        }, 150);
+        
+        // Restaurar estado normal
+        setTimeout(() => {
+            element.style.transform = 'scale(1)';
+            element.style.color = '';
+        }, 300);
+    }
+    
+    updateActiveUsers() {
+        const element = document.getElementById('active-users');
+        if (element) {
+            this.animateValueUpdate('active-users', this.realtimeData.activeUsers.toLocaleString());
+        }
+    }
+    
+    addNewLiveAction() {
+        const actionsContainer = document.getElementById('live-actions');
+        if (!actionsContainer) return;
+        
+        const actions = [
+            {
+                type: 'purchase',
+                icon: '💰',
+                business: this.getRandomBusiness(),
+                action: 'se suscribió a Plan Pro',
+                value: '+$4,999 MRR',
+                time: this.getRandomTime()
+            },
+            {
+                type: 'interaction',
+                icon: '🧮',
+                business: this.getRandomBusiness(),
+                action: 'completó ROI Calculator',
+                value: `ROI: ${Math.floor(Math.random() * 1000) + 200}%`,
+                time: this.getRandomTime()
+            },
+            {
+                type: 'signup',
+                icon: '🚀',
+                business: this.getRandomBusiness(),
+                action: 'completó onboarding',
+                value: `Level ${Math.floor(Math.random() * 5) + 1}`,
+                time: this.getRandomTime()
+            },
+            {
+                type: 'upgrade',
+                icon: '⬆️',
+                business: this.getRandomBusiness(),
+                action: 'considerando upgrade',
+                value: `${Math.floor(Math.random() * 30) + 70}% probabilidad`,
+                time: this.getRandomTime()
+            }
+        ];
+        
+        const randomAction = actions[Math.floor(Math.random() * actions.length)];
+        
+        // Crear nuevo elemento
+        const actionElement = document.createElement('div');
+        actionElement.className = `action-item ${randomAction.type}`;
+        actionElement.style.opacity = '0';
+        actionElement.style.transform = 'translateX(-20px)';
+        
+        actionElement.innerHTML = `
+            <span class="action-icon">${randomAction.icon}</span>
+            <span class="action-text">
+                <strong>${randomAction.business}</strong> ${randomAction.action}
+                <span class="action-${randomAction.type === 'purchase' ? 'value' : 
+                              randomAction.type === 'interaction' ? 'result' : 
+                              randomAction.type === 'signup' ? 'badge' : 'probability'}">${randomAction.value}</span>
+            </span>
+            <span class="action-time">${randomAction.time}</span>
+        `;
+        
+        // Insertar al principio
+        actionsContainer.insertBefore(actionElement, actionsContainer.firstChild);
+        
+        // Animar entrada
+        setTimeout(() => {
+            actionElement.style.transition = 'all 0.5s ease';
+            actionElement.style.opacity = '1';
+            actionElement.style.transform = 'translateX(0)';
+        }, 100);
+        
+        // Mantener solo 4 elementos
+        const allActions = actionsContainer.querySelectorAll('.action-item');
+        if (allActions.length > 4) {
+            const lastAction = allActions[allActions.length - 1];
+            lastAction.style.transition = 'all 0.5s ease';
+            lastAction.style.opacity = '0';
+            lastAction.style.transform = 'translateX(20px)';
+            setTimeout(() => {
+                if (lastAction.parentNode) {
+                    lastAction.remove();
+                }
+            }, 500);
+        }
+        
+        // Track action
+        this.trackLiveAction(randomAction.type, randomAction.business);
+    }
+    
+    getRandomBusiness() {
+        const businesses = [
+            'Restaurante El Sabor', 'TechStore CDMX', 'Farmacia San Juan',
+            'Clínica Dental Smile', 'Boutique Elegance', 'Pizzería Della Nonna',
+            'Gimnasio FitLife', 'Café Central', 'Tienda Deportiva Pro',
+            'Inmobiliaria Prime', 'Beauty Center Glamour', 'Ferretería México',
+            'Librería Universitaria', 'Pastelería Dulce Vida', 'AutoDealer Pro'
+        ];
+        return businesses[Math.floor(Math.random() * businesses.length)];
+    }
+    
+    getRandomTime() {
+        const times = ['hace 12 seg', 'hace 34 seg', 'hace 1 min', 'hace 2 min', 'hace 3 min'];
+        return times[Math.floor(Math.random() * times.length)];
+    }
+    
+    initializeCharts() {
+        // Inicializar charts con Chart.js si está disponible
+        if (typeof Chart !== 'undefined') {
+            this.createRevenueChart();
+            this.createPredictionChart();
+            this.createTrendCharts();
+        }
+    }
+    
+    createRevenueChart() {
+        const ctx = document.getElementById('revenue-prediction');
+        if (!ctx) return;
+        
+        // Generar datos de predicción
+        const labels = [];
+        const actualData = [];
+        const predictedData = [];
+        
+        // Últimos 30 días (actual)
+        for (let i = 30; i >= 0; i--) {
+            const date = new Date();
+            date.setDate(date.getDate() - i);
+            labels.push(date.toLocaleDateString('es-MX', { day: '2-digit', month: 'short' }));
+            
+            // Simular datos históricos con tendencia
+            const baseValue = 45000 + (30 - i) * 800 + Math.random() * 5000;
+            actualData.push(baseValue);
+            predictedData.push(null);
+        }
+        
+        // Próximos 30 días (predicción)
+        for (let i = 1; i <= 30; i++) {
+            const date = new Date();
+            date.setDate(date.getDate() + i);
+            labels.push(date.toLocaleDateString('es-MX', { day: '2-digit', month: 'short' }));
+            
+            // Simular predicción con crecimiento
+            const baseValue = 45000 + (30 + i) * 800 + Math.random() * 3000;
+            actualData.push(null);
+            predictedData.push(baseValue);
+        }
+        
+        this.charts.revenuePrediction = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Ingresos Reales',
+                        data: actualData,
+                        borderColor: '#10B981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Predicción IA',
+                        data: predictedData,
+                        borderColor: '#6B46C1',
+                        backgroundColor: 'rgba(107, 70, 193, 0.1)',
+                        borderWidth: 3,
+                        borderDash: [5, 5],
+                        fill: true,
+                        tension: 0.4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        callbacks: {
+                            label: (context) => {
+                                return `${context.dataset.label}: $${context.parsed.y?.toLocaleString() || 'N/A'}`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Fecha'
+                        }
+                    },
+                    y: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Ingresos ($)'
+                        },
+                        ticks: {
+                            callback: (value) => `$${value.toLocaleString()}`
+                        }
+                    }
+                },
+                interaction: {
+                    mode: 'nearest',
+                    axis: 'x',
+                    intersect: false
+                }
+            }
+        });
+    }
+    
+    createTrendCharts() {
+        // Crear mini charts para los revenue cards
+        const trendCanvases = ['daily-trend', 'mrr-chart'];
+        
+        trendCanvases.forEach(canvasId => {
+            const ctx = document.getElementById(canvasId);
+            if (!ctx) return;
+            
+            // Generar datos de tendencia
+            const data = [];
+            for (let i = 0; i < 7; i++) {
+                data.push(Math.random() * 100 + 50);
+            }
+            
+            this.charts[canvasId] = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['', '', '', '', '', '', ''],
+                    datasets: [{
+                        data: data,
+                        borderColor: '#10B981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { enabled: false }
+                    },
+                    scales: {
+                        x: { display: false },
+                        y: { display: false }
+                    },
+                    elements: {
+                        point: { radius: 0 }
+                    }
+                }
+            });
+        });
+    }
+    
+    updateCharts() {
+        // Actualizar charts con nuevos datos
+        Object.values(this.charts).forEach(chart => {
+            if (chart && chart.data && chart.data.datasets) {
+                chart.data.datasets.forEach(dataset => {
+                    // Añadir nuevo punto y remover el primero
+                    if (dataset.data.length > 0) {
+                        dataset.data.push(Math.random() * 100 + 50);
+                        if (dataset.data.length > 7) {
+                            dataset.data.shift();
+                        }
+                    }
+                });
+                chart.update('none'); // Sin animación para mejor performance
+            }
+        });
+    }
+    
+    initializeCountryActivity() {
+        // Simular actividad por países con updates periódicos
+        setInterval(() => {
+            if (!this.isActive) return;
+            
+            const countries = document.querySelectorAll('.country');
+            countries.forEach(country => {
+                const usersEl = country.querySelector('.country-users');
+                if (usersEl) {
+                    const currentCount = parseInt(usersEl.textContent.split(' ')[0]);
+                    const newCount = currentCount + Math.floor(Math.random() * 10) - 5;
+                    usersEl.textContent = `${Math.max(0, newCount)} usuarios`;
+                }
+            });
+        }, 5000);
+    }
+    
+    initializeLiveActions() {
+        // Inicializar el feed con algunas acciones
+        for (let i = 0; i < 3; i++) {
+            setTimeout(() => {
+                this.addNewLiveAction();
+            }, i * 1000);
+        }
+    }
+    
+    bindEvents() {
+        // Botones de acción
+        document.querySelectorAll('.implement-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                this.handleImplementAction(btn);
+            });
+        });
+        
+        document.querySelectorAll('.optimize-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                this.handleOptimizeAction(btn);
+            });
+        });
+        
+        document.querySelectorAll('.export-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                this.handleExportReport(btn);
+            });
+        });
+        
+        document.querySelectorAll('.new-test-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                this.handleNewTest(btn);
+            });
+        });
+        
+        // Period selector
+        const periodSelector = document.querySelector('.period-selector');
+        if (periodSelector) {
+            periodSelector.addEventListener('change', (e) => {
+                this.handlePeriodChange(e.target.value);
+            });
+        }
+    }
+    
+    handleImplementAction(button) {
+        // Simular implementación
+        button.textContent = 'Implementando...';
+        button.disabled = true;
+        
+        setTimeout(() => {
+            button.textContent = '✅ Implementado';
+            button.style.background = 'linear-gradient(135deg, #10B981, #059669)';
+            
+            // Mostrar notificación de éxito
+            if (window.dashboardController) {
+                window.dashboardController.showNotification(
+                    '🚀 Optimización implementada exitosamente!',
+                    'success'
+                );
+            }
+            
+            // Simular impacto en métricas
+            setTimeout(() => {
+                this.realtimeData.conversionRate += 0.5;
+                this.updateConversionMetrics();
+            }, 2000);
+        }, 3000);
+        
+        this.trackActionImplemented('urgency_popup');
+    }
+    
+    handleOptimizeAction(button) {
+        button.textContent = 'Optimizando...';
+        button.disabled = true;
+        
+        setTimeout(() => {
+            button.textContent = '📈 Optimizado';
+            button.style.background = 'linear-gradient(135deg, #10B981, #059669)';
+            
+            if (window.dashboardController) {
+                window.dashboardController.showNotification(
+                    '⚡ ROI Calculator optimizado para máximo rendimiento!',
+                    'success'
+                );
+            }
+        }, 2000);
+        
+        this.trackActionImplemented('roi_optimization');
+    }
+    
+    handleExportReport(button) {
+        button.textContent = 'Exportando...';
+        button.disabled = true;
+        
+        setTimeout(() => {
+            button.textContent = '📊 Exportar Reporte';
+            button.disabled = false;
+            
+            if (window.dashboardController) {
+                window.dashboardController.showNotification(
+                    '📁 Reporte exportado a tu email!',
+                    'success'
+                );
+            }
+        }, 2000);
+        
+        this.trackReportExport('funnel_analysis');
+    }
+    
+    handleNewTest(button) {
+        if (window.dashboardController) {
+            window.dashboardController.showNotification(
+                '🧪 Nuevo A/B Test creado: "CTA Button Color"',
+                'success'
+            );
+        }
+        
+        this.trackNewTest('cta_button_color');
+    }
+    
+    handlePeriodChange(period) {
+        // Simular cambio de período
+        if (window.dashboardController) {
+            window.dashboardController.showNotification(
+                `📊 Datos actualizados para: ${period}`,
+                'info'
+            );
+        }
+        
+        this.trackPeriodChange(period);
+    }
+    
+    updateConversionMetrics() {
+        // Actualizar métricas de conversión después de implementar optimizaciones
+        const conversionElements = document.querySelectorAll('.stage-percentage');
+        conversionElements.forEach((el, index) => {
+            if (index === conversionElements.length - 1) { // Último elemento (conversión final)
+                const currentValue = parseFloat(el.textContent);
+                const newValue = currentValue + 0.3;
+                el.textContent = `${newValue.toFixed(1)}%`;
+                el.style.color = '#10B981';
+                el.style.fontWeight = '800';
+            }
+        });
+    }
+    
+    // Analytics tracking methods
+    trackAnalyticsView() {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'analytics_pro_view', {
+                'event_category': 'engagement',
+                'event_label': 'analytics_dashboard'
+            });
+        }
+    }
+    
+    trackLiveAction(actionType, business) {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'analytics_live_action', {
+                'event_category': 'engagement',
+                'event_label': actionType,
+                'custom_parameter_1': business
+            });
+        }
+    }
+    
+    trackActionImplemented(actionType) {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'analytics_action_implemented', {
+                'event_category': 'conversion',
+                'event_label': actionType,
+                'value': 1
+            });
+        }
+    }
+    
+    trackReportExport(reportType) {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'analytics_report_export', {
+                'event_category': 'engagement',
+                'event_label': reportType
+            });
+        }
+    }
+    
+    trackNewTest(testType) {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'analytics_new_test', {
+                'event_category': 'engagement',
+                'event_label': testType
+            });
+        }
+    }
+    
+    trackPeriodChange(period) {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'analytics_period_change', {
+                'event_category': 'engagement',
+                'event_label': period
+            });
+        }
+    }
+    
+    // Cleanup
+    destroy() {
+        this.isActive = false;
+        
+        if (this.realTimeUpdates) {
+            clearInterval(this.realTimeUpdates);
+        }
+        
+        // Destruir charts
+        Object.values(this.charts).forEach(chart => {
+            if (chart && typeof chart.destroy === 'function') {
+                chart.destroy();
+            }
+        });
+        
+        console.log('🧹 Analytics Pro Manager destroyed');
+    }
+}
+
+// Initialize Analytics Pro Manager when analytics section is active
+document.addEventListener('DOMContentLoaded', () => {
+    // Observer para inicializar solo cuando se visite la sección analytics
+    const analyticsSection = document.getElementById('analytics');
+    if (analyticsSection) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !window.analyticsProManager) {
+                    window.analyticsProManager = new AnalyticsProManager();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        observer.observe(analyticsSection);
+    }
+});
+
+// Handle navigation to analytics section
+document.addEventListener('click', (e) => {
+    if (e.target.matches('[data-section="analytics"]') || e.target.closest('[data-section="analytics"]')) {
+        setTimeout(() => {
+            if (!window.analyticsProManager) {
+                window.analyticsProManager = new AnalyticsProManager();
+            }
+        }, 500);
+    }
+});
+
+// Cleanup analytics manager when leaving
+window.addEventListener('beforeunload', () => {
+    if (window.analyticsProManager) {
+        window.analyticsProManager.destroy();
+    }
+});
+
 // Export for module systems if needed
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { DashboardController, OmnichannelManager, OnboardingGameManager };
+    module.exports = { DashboardController, OmnichannelManager, OnboardingGameManager, AnalyticsProManager };
 }
