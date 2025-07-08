@@ -80,24 +80,24 @@
         "offers": [
             {
                 "@type": "Offer",
-                "name": "Plan Básico",
-                "price": "1200",
+                "name": "Chatably Starter",
+                "price": "1499",
                 "priceCurrency": "MXN",
-                "description": "Hasta 1,000 conversaciones/mes, 1 número de WhatsApp, respuestas ilimitadas"
+                "description": "5,000 conversaciones incluidas, 1 canal, Dashboard básico, IA básica incluida"
             },
             {
                 "@type": "Offer",
-                "name": "Plan Pro", 
-                "price": "2400",
+                "name": "Chatably Pro", 
+                "price": "4999",
                 "priceCurrency": "MXN",
-                "description": "Hasta 5,000 conversaciones/mes, 3 números de WhatsApp, integración con CRM"
+                "description": "Conversaciones ilimitadas, 3 canales, IA GPT-4, Analytics avanzado, Respuesta < 30 seg"
             },
             {
                 "@type": "Offer",
-                "name": "Plan Ultra",
-                "price": "3500", 
+                "name": "Chatably Enterprise",
+                "price": "9999", 
                 "priceCurrency": "MXN",
-                "description": "Conversaciones ilimitadas, números ilimitados, API personalizada"
+                "description": "Todo ilimitado, API completa, Manager dedicado, SLA 99.9%, Soporte 24/7"
             }
         ],
         "aggregateRating": {
@@ -419,52 +419,167 @@
         </div>
     </section>
 
-    <!-- Pricing -->
+    <!-- Value-Based Pricing -->
     <section class="pricing" id="planes">
-        <h2 class="section-title">Planes que se adaptan a tu negocio</h2>
-        <p style="text-align: center; color: var(--text-gray); margin-bottom: 2rem;">
-            Todos los planes incluyen prueba gratis de 7 días
-        </p>
+        <div class="pricing-header">
+            <h2 class="section-title">Elige tu máquina de ventas 24/7</h2>
+            <p class="pricing-subtitle">
+                Cada plan se paga solo con las ventas que genera. ROI garantizado.
+            </p>
+            <div class="pricing-guarantee">
+                <span class="guarantee-badge">💎 ROI garantizado o te devolvemos tu dinero</span>
+            </div>
+        </div>
+        
         <div class="pricing-grid">
-            <div class="pricing-card">
-                <h3 class="plan-name">Básico</h3>
-                <div class="plan-price">$1,200<span>/mes</span></div>
+            <!-- Chatably Starter -->
+            <div class="pricing-card starter">
+                <div class="plan-header">
+                    <h3 class="plan-name">Chatably Starter</h3>
+                    <p class="plan-target">Para negocios < $100k ventas/mes</p>
+                </div>
+                <div class="plan-price">
+                    <span class="price-currency">$</span>
+                    <span class="price-amount">1,499</span>
+                    <span class="price-period">/mes</span>
+                </div>
+                <div class="plan-roi">
+                    <span class="roi-label">Se paga solo con</span>
+                    <span class="roi-value">1 venta extra/mes</span>
+                </div>
                 <ul class="plan-features">
-                    <li>Hasta 1,000 conversaciones/mes</li>
-                    <li>1 número de WhatsApp</li>
-                    <li>Respuestas ilimitadas</li>
-                    <li>Plantillas personalizadas</li>
-                    <li>Soporte por email</li>
+                    <li><span class="feature-icon">💬</span> 5,000 conversaciones incluidas</li>
+                    <li><span class="feature-icon">📱</span> 1 canal (WhatsApp o TikTok)</li>
+                    <li><span class="feature-icon">📊</span> Dashboard básico</li>
+                    <li><span class="feature-icon">🤖</span> IA básica incluida</li>
+                    <li><span class="feature-icon">📧</span> Soporte por email</li>
+                    <li><span class="feature-icon">📈</span> Analytics básicos</li>
                 </ul>
-                <a href="https://buy.stripe.com/28E9AS1T99SQcW18Qz7ok0b" class="cta-button" style="width: 100%;">Empezar ahora</a>
+                <div class="plan-cta">
+                    <a href="https://buy.stripe.com/28E9AS1T99SQcW18Qz7ok0b" class="plan-button starter-button">
+                        Empezar ahora
+                    </a>
+                    <p class="plan-guarantee">✅ 14 días gratis + garantía</p>
+                </div>
             </div>
             
-            <div class="pricing-card featured">
-                <h3 class="plan-name">Pro</h3>
-                <div class="plan-price">$2,400<span>/mes</span></div>
+            <!-- Chatably Pro - DESTACADO -->
+            <div class="pricing-card pro featured">
+                <div class="plan-badge">🏆 MÁS POPULAR</div>
+                <div class="plan-header">
+                    <h3 class="plan-name">Chatably Pro</h3>
+                    <p class="plan-target">Para negocios $100k-500k ventas/mes</p>
+                </div>
+                <div class="plan-price">
+                    <span class="price-currency">$</span>
+                    <span class="price-amount">4,999</span>
+                    <span class="price-period">/mes</span>
+                </div>
+                <div class="plan-roi">
+                    <span class="roi-label">Se paga solo con</span>
+                    <span class="roi-value">2 ventas extra/mes</span>
+                </div>
+                <div class="plan-alternative">
+                    <p class="alternative-text">O paga:</p>
+                    <div class="alternative-price">
+                        <span>$2,999/mes + 1% de ventas generadas</span>
+                    </div>
+                </div>
                 <ul class="plan-features">
-                    <li>Hasta 5,000 conversaciones/mes</li>
-                    <li>3 números de WhatsApp</li>
-                    <li>Integración con CRM</li>
-                    <li>Análisis avanzados</li>
-                    <li>Soporte prioritario</li>
-                    <li>Entrenamiento personalizado IA</li>
+                    <li><span class="feature-icon">♾️</span> Conversaciones ilimitadas</li>
+                    <li><span class="feature-icon">📱</span> 3 canales a elegir</li>
+                    <li><span class="feature-icon">🧠</span> IA GPT-4 incluida</li>
+                    <li><span class="feature-icon">📊</span> Analytics avanzado</li>
+                    <li><span class="feature-icon">⚡</span> Respuesta < 30 segundos</li>
+                    <li><span class="feature-icon">🎯</span> Automatización inteligente</li>
+                    <li><span class="feature-icon">🏥</span> Soporte prioritario</li>
+                    <li><span class="feature-icon">🔗</span> Integraciones premium</li>
                 </ul>
-                <a href="https://buy.stripe.com/7sYfZgcxN3usbRX0k37ok0c" class="cta-button" style="width: 100%;">Más popular</a>
+                <div class="plan-cta">
+                    <a href="https://buy.stripe.com/7sYfZgcxN3usbRX0k37ok0c" class="plan-button pro-button">
+                        💰 Quiero facturar más
+                    </a>
+                    <p class="plan-guarantee">✅ 30 días gratis + garantía ROI</p>
+                </div>
+                <div class="plan-bonus">
+                    <span class="bonus-label">🎁 BONUS:</span>
+                    <span>Setup personalizado por experto ($5,000 de valor)</span>
+                </div>
             </div>
             
-            <div class="pricing-card">
-                <h3 class="plan-name">Ultra</h3>
-                <div class="plan-price">$3,500<span>/mes</span></div>
+            <!-- Chatably Enterprise -->
+            <div class="pricing-card enterprise">
+                <div class="plan-header">
+                    <h3 class="plan-name">Chatably Enterprise</h3>
+                    <p class="plan-target">Para empresas > $500k ventas/mes</p>
+                </div>
+                <div class="plan-price">
+                    <span class="price-text">Desde</span>
+                    <span class="price-currency">$</span>
+                    <span class="price-amount">9,999</span>
+                    <span class="price-period">/mes</span>
+                </div>
+                <div class="plan-roi">
+                    <span class="roi-label">ROI típico:</span>
+                    <span class="roi-value">500-1,200%</span>
+                </div>
                 <ul class="plan-features">
-                    <li>Conversaciones ilimitadas</li>
-                    <li>Números ilimitados</li>
-                    <li>API personalizada</li>
-                    <li>Manager dedicado</li>
-                    <li>SLA garantizado</li>
-                    <li>Configuración white label</li>
+                    <li><span class="feature-icon">🌟</span> Todo ilimitado</li>
+                    <li><span class="feature-icon">📱</span> Todos los canales</li>
+                    <li><span class="feature-icon">🔧</span> API completa</li>
+                    <li><span class="feature-icon">👨‍💼</span> Manager dedicado</li>
+                    <li><span class="feature-icon">⚡</span> SLA 99.9%</li>
+                    <li><span class="feature-icon">🏢</span> Facturación empresarial</li>
+                    <li><span class="feature-icon">🔒</span> Seguridad enterprise</li>
+                    <li><span class="feature-icon">📞</span> Soporte 24/7</li>
                 </ul>
-                <a href="https://buy.stripe.com/cNifZg0P54yw2hnfeX7ok0d" class="cta-button" style="width: 100%;">Contactar ventas</a>
+                <div class="plan-cta">
+                    <a href="#contacto" class="plan-button enterprise-button">
+                        Hablar con experto
+                    </a>
+                    <p class="plan-guarantee">✅ Demo personalizada incluida</p>
+                </div>
+                <div class="plan-enterprise-note">
+                    <p>💼 Precios especiales para empresas públicas y gobierno</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Value Propositions -->
+        <div class="pricing-value-props">
+            <div class="value-prop">
+                <span class="value-icon">🚀</span>
+                <h4>Setup en 24 horas</h4>
+                <p>Tu vendedor digital estará trabajando mañana mismo</p>
+            </div>
+            <div class="value-prop">
+                <span class="value-icon">💎</span>
+                <h4>ROI garantizado</h4>
+                <p>Si no generas mínimo 2x tu inversión, te devolvemos todo</p>
+            </div>
+            <div class="value-prop">
+                <span class="value-icon">🔒</span>
+                <h4>Datos seguros</h4>
+                <p>Certificación SOC2 y GDPR. Tus datos nunca salen de México</p>
+            </div>
+            <div class="value-prop">
+                <span class="value-icon">⚡</span>
+                <h4>Respuesta instantánea</h4>
+                <p>Nunca más pierdas una venta por responder tarde</p>
+            </div>
+        </div>
+        
+        <!-- Risk Reversal -->
+        <div class="risk-reversal">
+            <div class="risk-content">
+                <h3>🛡️ Cero riesgo para ti</h3>
+                <p>Prueba Chatably sin compromiso. Si en los primeros 30 días no ves resultados, te devolvemos hasta el último peso.</p>
+                <div class="risk-features">
+                    <span>✅ Setup gratis</span>
+                    <span>✅ Entrenamiento incluido</span>
+                    <span>✅ Soporte dedicado</span>
+                    <span>✅ Garantía de resultado</span>
+                </div>
             </div>
         </div>
     </section>

@@ -105,26 +105,144 @@ if (whatsappLink) {
     whatsappLink.href = 'https://wa.me/436765748509?text=Hola,%20quiero%20información%20sobre%20Chatably';
 }
 
-// Plan selection function for direct Stripe Payment Links - GLOBAL
+// VALUE-BASED PRICING FUNCTIONS
+
+// Plan selection function for direct Stripe Payment Links - UPDATED
 window.selectPlan = function(planType) {
     const paymentLinks = {
-        'básico': 'https://buy.stripe.com/28E9AS1T99SQcW18Qz7ok0b',
+        'starter': 'https://buy.stripe.com/28E9AS1T99SQcW18Qz7ok0b',
         'pro': 'https://buy.stripe.com/7sYfZgcxN3usbRX0k37ok0c',
-        'ultra': 'https://buy.stripe.com/cNifZg0P54yw2hnfeX7ok0d'
+        'enterprise': 'https://buy.stripe.com/cNifZg0P54yw2hnfeX7ok0d'
+    };
+    
+    const planPrices = {
+        'starter': 1499,
+        'pro': 4999,
+        'enterprise': 9999
     };
     
     console.log(`selectPlan llamado con: ${planType}`);
     
+    // Track pricing interaction
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'value_based_pricing_click', {
+            'event_category': 'conversion',
+            'event_label': planType,
+            'value': planPrices[planType] || 0,
+            'currency': 'MXN'
+        });
+    }
+    
     if (paymentLinks[planType]) {
         localStorage.setItem('chatably_selected_plan', planType);
-        console.log(`Usuario seleccionó plan: ${planType}`);
+        localStorage.setItem('chatably_plan_price', planPrices[planType]);
+        console.log(`Usuario seleccionó plan: ${planType} por $${planPrices[planType]}`);
         console.log(`Redirigiendo a: ${paymentLinks[planType]}`);
-        window.location.href = paymentLinks[planType];
+        
+        // Show loading state
+        const button = event.target;
+        const originalText = button.textContent;
+        button.textContent = 'Redirigiendo...';
+        button.disabled = true;
+        
+        // Redirect after a brief delay to show loading state
+        setTimeout(() => {
+            window.location.href = paymentLinks[planType];
+        }, 800);
+        
     } else {
         console.error(`Plan no válido: ${planType}`);
         alert('Por favor selecciona un plan válido');
     }
 }
+
+// Track pricing view analytics
+window.trackPricingView = function() {
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'view_pricing', {
+            'event_category': 'engagement',
+            'event_label': 'value_based_pricing',
+            'custom_parameter_1': 'premium_pricing_viewed'
+        });
+    }
+}
+
+// Track ROI justification view
+window.trackROIJustification = function(planType, roiValue) {
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'roi_justification_viewed', {
+            'event_category': 'engagement',
+            'event_label': planType,
+            'value': parseInt(roiValue) || 0
+        });
+    }
+}
+
+// Track guarantee interaction
+window.trackGuaranteeClick = function() {
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'guarantee_click', {
+            'event_category': 'engagement',
+            'event_label': 'money_back_guarantee'
+        });
+    }
+}
+
+// Enhanced pricing card interactions
+document.addEventListener('DOMContentLoaded', () => {
+    // Track when pricing section is viewed
+    const pricingSection = document.getElementById('planes');
+    if (pricingSection) {
+        const pricingObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    trackPricingView();
+                    pricingObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        pricingObserver.observe(pricingSection);
+    }
+    
+    // Add hover effects and analytics to pricing cards
+    document.querySelectorAll('.pricing-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            const planType = card.classList.contains('starter') ? 'starter' :
+                           card.classList.contains('pro') ? 'pro' :
+                           card.classList.contains('enterprise') ? 'enterprise' : 'unknown';
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'pricing_card_hover', {
+                    'event_category': 'engagement',
+                    'event_label': planType
+                });
+            }
+        });
+    });
+    
+    // Track guarantee badge clicks
+    const guaranteeBadge = document.querySelector('.guarantee-badge');
+    if (guaranteeBadge) {
+        guaranteeBadge.addEventListener('click', trackGuaranteeClick);
+        guaranteeBadge.style.cursor = 'pointer';
+    }
+    
+    // Add click handlers to new pricing buttons
+    document.querySelectorAll('.plan-button').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const card = e.target.closest('.pricing-card');
+            const planType = card.classList.contains('starter') ? 'starter' :
+                           card.classList.contains('pro') ? 'pro' :
+                           card.classList.contains('enterprise') ? 'enterprise' : 'unknown';
+            
+            if (planType !== 'enterprise') {
+                e.preventDefault();
+                selectPlan(planType);
+            }
+        });
+    });
+});
 
 // ===========================
 // ROI CALCULATOR PREMIUM
