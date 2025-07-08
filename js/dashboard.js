@@ -22,6 +22,7 @@ class DashboardController {
         this.initializeModals();
         this.initializeRealTimeUpdates();
         this.initializeAnimations();
+        this.initializeOnboardingSystem();
         
         // Show welcome notification
         setTimeout(() => {
@@ -581,6 +582,20 @@ class DashboardController {
     getBusinessName(email) {
         const username = email.split('@')[0];
         return username.replace(/[._-]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    }
+
+    /**
+     * Initialize gamified onboarding system
+     */
+    initializeOnboardingSystem() {
+        // Initialize onboarding only if element exists
+        const onboardingElement = document.getElementById('onboarding-system');
+        if (onboardingElement && !window.onboardingManager) {
+            // Delay initialization to ensure all other systems are ready
+            setTimeout(() => {
+                window.onboardingManager = new OnboardingGameManager();
+            }, 500);
+        }
     }
 
     /**
@@ -1466,7 +1481,441 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 500);
 });
 
+// ===========================
+// GAMIFIED ONBOARDING MANAGER
+// ===========================
+
+class OnboardingGameManager {
+    constructor() {
+        this.currentLevel = 3;
+        this.currentXP = 1250;
+        this.maxXP = 2000;
+        this.completedTasks = new Set(['profile', 'whatsapp']);
+        this.achievements = new Set(['first-step', 'communicator']);
+        
+        this.questSteps = [
+            { id: 'whatsapp', title: 'Conectar WhatsApp', completed: true },
+            { id: 'schedule', title: 'Configurar horarios', completed: true },
+            { id: 'ai-training', title: 'Entrenar IA con tu marca', completed: false },
+            { id: 'auto-responses', title: 'Configurar auto-respuestas', completed: false }
+        ];
+        
+        this.tasks = [
+            { id: 'profile', title: 'Perfil Completo', xp: 100, completed: true },
+            { id: 'whatsapp', title: 'WhatsApp Conectado', xp: 150, completed: true },
+            { id: 'ai-training', title: 'Entrena tu IA', xp: 300, completed: false },
+            { id: 'first-automation', title: 'Primera Automatización', xp: 250, completed: false },
+            { id: 'multichannel', title: 'Multicanal Pro', xp: 500, completed: false, premium: true },
+            { id: 'analytics-setup', title: 'Analytics Dashboard', xp: 200, completed: false }
+        ];
+        
+        this.achievementsList = [
+            { id: 'first-step', title: 'Primer Paso', description: 'Registraste tu cuenta', earned: true, date: 'Ayer' },
+            { id: 'communicator', title: 'Comunicador', description: 'Conectaste WhatsApp', earned: true, date: 'Hoy' },
+            { id: 'ai-master', title: 'Maestro IA', description: 'Personaliza tu asistente', earned: false, requirement: 'Completa entrenamiento IA' },
+            { id: 'omnichannel', title: 'Omnicanal', description: 'Conecta 3+ redes sociales', earned: false, requirement: 'Requiere Plan Pro', premium: true },
+            { id: 'analyst-pro', title: 'Analista Pro', description: 'Configura dashboard avanzado', earned: false, requirement: 'Completa configuración' },
+            { id: 'chatably-master', title: 'Chatably Master', description: 'Completa todo el onboarding', earned: false, requirement: 'Todos los objetivos', legendary: true }
+        ];
+        
+        this.init();
+    }
+    
+    init() {
+        this.updateProgressRing();
+        this.updateXPBar();
+        this.updateActiveQuest();
+        this.updateQuickWins();
+        this.updateAchievements();
+        this.bindEvents();
+        this.startProgressAnimations();
+        
+        // Track onboarding engagement
+        this.trackOnboardingView();
+    }
+    
+    updateProgressRing() {
+        const circle = document.querySelector('.progress-ring-circle');
+        if (!circle) return;
+        
+        const completedCount = this.tasks.filter(task => task.completed).length;
+        const totalTasks = this.tasks.length;
+        const percentage = (completedCount / totalTasks) * 100;
+        
+        const circumference = 2 * Math.PI * 54; // radius = 54
+        const offset = circumference - (percentage / 100) * circumference;
+        
+        circle.style.strokeDashoffset = offset;
+        
+        // Update completion text
+        const completionText = document.querySelector('.completion-text');
+        if (completionText) {
+            completionText.textContent = `${completedCount} de ${totalTasks} objetivos completados`;
+        }
+    }
+    
+    updateXPBar() {
+        const xpFill = document.querySelector('.xp-fill');
+        const xpLabel = document.querySelector('.xp-label');
+        
+        if (xpFill) {
+            const percentage = (this.currentXP / this.maxXP) * 100;
+            xpFill.style.width = `${percentage}%`;
+        }
+        
+        if (xpLabel) {
+            xpLabel.textContent = `XP: ${this.currentXP.toLocaleString()} / ${this.maxXP.toLocaleString()}`;
+        }
+    }
+    
+    updateActiveQuest() {
+        const questSteps = document.querySelectorAll('.quest-step');
+        
+        questSteps.forEach((stepEl, index) => {
+            const step = this.questSteps[index];
+            if (!step) return;
+            
+            stepEl.classList.remove('completed', 'active');
+            
+            if (step.completed) {
+                stepEl.classList.add('completed');
+            } else if (index === this.questSteps.findIndex(s => !s.completed)) {
+                stepEl.classList.add('active');
+            }
+        });
+    }
+    
+    updateQuickWins() {
+        this.tasks.forEach(task => {
+            const taskCard = document.querySelector(`[data-task="${task.id}"]`);
+            if (!taskCard) return;
+            
+            taskCard.classList.remove('completed', 'active');
+            
+            if (task.completed) {
+                taskCard.classList.add('completed');
+                const actionBtn = taskCard.querySelector('.quick-win-action');
+                if (actionBtn) {
+                    actionBtn.style.display = 'none';
+                }
+            } else if (!task.premium || this.isPremiumUser()) {
+                taskCard.classList.add('active');
+            }
+        });
+    }
+    
+    updateAchievements() {
+        this.achievementsList.forEach(achievement => {
+            const badgeEl = document.querySelector(`[data-achievement="${achievement.id}"]`);
+            if (!badgeEl) return;
+            
+            badgeEl.classList.remove('earned', 'locked', 'premium', 'legendary');
+            
+            if (achievement.earned) {
+                badgeEl.classList.add('earned');
+            } else {
+                badgeEl.classList.add('locked');
+                if (achievement.premium) badgeEl.classList.add('premium');
+                if (achievement.legendary) badgeEl.classList.add('legendary');
+            }
+        });
+    }
+    
+    bindEvents() {
+        // Quest action button
+        const questActionBtn = document.querySelector('.quest-action-btn');
+        if (questActionBtn) {
+            questActionBtn.addEventListener('click', () => this.startAITraining());
+        }
+        
+        // Quick win actions
+        document.querySelectorAll('.quick-win-action').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const taskId = e.target.closest('[data-task]').dataset.task;
+                this.completeTask(taskId);
+            });
+        });
+        
+        // Achievement hover effects
+        document.querySelectorAll('.achievement-badge').forEach(badge => {
+            badge.addEventListener('mouseenter', () => {
+                if (badge.classList.contains('earned')) {
+                    this.showAchievementTooltip(badge);
+                }
+            });
+        });
+    }
+    
+    completeTask(taskId) {
+        const task = this.tasks.find(t => t.id === taskId);
+        if (!task || task.completed) return;
+        
+        // Mark task as completed
+        task.completed = true;
+        this.completedTasks.add(taskId);
+        
+        // Add XP
+        this.addXP(task.xp);
+        
+        // Update UI
+        this.updateProgressRing();
+        this.updateQuickWins();
+        
+        // Show completion animation
+        this.showTaskCompletion(task);
+        
+        // Check for level up
+        this.checkLevelUp();
+        
+        // Check for achievements
+        this.checkAchievements();
+        
+        // Track completion
+        this.trackTaskCompletion(taskId, task.xp);
+        
+        console.log(`✅ Task completed: ${task.title} (+${task.xp} XP)`);
+    }
+    
+    addXP(amount) {
+        this.currentXP += amount;
+        
+        // Animate XP gain
+        this.animateXPGain(amount);
+        
+        // Update XP bar with animation
+        setTimeout(() => {
+            this.updateXPBar();
+        }, 500);
+    }
+    
+    animateXPGain(amount) {
+        const xpLabel = document.querySelector('.xp-label');
+        if (!xpLabel) return;
+        
+        // Create floating XP text
+        const floatingXP = document.createElement('div');
+        floatingXP.textContent = `+${amount} XP`;
+        floatingXP.style.cssText = `
+            position: absolute;
+            color: #10B981;
+            font-weight: 700;
+            font-size: 1rem;
+            pointer-events: none;
+            z-index: 1000;
+            animation: floatUpFade 2s ease-out forwards;
+        `;
+        
+        const rect = xpLabel.getBoundingClientRect();
+        floatingXP.style.left = rect.right + 10 + 'px';
+        floatingXP.style.top = rect.top + 'px';
+        
+        document.body.appendChild(floatingXP);
+        
+        setTimeout(() => floatingXP.remove(), 2000);
+    }
+    
+    checkLevelUp() {
+        const newLevel = Math.floor(this.currentXP / 1000) + 1;
+        
+        if (newLevel > this.currentLevel) {
+            this.currentLevel = newLevel;
+            this.maxXP = newLevel * 1000;
+            
+            // Show level up notification
+            this.showLevelUp(newLevel);
+            
+            // Update level badge
+            const levelBadge = document.querySelector('.level-badge');
+            if (levelBadge) {
+                levelBadge.textContent = `Level ${newLevel}`;
+            }
+            
+            // Track level up
+            this.trackLevelUp(newLevel);
+        }
+    }
+    
+    checkAchievements() {
+        // Check AI Master achievement
+        if (this.completedTasks.has('ai-training') && !this.achievements.has('ai-master')) {
+            this.unlockAchievement('ai-master');
+        }
+        
+        // Check Analyst Pro achievement
+        if (this.completedTasks.has('analytics-setup') && !this.achievements.has('analyst-pro')) {
+            this.unlockAchievement('analyst-pro');
+        }
+        
+        // Check Chatably Master achievement
+        const allTasksCompleted = this.tasks.every(task => task.completed || task.premium);
+        if (allTasksCompleted && !this.achievements.has('chatably-master')) {
+            this.unlockAchievement('chatably-master');
+        }
+    }
+    
+    unlockAchievement(achievementId) {
+        const achievement = this.achievementsList.find(a => a.id === achievementId);
+        if (!achievement) return;
+        
+        achievement.earned = true;
+        achievement.date = 'Ahora';
+        this.achievements.add(achievementId);
+        
+        // Update UI
+        this.updateAchievements();
+        
+        // Show unlock animation
+        this.showAchievementUnlock(achievement);
+        
+        // Track achievement
+        this.trackAchievementUnlock(achievementId);
+        
+        console.log(`🏆 Achievement unlocked: ${achievement.title}`);
+    }
+    
+    showTaskCompletion(task) {
+        // Create completion notification
+        if (window.dashboardController) {
+            window.dashboardController.showNotification(
+                `¡Tarea completada! ${task.title} (+${task.xp} XP)`,
+                'success'
+            );
+        }
+    }
+    
+    showLevelUp(newLevel) {
+        // Create level up modal/notification
+        if (window.dashboardController) {
+            window.dashboardController.showNotification(
+                `🎉 ¡Level Up! Ahora eres Level ${newLevel}`,
+                'success'
+            );
+        }
+    }
+    
+    showAchievementUnlock(achievement) {
+        // Create achievement unlock animation
+        if (window.dashboardController) {
+            window.dashboardController.showNotification(
+                `🏆 ¡Logro desbloqueado! ${achievement.title}`,
+                'success'
+            );
+        }
+    }
+    
+    isPremiumUser() {
+        const userPlan = localStorage.getItem('chatably_selected_plan') || 'starter';
+        return userPlan === 'pro' || userPlan === 'enterprise';
+    }
+    
+    startAITraining() {
+        this.completeTask('ai-training');
+        console.log('🤖 AI training started and completed!');
+    }
+    
+    // Analytics tracking methods
+    trackOnboardingView() {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'onboarding_view', {
+                'event_category': 'engagement',
+                'event_label': 'gamified_onboarding',
+                'custom_parameter_1': `level_${this.currentLevel}`
+            });
+        }
+    }
+    
+    trackTaskCompletion(taskId, xp) {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'onboarding_task_complete', {
+                'event_category': 'engagement',
+                'event_label': taskId,
+                'value': xp
+            });
+        }
+    }
+    
+    trackLevelUp(newLevel) {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'onboarding_level_up', {
+                'event_category': 'progression',
+                'event_label': `level_${newLevel}`,
+                'value': newLevel
+            });
+        }
+    }
+    
+    trackAchievementUnlock(achievementId) {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'onboarding_achievement', {
+                'event_category': 'progression',
+                'event_label': achievementId,
+                'value': 1
+            });
+        }
+    }
+}
+
+// Global functions for onboarding interactions
+window.startAITraining = function() {
+    if (window.onboardingManager) {
+        window.onboardingManager.startAITraining();
+    } else {
+        console.log('🤖 Opening AI training...');
+    }
+}
+
+window.openAITraining = function() {
+    window.startAITraining();
+}
+
+window.showUpgradeModal = function() {
+    if (window.freemiumUpgradeManager) {
+        window.freemiumUpgradeManager.showUpgradeModal();
+    }
+}
+
+window.showTipModal = function() {
+    console.log('💡 Showing tips modal...');
+}
+
+// Add floating animation keyframes
+const onboardingStyles = document.createElement('style');
+onboardingStyles.textContent = `
+    @keyframes floatUpFade {
+        0% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        100% {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+    }
+    
+    @keyframes pulse {
+        0%, 100% {
+            transform: scale(1);
+            box-shadow: 0 0 0 0 rgba(77, 141, 255, 0.4);
+        }
+        50% {
+            transform: scale(1.02);
+            box-shadow: 0 0 0 10px rgba(77, 141, 255, 0);
+        }
+    }
+`;
+document.head.appendChild(onboardingStyles);
+
+// Initialize OnboardingGameManager along with other managers
+document.addEventListener('DOMContentLoaded', () => {
+    // Wait for DashboardController to initialize
+    setTimeout(() => {
+        if (document.getElementById('onboarding-system') && !window.onboardingManager) {
+            window.onboardingManager = new OnboardingGameManager();
+        }
+    }, 1200);
+});
+
 // Export for module systems if needed
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { DashboardController, OmnichannelManager };
+    module.exports = { DashboardController, OmnichannelManager, OnboardingGameManager };
 }

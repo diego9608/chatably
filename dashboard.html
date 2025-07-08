@@ -128,6 +128,245 @@
                     </div>
                 </div>
 
+                <!-- Gamified Onboarding System -->
+                <div class="onboarding-system" id="onboarding-system">
+                    <!-- Progress Ring & Level -->
+                    <div class="onboarding-progress">
+                        <div class="progress-ring-container">
+                            <div class="progress-ring">
+                                <svg class="progress-ring-svg" width="120" height="120">
+                                    <circle
+                                        stroke="#e6e8ed"
+                                        stroke-width="6"
+                                        fill="transparent"
+                                        r="54"
+                                        cx="60"
+                                        cy="60"/>
+                                    <circle
+                                        class="progress-ring-circle"
+                                        stroke="url(#gradient)"
+                                        stroke-width="6"
+                                        fill="transparent"
+                                        r="54"
+                                        cx="60"
+                                        cy="60"
+                                        stroke-dasharray="339.292"
+                                        stroke-dashoffset="237.504"/>
+                                    <defs>
+                                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" style="stop-color:#4D8DFF;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#6B46C1;stop-opacity:1" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                                <div class="progress-content">
+                                    <div class="user-level">
+                                        <span class="level-badge">Level 3</span>
+                                        <div class="user-avatar-small">
+                                            <img src="https://ui-avatars.com/api/?name=Usuario&background=4D8DFF&color=fff&size=48" alt="Usuario">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="progress-stats">
+                                <h3>¡Bienvenido, Emprendedor! 🚀</h3>
+                                <p class="completion-text">3 de 8 objetivos completados</p>
+                                <div class="xp-bar">
+                                    <div class="xp-label">XP: 1,250 / 2,000</div>
+                                    <div class="xp-progress">
+                                        <div class="xp-fill" style="width: 62.5%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Active Quest -->
+                    <div class="active-quest">
+                        <div class="quest-header">
+                            <div class="quest-icon">🎯</div>
+                            <div class="quest-info">
+                                <h4>Misión Activa: Personaliza tu IA</h4>
+                                <p>Entrena a tu asistente con información específica de tu negocio</p>
+                            </div>
+                            <div class="quest-reward">
+                                <span class="reward-xp">+500 XP</span>
+                                <span class="reward-badge">🏆 Badge</span>
+                            </div>
+                        </div>
+                        <div class="quest-progress">
+                            <div class="quest-steps">
+                                <div class="quest-step completed">
+                                    <span class="step-number">1</span>
+                                    <span class="step-text">Conectar WhatsApp</span>
+                                    <span class="step-status">✅</span>
+                                </div>
+                                <div class="quest-step completed">
+                                    <span class="step-number">2</span>
+                                    <span class="step-text">Configurar horarios</span>
+                                    <span class="step-status">✅</span>
+                                </div>
+                                <div class="quest-step active">
+                                    <span class="step-number">3</span>
+                                    <span class="step-text">Entrenar IA con tu marca</span>
+                                    <span class="step-status">⏳</span>
+                                </div>
+                                <div class="quest-step">
+                                    <span class="step-number">4</span>
+                                    <span class="step-text">Configurar auto-respuestas</span>
+                                    <span class="step-status">🔒</span>
+                                </div>
+                            </div>
+                            <button class="quest-action-btn" onclick="startAITraining()">
+                                🤖 Comenzar Entrenamiento IA
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Quick Wins Section -->
+                    <div class="quick-wins">
+                        <h4>⚡ Victorias Rápidas (2 min c/u)</h4>
+                        <div class="quick-wins-grid">
+                            <div class="quick-win-card completed" data-task="profile">
+                                <div class="quick-win-icon">✅</div>
+                                <div class="quick-win-content">
+                                    <h5>Perfil Completo</h5>
+                                    <p>Configuraste tu perfil de negocio</p>
+                                    <span class="quick-win-reward">+100 XP</span>
+                                </div>
+                            </div>
+                            
+                            <div class="quick-win-card completed" data-task="whatsapp">
+                                <div class="quick-win-icon">✅</div>
+                                <div class="quick-win-content">
+                                    <h5>WhatsApp Conectado</h5>
+                                    <p>Conectaste tu número de WhatsApp</p>
+                                    <span class="quick-win-reward">+150 XP</span>
+                                </div>
+                            </div>
+
+                            <div class="quick-win-card active" data-task="ai-training">
+                                <div class="quick-win-icon">🎯</div>
+                                <div class="quick-win-content">
+                                    <h5>Entrena tu IA</h5>
+                                    <p>Personaliza respuestas para tu negocio</p>
+                                    <span class="quick-win-reward">+300 XP</span>
+                                </div>
+                                <button class="quick-win-action" onclick="openAITraining()">
+                                    Comenzar
+                                </button>
+                            </div>
+
+                            <div class="quick-win-card" data-task="first-automation">
+                                <div class="quick-win-icon">🔒</div>
+                                <div class="quick-win-content">
+                                    <h5>Primera Automatización</h5>
+                                    <p>Configura tu primera respuesta automática</p>
+                                    <span class="quick-win-reward">+250 XP</span>
+                                </div>
+                            </div>
+
+                            <div class="quick-win-card premium-locked" data-task="multichannel">
+                                <div class="premium-overlay-small">
+                                    <span class="premium-mini">PRO</span>
+                                </div>
+                                <div class="quick-win-icon">🔒</div>
+                                <div class="quick-win-content">
+                                    <h5>Multicanal Pro</h5>
+                                    <p>Conecta Instagram + TikTok</p>
+                                    <span class="quick-win-reward">+500 XP</span>
+                                </div>
+                                <button class="quick-win-action premium" onclick="showUpgradeModal()">
+                                    Upgrade
+                                </button>
+                            </div>
+
+                            <div class="quick-win-card" data-task="analytics-setup">
+                                <div class="quick-win-icon">🔒</div>
+                                <div class="quick-win-content">
+                                    <h5>Analytics Dashboard</h5>
+                                    <p>Configura métricas personalizadas</p>
+                                    <span class="quick-win-reward">+200 XP</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Achievements Showcase -->
+                    <div class="achievements-showcase">
+                        <h4>🏆 Logros Desbloqueados</h4>
+                        <div class="achievements-grid">
+                            <div class="achievement-badge earned">
+                                <div class="achievement-icon">🚀</div>
+                                <div class="achievement-info">
+                                    <h5>Primer Paso</h5>
+                                    <p>Registraste tu cuenta</p>
+                                </div>
+                                <div class="achievement-date">Ayer</div>
+                            </div>
+
+                            <div class="achievement-badge earned">
+                                <div class="achievement-icon">💬</div>
+                                <div class="achievement-info">
+                                    <h5>Comunicador</h5>
+                                    <p>Conectaste WhatsApp</p>
+                                </div>
+                                <div class="achievement-date">Hoy</div>
+                            </div>
+
+                            <div class="achievement-badge locked">
+                                <div class="achievement-icon">🤖</div>
+                                <div class="achievement-info">
+                                    <h5>Maestro IA</h5>
+                                    <p>Personaliza tu asistente</p>
+                                </div>
+                                <div class="achievement-requirement">Completa entrenamiento IA</div>
+                            </div>
+
+                            <div class="achievement-badge locked premium">
+                                <div class="achievement-icon">🌟</div>
+                                <div class="achievement-info">
+                                    <h5>Omnicanal</h5>
+                                    <p>Conecta 3+ redes sociales</p>
+                                </div>
+                                <div class="achievement-requirement">Requiere Plan Pro</div>
+                            </div>
+
+                            <div class="achievement-badge locked">
+                                <div class="achievement-icon">📈</div>
+                                <div class="achievement-info">
+                                    <h5>Analista Pro</h5>
+                                    <p>Configura dashboard avanzado</p>
+                                </div>
+                                <div class="achievement-requirement">Completa configuración</div>
+                            </div>
+
+                            <div class="achievement-badge locked legendary">
+                                <div class="achievement-icon">👑</div>
+                                <div class="achievement-info">
+                                    <h5>Chatably Master</h5>
+                                    <p>Completa todo el onboarding</p>
+                                </div>
+                                <div class="achievement-requirement">Todos los objetivos</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Onboarding Tips -->
+                    <div class="onboarding-tips">
+                        <div class="tip-of-the-day">
+                            <div class="tip-icon">💡</div>
+                            <div class="tip-content">
+                                <h5>Tip del Día</h5>
+                                <p>Entrena tu IA con ejemplos de conversaciones reales para obtener respuestas más naturales y efectivas.</p>
+                            </div>
+                            <button class="tip-action" onclick="showTipModal()">
+                                Ver más tips
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Omnichannel Connection Hub -->
                 <div class="omnichannel-hub">
                     <div class="hub-header">
