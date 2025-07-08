@@ -59,6 +59,9 @@
     <!-- CSS -->
     <link rel="stylesheet" href="css/styles.css">
     
+    <!-- Chart.js for ROI Calculator -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
     <!-- Structured Data - Local Business -->
     <script type="application/ld+json">
     {
@@ -265,6 +268,112 @@
             </div>
             <div class="message bot" style="animation-delay: 2.5s;" role="log" aria-live="polite">
                 ¡Hola! 👋 Claro que sí, tenemos disponibilidad. ¿A qué hora te gustaría agendar tu cita?
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI Calculator Section -->
+    <section class="roi-calculator" id="calculadora-roi">
+        <div class="roi-container">
+            <div class="roi-header">
+                <h2 class="section-title">🚀 Descubre cuánto dinero pierdes SIN Chatably</h2>
+                <p class="roi-subtitle">Calcula tu ROI real en segundos. Los números no mienten.</p>
+            </div>
+            
+            <div class="roi-content">
+                <div class="roi-inputs">
+                    <h3>📊 Datos de tu negocio actual</h3>
+                    
+                    <div class="input-group">
+                        <label for="monthly-visitors">Visitantes mensuales a tu web/tienda</label>
+                        <input type="number" id="monthly-visitors" placeholder="5,000" value="5000" min="100" max="1000000">
+                        <small>Tráfico web, redes sociales, referidos, etc.</small>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="average-ticket">Ticket promedio de venta (MXN)</label>
+                        <input type="number" id="average-ticket" placeholder="2,500" value="2500" min="100" max="100000">
+                        <small>Precio promedio por producto/servicio</small>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="conversion-rate">Tasa de conversión actual (%)</label>
+                        <input type="number" id="conversion-rate" placeholder="2.5" value="2.5" min="0.1" max="20" step="0.1">
+                        <small>% de visitantes que se convierten en clientes</small>
+                    </div>
+                </div>
+                
+                <div class="roi-results">
+                    <h3>💰 Tu potencial con Chatably</h3>
+                    
+                    <div class="results-grid">
+                        <div class="result-card without-chatably">
+                            <div class="result-header">
+                                <span class="result-icon">😰</span>
+                                <h4>SIN Chatably</h4>
+                            </div>
+                            <div class="result-metric">
+                                <span class="result-number" id="sales-without">$312,500</span>
+                                <span class="result-label">Ventas mensuales</span>
+                            </div>
+                            <div class="result-breakdown">
+                                <span id="leads-without">125 leads</span>
+                                <span id="conversion-without">2.5% conversión</span>
+                            </div>
+                        </div>
+                        
+                        <div class="result-card with-chatably">
+                            <div class="result-header">
+                                <span class="result-icon">🚀</span>
+                                <h4>CON Chatably</h4>
+                            </div>
+                            <div class="result-metric">
+                                <span class="result-number" id="sales-with">$1,250,000</span>
+                                <span class="result-label">Ventas mensuales</span>
+                            </div>
+                            <div class="result-breakdown">
+                                <span id="leads-with">500 leads</span>
+                                <span id="conversion-with">10% conversión</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="roi-summary">
+                        <div class="roi-highlight">
+                            <span class="roi-label">💎 Ganancia extra mensual</span>
+                            <span class="roi-value" id="extra-revenue">$937,500</span>
+                        </div>
+                        
+                        <div class="roi-metrics">
+                            <div class="roi-metric">
+                                <span class="metric-value" id="roi-percentage">1,875%</span>
+                                <span class="metric-label">ROI</span>
+                            </div>
+                            <div class="roi-metric">
+                                <span class="metric-value" id="payback-days">4</span>
+                                <span class="metric-label">Días para recuperar inversión</span>
+                            </div>
+                            <div class="roi-metric">
+                                <span class="metric-value" id="yearly-extra">$11.2M</span>
+                                <span class="metric-label">Ganancia anual extra</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="roi-chart-container">
+                        <h4>📈 Comparativa visual</h4>
+                        <canvas id="roi-chart"></canvas>
+                    </div>
+                    
+                    <div class="roi-cta">
+                        <a href="#planes" class="cta-button roi-cta-button" onclick="trackROICTA()">
+                            💰 Quiero estas ventas YA
+                        </a>
+                        <p class="roi-disclaimer">
+                            *Cálculos basados en datos reales de 500+ clientes. Resultados pueden variar.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

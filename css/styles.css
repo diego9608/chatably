@@ -1804,3 +1804,363 @@ input:checked + .toggle-slider:before {
         flex-wrap: wrap;
     }
 }
+
+/* === VALUE-BASED PRICING ROI CALCULATOR === */
+
+/* ROI Calculator Premium Styles */
+.roi-calculator {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 5rem 5%;
+    max-width: none;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.roi-calculator::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: pulse 15s ease-in-out infinite;
+}
+
+.roi-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.roi-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.roi-header .section-title {
+    color: white;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.roi-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.roi-content {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.roi-inputs,
+.roi-results {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 2rem;
+}
+
+.roi-inputs h3,
+.roi-results h3 {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    display: block;
+    color: white;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    font-size: 1.1rem;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--text-dark);
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #FFD700;
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
+}
+
+.input-group small {
+    display: block;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.result-card {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.result-card.without-chatably {
+    border-color: rgba(255, 107, 107, 0.6);
+    background: rgba(255, 107, 107, 0.1);
+}
+
+.result-card.with-chatably {
+    border-color: rgba(16, 185, 129, 0.6);
+    background: rgba(16, 185, 129, 0.1);
+    animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% { 
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+    }
+    50% { 
+        box-shadow: 0 0 30px rgba(16, 185, 129, 0.6);
+    }
+}
+
+.result-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.result-icon {
+    font-size: 2rem;
+}
+
+.result-header h4 {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.result-metric {
+    margin-bottom: 1rem;
+}
+
+.result-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 0.25rem;
+}
+
+.result-label {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+}
+
+.result-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.result-breakdown span {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.85rem;
+}
+
+.roi-summary {
+    margin: 2rem 0;
+}
+
+.roi-highlight {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: var(--text-dark);
+    padding: 1.5rem;
+    border-radius: 16px;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
+}
+
+.roi-label {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.roi-value {
+    display: block;
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.roi-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.roi-metric {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.metric-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.25rem;
+}
+
+.metric-label {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.roi-chart-container {
+    margin: 2rem 0;
+}
+
+.roi-chart-container h4 {
+    color: white;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.roi-chart-container canvas {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+.roi-cta {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.roi-cta-button {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: var(--text-dark);
+    padding: 1.25rem 2.5rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+    border-radius: 12px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
+    border: none;
+    cursor: pointer;
+}
+
+.roi-cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(255, 215, 0, 0.4);
+    background: linear-gradient(135deg, #FFA500, #FF8C00);
+}
+
+.roi-disclaimer {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.8rem;
+    margin-top: 1rem;
+    font-style: italic;
+}
+
+/* Premium colors for value-based pricing */
+:root {
+    --gold: #FFD700;
+    --platinum: #E5E4E2;
+    --black-premium: #0A0A0A;
+    --purple-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --success-green: #10B981;
+    --urgency-red: #EF4444;
+}
+
+/* Responsive for ROI Calculator */
+@media (max-width: 768px) {
+    .roi-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .results-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .roi-metrics {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .roi-header .section-title {
+        font-size: 2rem;
+    }
+    
+    .roi-value {
+        font-size: 2.5rem;
+    }
+    
+    .result-number {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .roi-calculator {
+        padding: 3rem 1rem;
+    }
+    
+    .roi-inputs,
+    .roi-results {
+        padding: 1.5rem;
+    }
+    
+    .roi-cta-button {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+    }
+}
