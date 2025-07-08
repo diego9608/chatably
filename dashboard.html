@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Chatably Command Center</title>
+    <meta name="description" content="Panel de control premium para automatización de WhatsApp Business">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    
+    <!-- Chart.js para gráficas hermosas -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dashboard-body">
+    <!-- Header minimalista estilo Apple -->
+    <header class="dashboard-header">
+        <div class="header-left">
+            <div class="logo-dashboard">
+                <span class="logo-icon">🤖</span>
+                <span class="logo-text">Chatably</span>
+            </div>
+        </div>
+        <div class="header-center">
+            <div class="search-bar">
+                <svg class="search-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" />
+                </svg>
+                <input type="text" placeholder="Buscar clientes, mensajes..." />
+            </div>
+        </div>
+        <div class="header-right">
+            <button class="icon-button notification-button">
+                <span class="notification-badge">3</span>
+                🔔
+            </button>
+            <div class="user-menu">
+                <img src="https://ui-avatars.com/api/?name=Usuario&background=4D8DFF&color=fff" alt="Avatar" class="user-avatar">
+                <span class="user-name">Mi Negocio</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <!-- Sidebar elegante -->
+        <aside class="dashboard-sidebar">
+            <nav class="sidebar-nav">
+                <a href="#inicio" class="nav-item active" data-section="inicio">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">Inicio</span>
+                </a>
+                <a href="#mensajes" class="nav-item" data-section="mensajes">
+                    <span class="nav-icon">💬</span>
+                    <span class="nav-text">Mensajes</span>
+                    <span class="nav-badge">12</span>
+                </a>
+                <a href="#flujos" class="nav-item" data-section="flujos">
+                    <span class="nav-icon">🤖</span>
+                    <span class="nav-text">Flujos</span>
+                </a>
+                <a href="#ventas" class="nav-item" data-section="ventas">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">Ventas</span>
+                </a>
+                <a href="#clientes" class="nav-item" data-section="clientes">
+                    <span class="nav-icon">👥</span>
+                    <span class="nav-text">Clientes</span>
+                </a>
+                <a href="#campanas" class="nav-item" data-section="campanas">
+                    <span class="nav-icon">⚡</span>
+                    <span class="nav-text">Campañas</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#configuracion" class="nav-item">
+                    <span class="nav-icon">⚙️</span>
+                    <span class="nav-text">Configuración</span>
+                </a>
+                <div class="plan-indicator">
+                    <span class="plan-name">Plan Pro</span>
+                    <span class="plan-status">Activo</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Contenido principal -->
+        <main class="dashboard-main">
+            <!-- Sección: Inicio -->
+            <section id="inicio" class="dashboard-section active">
+                <!-- WhatsApp Connection Status -->
+                <div class="whatsapp-status-card">
+                    <div class="status-content">
+                        <div class="status-icon disconnected">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                            </svg>
+                        </div>
+                        <div class="status-info">
+                            <h2>Conecta tu WhatsApp Business</h2>
+                            <p>Sin contraseñas. Autorización segura con Meta.</p>
+                            <button class="connect-whatsapp-btn">
+                                <span>🔗</span>
+                                Conectar WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KPIs Grid -->
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Ventas Hoy</span>
+                            <span class="kpi-trend up">↑ 23%</span>
+                        </div>
+                        <div class="kpi-value">$24,350</div>
+                        <div class="kpi-chart">
+                            <canvas id="salesMiniChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Conversiones</span>
+                            <span class="kpi-badge">79%</span>
+                        </div>
+                        <div class="kpi-value">142/180</div>
+                        <div class="kpi-progress">
+                            <div class="progress-bar" style="width: 79%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Tiempo Respuesta</span>
+                            <span class="kpi-status good">Excelente</span>
+                        </div>
+                        <div class="kpi-value">&lt; 30 seg</div>
+                        <div class="kpi-subtitle">Promedio últimas 24h</div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Clientes Activos</span>
+                            <span class="kpi-live">● EN VIVO</span>
+                        </div>
+                        <div class="kpi-value">8</div>
+                        <div class="kpi-subtitle">3 esperando respuesta</div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="activity-section">
+                    <h3>Actividad Reciente</h3>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon sale">💰</div>
+                            <div class="activity-content">
+                                <p><strong>Nueva venta:</strong> iPhone 15 Pro - $28,999</p>
+                                <span class="activity-time">Hace 5 minutos</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon message">💬</div>
+                            <div class="activity-content">
+                                <p><strong>Mensaje de María García:</strong> "¿Tienen en existencia?"</p>
+                                <span class="activity-time">Hace 12 minutos</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon automation">🤖</div>
+                            <div class="activity-content">
+                                <p><strong>Flujo completado:</strong> Bienvenida para nuevo cliente</p>
+                                <span class="activity-time">Hace 18 minutos</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon lead">🎯</div>
+                            <div class="activity-content">
+                                <p><strong>Lead calificado:</strong> Carlos Mendoza - Muy interesado</p>
+                                <span class="activity-time">Hace 32 minutos</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección: Mensajes -->
+            <section id="mensajes" class="dashboard-section">
+                <div class="section-header">
+                    <h2>Centro de Mensajes</h2>
+                    <p>Gestiona todas las conversaciones de WhatsApp desde un solo lugar</p>
+                </div>
+                
+                <div class="messages-container">
+                    <div class="coming-soon-card">
+                        <div class="coming-soon-icon">🚧</div>
+                        <h3>Próximamente</h3>
+                        <p>El centro de mensajes estará disponible una vez que conectes tu WhatsApp Business.</p>
+                        <button class="setup-btn">Conectar WhatsApp ahora</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección: Flujos -->
+            <section id="flujos" class="dashboard-section">
+                <div class="section-header">
+                    <h2>Flujos de Automatización</h2>
+                    <p>Crea respuestas inteligentes para diferentes escenarios</p>
+                </div>
+                
+                <div class="flows-container">
+                    <div class="coming-soon-card">
+                        <div class="coming-soon-icon">🔧</div>
+                        <h3>En Desarrollo</h3>
+                        <p>Los flujos de automatización estarán listos muy pronto. Mientras tanto, conecta tu WhatsApp.</p>
+                        <button class="setup-btn">Ir a configuración</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección: Ventas -->
+            <section id="ventas" class="dashboard-section">
+                <div class="section-header">
+                    <h2>Analytics de Ventas</h2>
+                    <p>Métricas detalladas del rendimiento de tu negocio</p>
+                </div>
+                
+                <div class="sales-container">
+                    <div class="coming-soon-card">
+                        <div class="coming-soon-icon">📈</div>
+                        <h3>Analytics Avanzados</h3>
+                        <p>Reportes completos de ventas, conversiones y ROI disponibles pronto.</p>
+                        <button class="setup-btn">Ver demo</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección: Clientes -->
+            <section id="clientes" class="dashboard-section">
+                <div class="section-header">
+                    <h2>Base de Clientes</h2>
+                    <p>Administra tus contactos y su historial de conversaciones</p>
+                </div>
+                
+                <div class="clients-container">
+                    <div class="coming-soon-card">
+                        <div class="coming-soon-icon">👥</div>
+                        <h3>CRM Integrado</h3>
+                        <p>La gestión de clientes estará disponible una vez configurado WhatsApp Business.</p>
+                        <button class="setup-btn">Configurar ahora</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección: Campañas -->
+            <section id="campanas" class="dashboard-section">
+                <div class="section-header">
+                    <h2>Campañas de Marketing</h2>
+                    <p>Envía mensajes masivos y automatiza el seguimiento</p>
+                </div>
+                
+                <div class="campaigns-container">
+                    <div class="coming-soon-card">
+                        <div class="coming-soon-icon">⚡</div>
+                        <h3>Campañas Automatizadas</h3>
+                        <p>Herramientas de marketing por WhatsApp disponibles próximamente.</p>
+                        <button class="setup-btn">Saber más</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal de conexión WhatsApp -->
+    <div class="modal" id="whatsappModal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Conecta tu WhatsApp Business</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-description">Elige tu método de conexión preferido. Ambos son 100% seguros.</p>
+                <div class="connection-options">
+                    <button class="connection-method">
+                        <span class="method-icon">📱</span>
+                        <div class="method-info">
+                            <span class="method-title">Escanear QR</span>
+                            <span class="method-desc">Como WhatsApp Web - Rápido y familiar</span>
+                        </div>
+                    </button>
+                    <button class="connection-method recommended">
+                        <span class="method-icon">🔐</span>
+                        <div class="method-info">
+                            <span class="method-title">Autorización Meta</span>
+                            <span class="method-desc">Recomendado - Más seguro y estable</span>
+                        </div>
+                        <span class="recommended-badge">Recomendado</span>
+                    </button>
+                </div>
+                <div class="security-note">
+                    <span class="security-icon">🛡️</span>
+                    <p>Nunca solicitamos tu contraseña de WhatsApp. La conexión es directamente con Meta.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast notifications container -->
+    <div class="toast-container"></div>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

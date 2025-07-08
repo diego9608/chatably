@@ -262,7 +262,7 @@
         </div>
         
         <div class="action-buttons">
-            <a href="#" class="cta-button primary" id="dashboard-btn">Ir al Dashboard</a>
+            <a href="dashboard.html" class="cta-button primary" id="dashboard-btn">Acceder a mi Dashboard</a>
             <a href="https://wa.me/436765748509?text=Hola,%20acabo%20de%20comprar%20Chatably%20y%20necesito%20ayuda%20con%20la%20configuración" class="cta-button secondary" target="_blank">¿Necesitas ayuda?</a>
         </div>
         
@@ -345,8 +345,8 @@
         
         // Handle dashboard button click
         document.getElementById('dashboard-btn').addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('¡Genial! Te redirigiremos al dashboard una vez que esté listo. Por ahora, revisa tu email para los próximos pasos.');
+            // Direct navigation to dashboard
+            window.location.href = 'dashboard.html';
         });
     </script>
 </body>
