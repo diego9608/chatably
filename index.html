@@ -58,9 +58,82 @@
     
     <!-- CSS -->
     <link rel="stylesheet" href="css/styles.css">
+
+    <!-- ROI Chart Fix Styles -->
+<style>
+    /* Fix for ROI Chart growing issue */
+    .roi-chart-container {
+        max-width: 100% !important;
+        height: 300px !important;
+        position: relative !important;
+        overflow: hidden !important;
+        margin: 2rem auto !important;
+    }
+    
+    #roi-chart {
+        max-width: 100% !important;
+        height: 250px !important;
+        display: block !important;
+    }
+    
+    .roi-calculator {
+        overflow-x: hidden !important;
+        max-width: 100vw !important;
+    }
+    
+    .roi-container {
+        max-width: 1200px !important;
+        margin: 0 auto !important;
+        overflow: hidden !important;
+    }
+    
+    /* Prevent any absolute positioned elements from breaking layout */
+    .roi-calculator * {
+        max-width: 100% !important;
+    }
+    
+    /* Ensure canvas respects container bounds */
+    canvas {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+    
+    #roi-chart {
+        height: 250px !important; /* Override the general canvas rule for this specific chart */
+    }
+</style>
     
     <!-- Chart.js for ROI Calculator -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Chart Size Fix -->
+<script>
+    // Ensure chart doesn't grow unbounded
+    document.addEventListener('DOMContentLoaded', function() {
+        const chartCanvas = document.getElementById('roi-chart');
+        if (chartCanvas) {
+            // Set explicit dimensions
+            chartCanvas.style.maxWidth = '100%';
+            chartCanvas.style.height = '250px';
+            chartCanvas.style.display = 'block';
+            
+            // Ensure parent container is properly sized
+            const container = chartCanvas.parentElement;
+            if (container) {
+                container.style.position = 'relative';
+                container.style.maxWidth = '100%';
+                container.style.height = '300px';
+                container.style.overflow = 'hidden';
+            }
+        }
+        
+        // Override any Chart.js default options
+        if (typeof Chart !== 'undefined') {
+            Chart.defaults.responsive = true;
+            Chart.defaults.maintainAspectRatio = false;
+        }
+    });
+</script>
     
     <!-- Structured Data - Local Business -->
     <script type="application/ld+json">
@@ -360,10 +433,10 @@
                         </div>
                     </div>
                     
-                    <div class="roi-chart-container">
-                        <h4>📈 Comparativa visual</h4>
-                        <canvas id="roi-chart"></canvas>
-                    </div>
+                   <div class="roi-chart-container" style="max-width: 100%; height: 300px; position: relative; margin-top: 2rem;">
+    <h4>📈 Comparativa visual</h4>
+    <canvas id="roi-chart" style="max-width: 100%; height: 250px;"></canvas>
+</div>
                     
                     <div class="roi-cta">
                         <a href="#planes" class="cta-button roi-cta-button" onclick="trackROICTA()">
