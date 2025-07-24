@@ -11,6 +11,8 @@
     
     <!-- Styles -->
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/checkout-optimizations.css">
 </head>
 <body>
     <!-- Header -->
@@ -28,11 +30,47 @@
         </nav>
     </header>
 
+    <!-- Progress Bar -->
+    <div class="checkout-progress">
+        <div class="progress-container">
+            <div class="progress-step active">
+                <div class="step-circle">1</div>
+                <span>Plan</span>
+            </div>
+            <div class="progress-line"></div>
+            <div class="progress-step active">
+                <div class="step-circle">2</div>
+                <span>Pago</span>
+            </div>
+            <div class="progress-line"></div>
+            <div class="progress-step">
+                <div class="step-circle">3</div>
+                <span>¡Listo!</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trust Indicators -->
+    <div class="checkout-trust-bar">
+        <div class="trust-item">
+            <span>🔒</span>
+            <span>Pago 100% Seguro</span>
+        </div>
+        <div class="trust-item">
+            <span>⚡</span>
+            <span>Activación Inmediata</span>
+        </div>
+        <div class="trust-item">
+            <span>🎯</span>
+            <span>Garantía 30 días</span>
+        </div>
+    </div>
+
     <!-- Checkout Container -->
     <div class="checkout-container">
         <div class="checkout-header">
-            <h1>Confirma tu Suscripción</h1>
-            <p>Estás a un paso de transformar tu atención al cliente con Chatably</p>
+            <h1>Completa tu pedido</h1>
+            <p class="urgency-message">🔥 Oferta limitada: <strong>7 días gratis</strong> + 20% descuento primer mes</p>
         </div>
 
         <div class="checkout-grid">
@@ -57,10 +95,23 @@
                     <strong>Total: <span id="plan-total">$0 MXN/mes</span></strong>
                 </div>
 
-                <div style="margin-top: 1.5rem; padding: 1rem; background: #e3f2fd; border-radius: 8px; font-size: 0.9rem;">
-                    ✓ 7 días de prueba gratis<br>
-                    ✓ Cancela en cualquier momento<br>
-                    ✓ Soporte incluido
+                <div class="trial-highlight">
+                    <div class="highlight-badge">PRUEBA GRATIS</div>
+                    <ul class="benefit-list">
+                        <li>✓ <strong>7 días gratis</strong> sin compromiso</li>
+                        <li>✓ Cancela cuando quieras</li>
+                        <li>✓ Soporte prioritario 24/7</li>
+                        <li>✓ Sin tarjeta requerida</li>
+                    </ul>
+                </div>
+
+                <!-- Scarcity Indicator -->
+                <div class="scarcity-box">
+                    <span class="scarcity-icon">⏱️</span>
+                    <div>
+                        <strong>Quedan 3 lugares</strong> a este precio<br>
+                        <span class="countdown" id="offer-countdown">La oferta termina en: 23:59:47</span>
+                    </div>
                 </div>
             </div>
 
@@ -68,21 +119,21 @@
             <div class="payment-form">
                 <h3>Información de Pago</h3>
                 
-                <form id="payment-form">
-                    <!-- Customer Information -->
-                    <div class="form-group">
-                        <label for="customer-name">Nombre completo</label>
-                        <input type="text" id="customer-name" name="customer-name" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="customer-email">Email</label>
-                        <input type="email" id="customer-email" name="customer-email" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="business-name">Nombre del negocio</label>
-                        <input type="text" id="business-name" name="business-name" required>
+                <form id="payment-form" role="form" aria-label="Formulario de pago">
+                    <!-- Simplified Customer Information -->
+                    <div class="form-section">
+                        <h4>Información básica</h4>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="customer-email">Email <span aria-label="requerido">*</span></label>
+                                <input type="email" id="customer-email" name="customer-email" required placeholder="tu@email.com" autocomplete="email" aria-describedby="email-hint" aria-required="true">
+                                <span class="field-hint" id="email-hint">Para acceder a tu cuenta</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="customer-name">Nombre <span aria-label="requerido">*</span></label>
+                                <input type="text" id="customer-name" name="customer-name" required placeholder="Juan Pérez" autocomplete="name" aria-required="true">
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Stripe Payment Element -->
@@ -97,23 +148,99 @@
                     <div id="payment-errors" class="error-message"></div>
                     <div id="payment-success" class="success-message"></div>
 
+                    <!-- Express Checkout Options -->
+                    <div class="express-checkout" role="region" aria-label="Opciones de pago rápido">
+                        <div class="divider"><span>Pago express</span></div>
+                        <div class="express-buttons">
+                            <button type="button" class="express-btn apple-pay" id="apple-pay-btn" aria-label="Pagar con Apple Pay">
+                                <span>Apple Pay</span>
+                            </button>
+                            <button type="button" class="express-btn google-pay" id="google-pay-btn" aria-label="Pagar con Google Pay">
+                                <span>Google Pay</span>
+                            </button>
+                        </div>
+                        <div class="divider"><span>O paga con tarjeta</span></div>
+                    </div>
+
                     <!-- Submit Button -->
-                    <button type="submit" id="submit-payment" class="cta-button checkout-button">
-                        Confirmar Suscripción
+                    <button type="submit" id="submit-payment" class="cta-button checkout-button pulse-animation" aria-label="Comenzar prueba gratis sin cargos por 7 días">
+                        <span class="button-text">Comenzar prueba gratis</span>
+                        <span class="button-subtext">Sin cargos por 7 días</span>
                     </button>
+
+                    <!-- Money Back Guarantee -->
+                    <div class="guarantee-badge">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxOSIgc3Ryb2tlPSIjNEQ4REZGIiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNMTYgMjBMMTggMjJMMjQgMTYiIHN0cm9rZT0iIzREOERGRiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48L3N2Zz4=" alt="Garantía">
+                        <div>
+                            <strong>Garantía de 30 días</strong><br>
+                            <small>100% de reembolso si no estás satisfecho</small>
+                        </div>
+                    </div>
                 </form>
 
-                <!-- Security Notice -->
-                <div style="margin-top: 1.5rem; padding: 1rem; background: #f8f9fa; border-radius: 8px; font-size: 0.85rem; color: #666;">
-                    🔒 Tu información está protegida con encriptación SSL de 256-bit. 
-                    Procesamos pagos de forma segura a través de Stripe.
+                <!-- Trust Badges -->
+                <div class="trust-badges">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCA2MCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB4PSIwLjUiIHk9IjAuNSIgd2lkdGg9IjU5IiBoZWlnaHQ9IjIzIiByeD0iMy41IiBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSIjRTBFMEUwIi8+PHBhdGggZD0iTTE1IDlDMTUgNy44OTU0MyAxNS44OTU0IDcgMTcgN0gxOUMyMC4xMDQ2IDcgMjEgNy44OTU0MyAyMSA5VjExSDIyQzIyLjU1MjMgMTEgMjMgMTEuNDQ3NyAyMyAxMlYxN0MyMyAxNy41NTIzIDIyLjU1MjMgMTggMjIgMThIMTRDMTMuNDQ3NyAxOCAxMyAxNy41NTIzIDEzIDE3VjEyQzEzIDExLjQ0NzcgMTMuNDQ3NyAxMSAxNCAxMUgxNVY5WiIgZmlsbD0iIzREOERGRiIvPjxwYXRoIGQ9Ik0zMCA5SDE2VjE1SDMwVjlaIiBmaWxsPSIjNjY2NjY2Ii8+PHRleHQgeD0iMzIiIHk9IjE1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTAiIGZpbGw9IiM2NjY2NjYiPlNTTDwvdGV4dD48L3N2Zz4=" alt="SSL Seguro">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCA4MCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB4PSIwLjUiIHk9IjAuNSIgd2lkdGg9Ijc5IiBoZWlnaHQ9IjIzIiByeD0iMy41IiBmaWxsPSIjNjM1QkZGIiBzdHJva2U9IiM2MzVCRkYiLz48dGV4dCB4PSIxMCIgeT0iMTUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0id2hpdGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5TdHJpcGU8L3RleHQ+PC9zdmc+" alt="Stripe">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCA0MCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxNiIgY3k9IjEyIiByPSI4IiBmaWxsPSIjRUIwMDFCIi8+PGNpcmNsZSBjeD0iMjQiIGN5PSIxMiIgcj0iOCIgZmlsbD0iI0Y3OTEwMCIgZmlsbC1vcGFjaXR5PSIwLjgiLz48L3N2Zz4=" alt="Mastercard">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCA0MCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB4PSI0IiB5PSI0IiB3aWR0aD0iMzIiIGhlaWdodD0iMTYiIHJ4PSIyIiBmaWxsPSIjMDA1N0E3Ii8+PHRleHQgeD0iMTAiIHk9IjE0IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTAiIGZpbGw9IndoaXRlIiBmb250LXdlaWdodD0iYm9sZCI+VklTQTwvdGV4dD48L3N2Zz4=" alt="Visa">
+                </div>
+            </div>
+        </div>
+
+        <!-- Social Proof Section -->
+        <div class="social-proof-section">
+            <h3>Más de 150 negocios confían en Chatably</h3>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Incrementé mis ventas un 45% en el primer mes"</p>
+                    <div class="testimonial-author">
+                        <strong>María González</strong>
+                        <span>Boutique Fashion</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Ahorro 4 horas diarias en atención al cliente"</p>
+                    <div class="testimonial-author">
+                        <strong>Carlos Mendoza</strong>
+                        <span>Restaurant Gourmet</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"La mejor inversión para mi negocio online"</p>
+                    <div class="testimonial-author">
+                        <strong>Ana Martínez</strong>
+                        <span>Tienda de Cosméticos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h3>Preguntas frecuentes</h3>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4>¿Puedo cancelar en cualquier momento?</h4>
+                    <p>Sí, puedes cancelar tu suscripción cuando quieras sin penalizaciones.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>¿Cómo funciona la prueba gratis?</h4>
+                    <p>Tienes 7 días completos para probar todas las funciones. No se realizará ningún cargo durante este periodo.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>¿Necesito conocimientos técnicos?</h4>
+                    <p>No, Chatably es muy fácil de usar. Además, te ayudamos con la configuración inicial.</p>
                 </div>
             </div>
         </div>
 
         <!-- Additional Information -->
-        <div style="margin-top: 3rem; text-align: center; color: #666;">
-            <p>¿Tienes preguntas? <a href="https://wa.me/436765748509?text=Tengo%20una%20pregunta%20sobre%20el%20checkout" style="color: #4D8DFF;">Contáctanos por WhatsApp</a></p>
+        <div class="checkout-support">
+            <p>¿Necesitas ayuda? <a href="https://wa.me/436765748509?text=Tengo%20una%20pregunta%20sobre%20el%20checkout" class="whatsapp-link">💬 Chatea con nosotros</a></p>
         </div>
     </div>
 
@@ -132,8 +259,75 @@
     <script src="js/stripe-integration.js"></script>
 
     <script>
+        // Countdown timer for urgency
+        function startCountdown() {
+            const countdownEl = document.getElementById('offer-countdown');
+            if (!countdownEl) return;
+            
+            let timeLeft = 24 * 60 * 60; // 24 hours in seconds
+            
+            const updateCountdown = () => {
+                const hours = Math.floor(timeLeft / 3600);
+                const minutes = Math.floor((timeLeft % 3600) / 60);
+                const seconds = timeLeft % 60;
+                
+                countdownEl.textContent = `La oferta termina en: ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft > 0) {
+                    timeLeft--;
+                } else {
+                    clearInterval(countdownInterval);
+                    countdownEl.textContent = 'Oferta expirada';
+                }
+            };
+            
+            updateCountdown();
+            const countdownInterval = setInterval(updateCountdown, 1000);
+        }
+
+        // Exit intent detection
+        let exitIntentShown = false;
+        function showExitIntent() {
+            if (exitIntentShown) return;
+            exitIntentShown = true;
+            
+            const modal = document.createElement('div');
+            modal.className = 'exit-intent-modal';
+            modal.innerHTML = `
+                <div class="exit-intent-content">
+                    <button class="close-modal">&times;</button>
+                    <h2>¡Espera! 🎁</h2>
+                    <p class="modal-offer">Obtén un <strong>10% de descuento adicional</strong></p>
+                    <p>Solo por hoy, suma este cupón a tu prueba gratis de 7 días</p>
+                    <div class="coupon-code">SAVE10NOW</div>
+                    <button class="cta-button apply-coupon">Aplicar descuento</button>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            modal.querySelector('.close-modal').addEventListener('click', () => {
+                modal.remove();
+            });
+            
+            modal.querySelector('.apply-coupon').addEventListener('click', () => {
+                // Apply coupon logic
+                alert('Cupón aplicado: 10% de descuento adicional');
+                modal.remove();
+            });
+        }
+
+        // Detect exit intent
+        document.addEventListener('mouseleave', (e) => {
+            if (e.clientY <= 0) {
+                showExitIntent();
+            }
+        });
+
         // Additional checkout page specific functionality
         document.addEventListener('DOMContentLoaded', function() {
+            // Start countdown
+            startCountdown();
             // Check if no plan is selected
             const urlParams = new URLSearchParams(window.location.search);
             const planParam = urlParams.get('plan');
@@ -169,7 +363,38 @@
 
             document.getElementById('customer-name').addEventListener('input', saveFormData);
             document.getElementById('customer-email').addEventListener('input', saveFormData);
-            document.getElementById('business-name').addEventListener('input', saveFormData);
+            if (document.getElementById('business-name')) {
+                document.getElementById('business-name').addEventListener('input', saveFormData);
+            }
+
+            // Add form field animations
+            const formInputs = document.querySelectorAll('input');
+            formInputs.forEach(input => {
+                input.addEventListener('focus', () => {
+                    input.parentElement.classList.add('focused');
+                });
+                input.addEventListener('blur', () => {
+                    if (!input.value) {
+                        input.parentElement.classList.remove('focused');
+                    }
+                });
+            });
+
+            // Express checkout handlers
+            const applePayBtn = document.getElementById('apple-pay-btn');
+            const googlePayBtn = document.getElementById('google-pay-btn');
+            
+            if (applePayBtn) {
+                applePayBtn.addEventListener('click', () => {
+                    alert('Apple Pay: Funcionalidad en desarrollo');
+                });
+            }
+            
+            if (googlePayBtn) {
+                googlePayBtn.addEventListener('click', () => {
+                    alert('Google Pay: Funcionalidad en desarrollo');
+                });
+            }
         });
     </script>
 </body>

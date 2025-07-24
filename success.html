@@ -12,6 +12,8 @@
     
     <!-- CSS -->
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/checkout-optimizations.css">
     
     <!-- Confetti Animation -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
@@ -235,42 +237,130 @@
     <div class="success-container">
         <div class="success-header">
             <div class="success-icon">🎉</div>
-            <h1 id="welcome-message">¡Bienvenido a Chatably!</h1>
-            <p>Tu pago fue procesado exitosamente</p>
+            <h1 id="welcome-message">¡Felicidades! Ya eres parte de Chatably</h1>
+            <p class="success-subtitle">Tu cuenta está activa y lista para usar</p>
+            <div class="value-delivered">
+                <span class="value-badge">ACCESO INMEDIATO</span>
+                <span class="value-badge">SOPORTE 24/7</span>
+                <span class="value-badge">GARANTÍA 30 DÍAS</span>
+            </div>
         </div>
         
         <div class="plan-confirmation">
-            <h2 id="plan-title">Plan activado</h2>
-            <p>Tienes 7 días de prueba gratis para explorar todas las funcionalidades</p>
+            <div class="plan-header">
+                <h2 id="plan-title">Plan activado exitosamente</h2>
+                <div class="timer-badge">
+                    <span class="timer-icon">⏱️</span>
+                    <span>Tu cuenta estará lista en <strong id="setup-timer">30 segundos</strong></span>
+                </div>
+            </div>
+            <div class="next-steps-preview">
+                <p>Mientras preparamos todo, aquí está lo que puedes hacer ahora:</p>
+            </div>
         </div>
         
         <div class="success-steps">
-            <div class="step">
-                <div class="step-number">1</div>
-                <h3>Revisa tu email</h3>
-                <p>Te enviamos los detalles de acceso y configuración inicial a tu correo electrónico</p>
+            <div class="step actionable">
+                <div class="step-number">✓</div>
+                <h3>1. Accede a tu Dashboard</h3>
+                <p>Tu panel de control ya está listo con todos los recursos que necesitas</p>
+                <a href="dashboard.html" class="step-action">Ir al Dashboard →</a>
             </div>
-            <div class="step">
+            <div class="step actionable">
                 <div class="step-number">2</div>
-                <h3>Configura tu WhatsApp</h3>
-                <p>Conecta tu número de WhatsApp Business en menos de 5 minutos siguiendo nuestra guía</p>
+                <h3>2. Conecta WhatsApp Business</h3>
+                <p>Proceso guiado paso a paso - Solo toma 3 minutos</p>
+                <button class="step-action" onclick="showQuickStart()">🎬 Ver video rápido</button>
             </div>
-            <div class="step">
+            <div class="step actionable">
                 <div class="step-number">3</div>
-                <h3>Personaliza tu chatbot</h3>
-                <p>Adapta las respuestas automáticas al tono y estilo de tu negocio</p>
+                <h3>3. Activa tu primer bot</h3>
+                <p>Usa nuestras plantillas pre-configuradas para comenzar rápido</p>
+                <button class="step-action" onclick="showTemplates()">🤖 Ver plantillas</button>
+            </div>
+        </div>
+
+        <!-- Quick Win Section -->
+        <div class="quick-win-section">
+            <h3>🚀 Logra tu primera victoria rápida</h3>
+            <div class="quick-win-box">
+                <div class="win-icon">🎯</div>
+                <div class="win-content">
+                    <h4>Configura tu mensaje de bienvenida en 2 minutos</h4>
+                    <p>Es la forma más rápida de ver Chatably en acción</p>
+                    <button class="cta-button secondary" onclick="startQuickWin()">👉 Empezar ahora</button>
+                </div>
             </div>
         </div>
         
         <div class="action-buttons">
-            <a href="dashboard.html" class="cta-button primary" id="dashboard-btn">Acceder a mi Dashboard</a>
-            <a href="https://wa.me/436765748509?text=Hola,%20acabo%20de%20comprar%20Chatably%20y%20necesito%20ayuda%20con%20la%20configuración" class="cta-button secondary" target="_blank">¿Necesitas ayuda?</a>
+            <a href="dashboard.html" class="cta-button primary pulse-animation" id="dashboard-btn">
+                <span class="button-main">🚀 Ir a mi Dashboard</span>
+                <span class="button-sub">Comienza tu configuración</span>
+            </a>
+            <div class="secondary-actions">
+                <a href="#" class="action-link" onclick="downloadGuide()">📄 Descargar guía PDF</a>
+                <a href="#" class="action-link" onclick="scheduleOnboarding()">📅 Agendar llamada de onboarding</a>
+                <a href="https://wa.me/436765748509?text=Hola,%20acabo%20de%20activar%20mi%20cuenta%20Chatably" class="action-link" target="_blank">💬 Chat con soporte</a>
+            </div>
         </div>
         
+        <!-- Exclusive Benefits -->
+        <div class="exclusive-benefits">
+            <h3>🎆 Beneficios exclusivos de tu cuenta</h3>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎓</div>
+                    <h4>Academia Chatably</h4>
+                    <p>Acceso a +50 videos de capacitación</p>
+                    <a href="#" class="benefit-link">Explorar cursos →</a>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">👥</div>
+                    <h4>Comunidad VIP</h4>
+                    <p>Únete a +150 emprendedores exitosos</p>
+                    <a href="#" class="benefit-link">Unirme ahora →</a>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎁</div>
+                    <h4>Plantillas Premium</h4>
+                    <p>20+ flujos de chat pre-configurados</p>
+                    <a href="#" class="benefit-link">Ver plantillas →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Tracker -->
+        <div class="progress-tracker">
+            <h3>📋 Tu progreso de configuración</h3>
+            <div class="progress-items">
+                <div class="progress-item completed">
+                    <span class="check">✓</span>
+                    <span>Cuenta creada</span>
+                </div>
+                <div class="progress-item active">
+                    <span class="check">2</span>
+                    <span>Conectar WhatsApp</span>
+                </div>
+                <div class="progress-item">
+                    <span class="check">3</span>
+                    <span>Configurar bot</span>
+                </div>
+                <div class="progress-item">
+                    <span class="check">4</span>
+                    <span>🎆 Primera venta automática</span>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 25%;"></div>
+            </div>
+        </div>
+
         <div class="support-info">
-            <h3>🚀 ¿Listo para comenzar?</h3>
-            <p>Nuestro equipo está aquí para ayudarte a sacar el máximo provecho de Chatably. Si tienes alguna pregunta o necesitas asistencia con la configuración, no dudes en contactarnos.</p>
-            <p><strong>Tiempo de respuesta promedio:</strong> Menos de 2 horas</p>
+            <h3>🔥 Oferta especial para nuevos miembros</h3>
+            <p>Como nuevo miembro, tienes acceso a una sesión de onboarding personalizada valorada en $500 MXN completamente <strong>GRATIS</strong>.</p>
+            <button class="cta-button secondary" onclick="claimOnboarding()">🎁 Reclamar mi sesión gratis</button>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">*Disponible solo las primeras 48 horas</p>
         </div>
     </div>
 
@@ -344,10 +434,51 @@
             }, 5000);
         });
         
+        // Setup timer countdown
+        let setupSeconds = 30;
+        const setupTimer = setInterval(() => {
+            setupSeconds--;
+            document.getElementById('setup-timer').textContent = `${setupSeconds} segundos`;
+            if (setupSeconds <= 0) {
+                clearInterval(setupTimer);
+                document.getElementById('setup-timer').textContent = '¡Listo!';
+                document.querySelector('.timer-badge').style.background = '#22C55E';
+                document.querySelector('.timer-badge').style.color = 'white';
+            }
+        }, 1000);
+
+        // Interactive functions
+        function showQuickStart() {
+            alert('Video de inicio rápido: Esta función abrirá un modal con el video tutorial');
+        }
+
+        function showTemplates() {
+            alert('Plantillas: Esta función mostrará las plantillas disponibles');
+        }
+
+        function startQuickWin() {
+            window.location.href = 'dashboard.html#quick-start';
+        }
+
+        function downloadGuide() {
+            alert('Descargando guía PDF...');
+        }
+
+        function scheduleOnboarding() {
+            window.open('https://calendly.com/chatably/onboarding', '_blank');
+        }
+
+        function claimOnboarding() {
+            alert('¡Sesión de onboarding reclamada! Te contactaremos en las próximas 24 horas.');
+        }
+
         // Handle dashboard button click
         document.getElementById('dashboard-btn').addEventListener('click', function(e) {
-            // Direct navigation to dashboard
-            window.location.href = 'dashboard.html';
+            // Add loading animation
+            this.innerHTML = '<span class="spinner"></span> Cargando tu dashboard...';
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 1000);
         });
     </script>
 </body>

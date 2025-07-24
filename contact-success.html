@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Gracias por tu mensaje! - Chatably</title>
-    <meta name="description" content="Hemos recibido tu mensaje. Te contactaremos pronto para ayudarte a automatizar tu WhatsApp Business.">
+    <title>¡Mensaje Recibido! - Chatably</title>
+    <meta name="description" content="Gracias por contactarnos. Te responderemos en menos de 2 horas para ayudarte a automatizar tu WhatsApp Business.">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/checkout-optimizations.css">
     
     <style>
         * {
@@ -30,7 +35,7 @@
             background: white;
             border-radius: 16px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            max-width: 500px;
+            max-width: 600px;
             width: 100%;
             animation: fadeIn 0.5s ease;
         }
@@ -74,7 +79,84 @@
             font-weight: 600;
         }
         
-        .buttons {
+        .response-timer {
+            background: linear-gradient(135deg, #4D8DFF, #3A7AED);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+        
+        .timer-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .timer-icon {
+            font-size: 2.5rem;
+        }
+        
+        .timer-text h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .timer-text p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        
+        .next-actions {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+        
+        .next-actions h3 {
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .action-grid {
+            display: grid;
+            gap: 1rem;
+            text-align: left;
+        }
+        
+        .action-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #4D8DFF;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .action-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .action-item h4 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .action-item p {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        
+        .cta-buttons {
             display: flex;
             gap: 1rem;
             justify-content: center;
@@ -89,6 +171,8 @@
             border-radius: 8px;
             font-weight: 600;
             transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
         }
         
         .button-primary {
@@ -113,14 +197,24 @@
             box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
         }
         
-        .timer {
-            display: inline-block;
+        .value-props {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .value-item {
+            padding: 1rem;
             background: #f0f7ff;
-            color: #4D8DFF;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
+            border-radius: 8px;
             font-size: 0.9rem;
-            margin-top: 1rem;
+        }
+        
+        .value-item strong {
+            display: block;
+            color: #4D8DFF;
+            margin-bottom: 0.25rem;
         }
         
         .social-proof {
@@ -134,6 +228,27 @@
             color: #999;
         }
         
+        .testimonial-mini {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            text-align: left;
+        }
+        
+        .testimonial-mini p {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        
+        .testimonial-mini cite {
+            font-style: normal;
+            color: #333;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
         @media (max-width: 480px) {
             .container {
                 padding: 2rem 1.5rem;
@@ -143,7 +258,7 @@
                 font-size: 1.5rem;
             }
             
-            .buttons {
+            .cta-buttons {
                 flex-direction: column;
                 width: 100%;
             }
@@ -152,39 +267,145 @@
                 width: 100%;
                 text-align: center;
             }
+            
+            .timer-content {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="icon">✅</div>
-        <h1>¡Mensaje recibido!</h1>
+        <div class="icon">🎯</div>
+        <h1>¡Perfecto! Mensaje recibido</h1>
         <p>Gracias por tu interés en <span class="highlight">Chatably</span>.</p>
-        <p>Te contactaremos en las próximas <span class="highlight">24 horas</span> para mostrarte cómo automatizar tu WhatsApp y multiplicar tus ventas.</p>
         
-        <div class="timer">⏱️ Tiempo promedio de respuesta: 2-4 horas</div>
+        <div class="response-timer">
+            <div class="timer-content">
+                <div class="timer-icon">⚡</div>
+                <div class="timer-text">
+                    <h3>Respuesta ultrarrápida garantizada</h3>
+                    <p>Te contactaremos en menos de 2 horas (horario laboral)</p>
+                </div>
+            </div>
+        </div>
         
-        <p style="margin-top: 1.5rem;">¿Tienes prisa? Escríbenos directamente:</p>
+        <div class="next-actions">
+            <h3>Mientras esperas, puedes:</h3>
+            <div class="action-grid">
+                <div class="action-item" onclick="explorePricing()">
+                    <h4>💰 Explorar nuestros planes</h4>
+                    <p>Descubre cuál se adapta mejor a tu negocio</p>
+                </div>
+                <div class="action-item" onclick="watchDemo()">
+                    <h4>🎥 Ver demo de 3 minutos</h4>
+                    <p>Mira Chatably en acción con casos reales</p>
+                </div>
+                <div class="action-item" onclick="downloadGuide()">
+                    <h4>📚 Descargar guía gratis</h4>
+                    <p>"Cómo vender más por WhatsApp en 2024"</p>
+                </div>
+            </div>
+        </div>
         
-        <div class="buttons">
-            <a href="/" class="button button-primary">Volver al inicio</a>
+        <p style="margin-top: 1.5rem;"><strong>¿No puedes esperar?</strong> Habla con nosotros ahora mismo:</p>
+        
+        <div class="cta-buttons">
             <a href="https://wa.me/436765748509?text=Hola,%20acabo%20de%20enviar%20el%20formulario%20y%20quiero%20más%20información%20sobre%20Chatably" 
                class="button button-whatsapp" 
                target="_blank">
                 💬 WhatsApp directo
             </a>
+            <button class="button button-primary" onclick="startFreeTrial()">
+                🚀 Comenzar prueba gratis
+            </button>
+        </div>
+        
+        <div class="value-props">
+            <div class="value-item">
+                <strong>Sin compromiso</strong>
+                7 días gratis
+            </div>
+            <div class="value-item">
+                <strong>Setup rápido</strong>
+                Listo en 5 minutos
+            </div>
+            <div class="value-item">
+                <strong>Soporte 24/7</strong>
+                Siempre disponible
+            </div>
         </div>
         
         <div class="social-proof">
-            <p>Más de 150 negocios ya automatizan con Chatably</p>
+            <p>Únete a más de 150 negocios que ya automatizan con Chatably</p>
+            <div class="testimonial-mini">
+                <p>"En solo 1 semana aumenté mis ventas un 35% gracias a Chatably"</p>
+                <cite>- Laura Méndez, Tienda de Ropa Online</cite>
+            </div>
         </div>
     </div>
     
     <script>
-        // Redirigir al inicio después de 10 segundos
-        setTimeout(() => {
+        // Auto-redirect timer
+        let redirectSeconds = 15;
+        let autoRedirect = setTimeout(() => {
             window.location.href = '/';
-        }, 10000);
+        }, redirectSeconds * 1000);
+        
+        // Action functions
+        function explorePricing() {
+            clearTimeout(autoRedirect);
+            window.location.href = '/#planes';
+        }
+        
+        function watchDemo() {
+            clearTimeout(autoRedirect);
+            alert('Demo: Esta función abrirá un modal con el video demo');
+            // In production, this would open a modal with the demo video
+        }
+        
+        function downloadGuide() {
+            clearTimeout(autoRedirect);
+            alert('Descargando guía "Cómo vender más por WhatsApp en 2024"...');
+            // In production, this would trigger a download
+        }
+        
+        function startFreeTrial() {
+            clearTimeout(autoRedirect);
+            window.location.href = '/checkout.html?plan=pro';
+        }
+        
+        // Add progress bar for auto-redirect
+        const progressBar = document.createElement('div');
+        progressBar.style.cssText = `
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #e0e0e0;
+        `;
+        const progressFill = document.createElement('div');
+        progressFill.style.cssText = `
+            height: 100%;
+            background: #4D8DFF;
+            width: 0%;
+            transition: width ${redirectSeconds}s linear;
+        `;
+        progressBar.appendChild(progressFill);
+        document.body.appendChild(progressBar);
+        
+        // Start progress animation
+        setTimeout(() => {
+            progressFill.style.width = '100%';
+        }, 100);
+        
+        // Track engagement
+        document.addEventListener('click', () => {
+            clearTimeout(autoRedirect);
+            progressFill.style.transition = 'none';
+            progressFill.style.width = '0%';
+        });
     </script>
 </body>
 </html>
