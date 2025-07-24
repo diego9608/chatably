@@ -1,5 +1,16 @@
 console.log('Main.js cargado correctamente');
 
+// Initialize AOS (Animate On Scroll)
+if (typeof AOS !== 'undefined') {
+    AOS.init({
+        duration: 800,
+        easing: 'ease-out',
+        once: true,
+        offset: 100,
+        disable: 'mobile' // Disable on mobile for performance
+    });
+}
+
 // Mobile menu toggle
 const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
 const navLinks = document.querySelector('.nav-links');
@@ -45,8 +56,90 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Form submission para Netlify
-const contactForm = document.querySelector('.contact-form');
+// Modern Form Interactions
+const modernForm = document.querySelector('.modern-form');
+if (modernForm) {
+    const nameInput = modernForm.querySelector('#name');
+    const phoneInput = modernForm.querySelector('#phone');
+    const submitButton = modernForm.querySelector('.submit-button');
+    const progressBar = modernForm.querySelector('.progress-bar');
+    const progressText = modernForm.querySelector('.progress-text');
+    const quickOptions = modernForm.querySelectorAll('.quick-option');
+    const challengeInput = modernForm.querySelector('#challenge');
+    
+    // Progress tracking
+    function updateProgress() {
+        let filledFields = 0;
+        const requiredFields = 2;
+        
+        if (nameInput && nameInput.value.trim().length > 0) filledFields++;
+        if (phoneInput && phoneInput.value.trim().length === 10) filledFields++;
+        
+        const progress = (filledFields / requiredFields) * 100;
+        
+        if (progressBar) {
+            progressBar.style.width = `${progress}%`;
+        }
+        
+        if (progressText) {
+            if (filledFields === 0) {
+                progressText.textContent = 'Completa 2 campos para activar';
+            } else if (filledFields === 1) {
+                progressText.textContent = 'Solo falta 1 campo más';
+            } else {
+                progressText.textContent = '¡Listo para activar tu demo!';
+            }
+        }
+        
+        // Enable/disable submit button
+        if (submitButton) {
+            submitButton.disabled = filledFields < requiredFields;
+        }
+    }
+    
+    // Add input listeners
+    if (nameInput) {
+        nameInput.addEventListener('input', updateProgress);
+    }
+    
+    if (phoneInput) {
+        phoneInput.addEventListener('input', (e) => {
+            // Format phone number (digits only)
+            e.target.value = e.target.value.replace(/\D/g, '').slice(0, 10);
+            updateProgress();
+        });
+    }
+    
+    // Quick option selection
+    quickOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            // Remove selected class from all
+            quickOptions.forEach(opt => opt.classList.remove('selected'));
+            // Add to clicked
+            option.classList.add('selected');
+            // Update hidden input
+            if (challengeInput) {
+                challengeInput.value = option.getAttribute('data-value');
+            }
+        });
+    });
+    
+    // Form submission
+    modernForm.addEventListener('submit', async (e) => {
+        const buttonContent = submitButton.querySelector('.button-content');
+        const buttonLoader = submitButton.querySelector('.button-loader');
+        
+        if (buttonContent && buttonLoader) {
+            buttonContent.style.display = 'none';
+            buttonLoader.style.display = 'block';
+        }
+        
+        // Let Netlify handle the form submission
+    });
+}
+
+// Form submission para Netlify (legacy)
+const contactForm = document.querySelector('.contact-form:not(.modern-form)');
 if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
         // No prevenir default - dejar que Netlify maneje el form

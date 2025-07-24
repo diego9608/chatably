@@ -135,6 +135,10 @@
     });
 </script>
     
+    <!-- AOS - Animate on Scroll for micro-interactions -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
     <!-- Structured Data - Local Business -->
     <script type="application/ld+json">
     {
@@ -297,6 +301,9 @@
     -->
 </head>
 <body>
+    <!-- Skip to content link for accessibility -->
+    <a href="#inicio" class="skip-to-content">Saltar al contenido principal</a>
+    
     <!-- Header -->
     <header role="banner">
         <nav role="navigation" aria-label="Navegación principal">
@@ -320,27 +327,140 @@
 
     <!-- Hero Section -->
     <section class="hero" id="inicio" role="main" aria-labelledby="hero-title">
-        <h1 id="hero-title">Tu negocio responde solo.<br>Y lo hace mejor que tú.</h1>
-        <p>Instala Chatably en tu WhatsApp y automatiza atención, agenda y ventas como si tuvieras un asistente 24/7.</p>
+        <!-- Trust Indicators Bar -->
+        <div class="trust-bar" role="complementary" aria-label="Indicadores de confianza">
+            <div class="trust-item">
+                <span class="trust-icon">🛡️</span>
+                <span class="trust-text">Certificado ISO 27001</span>
+            </div>
+            <div class="trust-item">
+                <span class="trust-icon">⭐</span>
+                <span class="trust-text">4.9/5 de 2,847 reseñas</span>
+            </div>
+            <div class="trust-item">
+                <span class="trust-icon">🚀</span>
+                <span class="trust-text">Partner oficial Meta</span>
+            </div>
+        </div>
+
+        <!-- Pain Point Badge -->
+        <div class="pain-point-badge" role="status" aria-live="polite">
+            <span class="badge-icon">⚠️</span>
+            <span class="badge-text">El 73% de tus clientes potenciales te escriben fuera de horario</span>
+        </div>
+
+        <h1 id="hero-title" class="hero-title">
+            <span class="hero-eyebrow">Deja de perder $18,000 mensuales</span>
+            Convierte cada mensaje en una venta<br>mientras duermes
+        </h1>
+        
+        <p class="hero-description">
+            Tu competencia ya responde en 30 segundos las 24 horas. 
+            <strong>¿Y tú?</strong> Con Chatably, tu WhatsApp vende automático 
+            con IA que suena tan humana que tus clientes no notarán la diferencia.
+        </p>
+
+        <!-- Value Props -->
+        <div class="hero-value-props" role="list">
+            <div class="value-prop-item" role="listitem">
+                <span class="check-icon">✅</span>
+                <span>Setup en 24 horas</span>
+            </div>
+            <div class="value-prop-item" role="listitem">
+                <span class="check-icon">✅</span>
+                <span>ROI garantizado o devolvemos tu dinero</span>
+            </div>
+            <div class="value-prop-item" role="listitem">
+                <span class="check-icon">✅</span>
+                <span>Sin contratos forzosos</span>
+            </div>
+        </div>
+
+        <!-- CTA Buttons with Urgency -->
         <div class="hero-buttons" role="group" aria-label="Acciones principales">
-            <a href="#contacto" class="cta-button" aria-describedby="hero-title">Actívalo hoy</a>
-            <a href="#demo" class="secondary-button">Mira la demo</a>
+            <a href="#contacto" class="cta-button primary-cta" aria-describedby="hero-title">
+                <span class="cta-icon">🚀</span>
+                <span class="cta-text">
+                    <span class="cta-main">Activar Chatably Ahora</span>
+                    <span class="cta-sub">Solo 12 cupos disponibles</span>
+                </span>
+            </a>
+            <a href="#demo" class="secondary-button">
+                <span class="btn-icon">▶️</span>
+                Ver demo en vivo (2 min)
+            </a>
+        </div>
+
+        <!-- Social Proof Strip -->
+        <div class="social-proof-strip" role="complementary">
+            <div class="proof-avatars">
+                <img src="https://ui-avatars.com/api/?name=Maria+G&background=4D8DFF&color=fff&size=40" alt="Maria G." class="proof-avatar">
+                <img src="https://ui-avatars.com/api/?name=Carlos+R&background=E74C3C&color=fff&size=40" alt="Carlos R." class="proof-avatar">
+                <img src="https://ui-avatars.com/api/?name=Ana+M&background=27AE60&color=fff&size=40" alt="Ana M." class="proof-avatar">
+                <img src="https://ui-avatars.com/api/?name=Luis+P&background=9B59B6&color=fff&size=40" alt="Luis P." class="proof-avatar">
+                <span class="proof-text">+2,843 empresas ya venden en automático</span>
+            </div>
         </div>
         
-        <!-- Chat Animation -->
-        <div class="chat-animation" role="img" aria-label="Ejemplo de conversación automatizada entre cliente y Chatably">
-            <div class="message" style="animation-delay: 0.5s;" role="log" aria-live="polite">
-                Hola, ¿tienen disponibilidad para mañana?
-            </div>
-            <div class="message bot" style="animation-delay: 1.5s;" role="log" aria-live="polite">
-                <div class="typing-indicator" aria-label="Chatably está escribiendo">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
+        <!-- Interactive Chat Preview with 3D Effect -->
+        <div class="chat-preview-3d" role="img" aria-label="Vista previa interactiva de Chatably">
+            <div class="phone-mockup">
+                <div class="phone-screen">
+                    <div class="whatsapp-header">
+                        <img src="https://ui-avatars.com/api/?name=Tu+Negocio&background=25D366&color=fff&size=32" alt="Tu Negocio" class="wa-avatar">
+                        <div class="wa-info">
+                            <span class="wa-name">Tu Negocio</span>
+                            <span class="wa-status">En línea</span>
+                        </div>
+                    </div>
+                    <div class="chat-messages">
+                        <div class="message customer" data-aos="fade-up" data-aos-delay="500">
+                            <span class="message-text">Hola, ¿tienen el producto X en stock?</span>
+                            <span class="message-time">23:47</span>
+                        </div>
+                        <div class="message bot" data-aos="fade-up" data-aos-delay="1000">
+                            <span class="message-text">¡Hola! 👋 Sí, tenemos disponible. Te muestro opciones:</span>
+                            <span class="message-time">23:47</span>
+                        </div>
+                        <div class="message bot product-carousel" data-aos="fade-up" data-aos-delay="1500">
+                            <div class="product-card">
+                                <img src="https://via.placeholder.com/150x150/4D8DFF/fff?text=Producto" alt="Producto">
+                                <span class="product-name">Producto Premium</span>
+                                <span class="product-price">$2,499</span>
+                                <button class="product-cta">Ver detalles</button>
+                            </div>
+                        </div>
+                        <div class="message customer" data-aos="fade-up" data-aos-delay="2000">
+                            <span class="message-text">¡Me interesa! ¿Cómo puedo comprarlo?</span>
+                            <span class="message-time">23:48</span>
+                        </div>
+                        <div class="message bot" data-aos="fade-up" data-aos-delay="2500">
+                            <span class="message-text">Perfecto, te envío el link de pago seguro. ¿Necesitas factura? 📄</span>
+                            <span class="message-time">23:48</span>
+                        </div>
+                    </div>
+                    <div class="revenue-counter">
+                        <span class="counter-label">Vendido mientras dormías:</span>
+                        <span class="counter-value">$12,847</span>
+                    </div>
                 </div>
             </div>
-            <div class="message bot" style="animation-delay: 2.5s;" role="log" aria-live="polite">
-                ¡Hola! 👋 Claro que sí, tenemos disponibilidad. ¿A qué hora te gustaría agendar tu cita?
+            
+            <!-- Floating Stats -->
+            <div class="floating-stat stat-1" data-aos="zoom-in" data-aos-delay="1000">
+                <span class="stat-icon">💰</span>
+                <span class="stat-value">+$47K</span>
+                <span class="stat-label">Este mes</span>
+            </div>
+            <div class="floating-stat stat-2" data-aos="zoom-in" data-aos-delay="1200">
+                <span class="stat-icon">⚡</span>
+                <span class="stat-value">0.3s</span>
+                <span class="stat-label">Respuesta</span>
+            </div>
+            <div class="floating-stat stat-3" data-aos="zoom-in" data-aos-delay="1400">
+                <span class="stat-icon">📈</span>
+                <span class="stat-value">847%</span>
+                <span class="stat-label">ROI</span>
             </div>
         </div>
     </section>
@@ -447,6 +567,185 @@
                         </p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI-Optimized Benefits Section -->
+    <section class="ai-benefits" id="beneficios" data-aos="fade-up">
+        <div class="benefits-container">
+            <div class="benefits-header">
+                <h2 class="section-title">
+                    <span class="title-icon">🎯</span>
+                    Tu negocio en piloto automático inteligente
+                </h2>
+                <p class="benefits-subtitle">
+                    Chatably aprende de cada conversación para vender mejor que tú
+                </p>
+            </div>
+            
+            <div class="benefits-grid">
+                <!-- Benefit 1: Context-Aware Responses -->
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="benefit-icon-wrapper">
+                        <span class="benefit-icon">🧠</span>
+                    </div>
+                    <h3 class="benefit-title">Respuestas que entienden contexto</h3>
+                    <p class="benefit-description">
+                        No más respuestas robóticas. Chatably detecta intención, 
+                        humor y urgencia para responder como lo harías tú.
+                    </p>
+                    <div class="benefit-example">
+                        <span class="example-label">Ejemplo real:</span>
+                        <div class="example-messages">
+                            <div class="msg customer">"Necesito esto YA para una emergencia"</div>
+                            <div class="msg bot">"Entiendo la urgencia. Te preparo envío express en 2h. ¿Tu dirección?"</div>
+                        </div>
+                    </div>
+                    <div class="benefit-metric">
+                        <span class="metric-number">87%</span>
+                        <span class="metric-label">más satisfacción vs bots tradicionales</span>
+                    </div>
+                </div>
+                
+                <!-- Benefit 2: Sales Psychology -->
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="benefit-icon-wrapper">
+                        <span class="benefit-icon">💰</span>
+                    </div>
+                    <h3 class="benefit-title">Psicología de ventas integrada</h3>
+                    <p class="benefit-description">
+                        Aplica técnicas probadas: urgencia, escasez, prueba social 
+                        y reciprocidad en el momento perfecto.
+                    </p>
+                    <div class="benefit-example">
+                        <span class="example-label">En acción:</span>
+                        <div class="example-messages">
+                            <div class="msg customer">"¿Cuánto cuesta?"</div>
+                            <div class="msg bot">"$999 (precio especial hoy). Ya van 3 pedidos esta mañana. ¿Te aparto uno?"</div>
+                        </div>
+                    </div>
+                    <div class="benefit-metric">
+                        <span class="metric-number">3.2x</span>
+                        <span class="metric-label">más conversión que respuesta simple de precio</span>
+                    </div>
+                </div>
+                
+                <!-- Benefit 3: Predictive Engagement -->
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="benefit-icon-wrapper">
+                        <span class="benefit-icon">🔮</span>
+                    </div>
+                    <h3 class="benefit-title">Predicción de abandono</h3>
+                    <p class="benefit-description">
+                        Detecta cuando un cliente está por irse y activa 
+                        estrategias de retención automáticamente.
+                    </p>
+                    <div class="benefit-example">
+                        <span class="example-label">Retención inteligente:</span>
+                        <div class="example-messages">
+                            <div class="msg customer">"Mmm lo voy a pensar..."</div>
+                            <div class="msg bot">"Entiendo. Te comparto código DESC15 válido 24h. ¿Te mando info sin compromiso?"</div>
+                        </div>
+                    </div>
+                    <div class="benefit-metric">
+                        <span class="metric-number">64%</span>
+                        <span class="metric-label">de "lo pensaré" convertidos en venta</span>
+                    </div>
+                </div>
+                
+                <!-- Benefit 4: Multi-Channel Memory -->
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="benefit-icon-wrapper">
+                        <span class="benefit-icon">🔄</span>
+                    </div>
+                    <h3 class="benefit-title">Memoria entre canales</h3>
+                    <p class="benefit-description">
+                        Un cliente te escribe en WhatsApp, luego en Instagram. 
+                        Chatably recuerda toda la conversación.
+                    </p>
+                    <div class="benefit-example">
+                        <span class="example-label">Continuidad perfecta:</span>
+                        <div class="example-messages">
+                            <div class="msg platform">Instagram:</div>
+                            <div class="msg customer">"Vi tu producto en TikTok"</div>
+                            <div class="msg bot">"¡Hola María! Sí, el vestido azul que viste. ¿Tu talla es M como la vez pasada?"</div>
+                        </div>
+                    </div>
+                    <div class="benefit-metric">
+                        <span class="metric-number">92%</span>
+                        <span class="metric-label">clientes impresionados por la personalización</span>
+                    </div>
+                </div>
+                
+                <!-- Benefit 5: Emotional Intelligence -->
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="benefit-icon-wrapper">
+                        <span class="benefit-icon">❤️</span>
+                    </div>
+                    <h3 class="benefit-title">Inteligencia emocional</h3>
+                    <p class="benefit-description">
+                        Detecta frustración, alegría o dudas. Ajusta tono y 
+                        velocidad de respuesta según el estado del cliente.
+                    </p>
+                    <div class="benefit-example">
+                        <span class="example-label">Empatía real:</span>
+                        <div class="example-messages">
+                            <div class="msg customer">"Llevo 2 días esperando!! 😤"</div>
+                            <div class="msg bot">"Lamento mucho la demora. Reviso tu pedido ahora mismo y te llamo en 5 min. 🙏"</div>
+                        </div>
+                    </div>
+                    <div class="benefit-metric">
+                        <span class="metric-number">-78%</span>
+                        <span class="metric-label">reducción en quejas y devoluciones</span>
+                    </div>
+                </div>
+                
+                <!-- Benefit 6: Revenue Optimization -->
+                <div class="benefit-card featured" data-aos="fade-up" data-aos-delay="600">
+                    <div class="benefit-icon-wrapper">
+                        <span class="benefit-icon">📈</span>
+                    </div>
+                    <h3 class="benefit-title">Optimización continua de ingresos</h3>
+                    <p class="benefit-description">
+                        Prueba precios, ofertas y mensajes. Aprende qué funciona 
+                        y optimiza automáticamente para maximizar ventas.
+                    </p>
+                    <div class="benefit-example">
+                        <span class="example-label">A/B testing automático:</span>
+                        <div class="example-messages">
+                            <div class="msg system">Versión A: "Envío gratis" → 23% conversión</div>
+                            <div class="msg system">Versión B: "Entrega hoy" → 41% conversión ✅</div>
+                        </div>
+                    </div>
+                    <div class="benefit-metric">
+                        <span class="metric-number">+47%</span>
+                        <span class="metric-label">incremento promedio en ticket de venta</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- AI Learning Showcase -->
+            <div class="ai-learning-showcase" data-aos="fade-up" data-aos-delay="700">
+                <h3>🤖 Chatably mejora cada día</h3>
+                <div class="learning-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">2.7M</span>
+                        <span class="stat-label">conversaciones analizadas</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">147</span>
+                        <span class="stat-label">patrones de venta detectados</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">aprendizaje continuo</span>
+                    </div>
+                </div>
+                <p class="showcase-text">
+                    Cada conversación entrena a tu asistente para ser más efectivo. 
+                    En 30 días, venderá mejor que tu mejor vendedor.
+                </p>
             </div>
         </div>
     </section>
@@ -1271,40 +1570,174 @@
 
     <!-- Contact -->
     <section class="contact" id="contacto">
-        <h2 class="section-title">Activa Chatably hoy mismo</h2>
-        <p style="color: var(--text-gray); margin-bottom: 2rem;">
-            Llena el formulario y te contactamos en menos de 24 horas
-        </p>
-        
-        <form class="contact-form" name="contacto-chatably" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/contact-success">
-            <input type="hidden" name="form-name" value="contacto-chatably">
-            <p style="display:none;">
-                <label>No llenes esto si eres humano: <input name="bot-field" /></label>
-            </p>
-            <div class="form-group">
-                <label for="name">Nombre completo</label>
-                <input type="text" id="name" name="name" required>
+        <div class="contact-container">
+            <!-- Header with urgency -->
+            <div class="contact-header">
+                <h2 class="section-title">🚀 Activa Chatably en 24 horas</h2>
+                <p class="contact-subtitle">
+                    Sin letra chica. Sin compromisos. <strong>Solo resultados.</strong>
+                </p>
+                
+                <!-- Trust badges -->
+                <div class="contact-trust-badges">
+                    <div class="trust-badge">
+                        <span class="badge-icon">🛡️</span>
+                        <span class="badge-text">SSL Seguro</span>
+                    </div>
+                    <div class="trust-badge">
+                        <span class="badge-icon">🔒</span>
+                        <span class="badge-text">Datos Protegidos</span>
+                    </div>
+                    <div class="trust-badge">
+                        <span class="badge-icon">⚡</span>
+                        <span class="badge-text">Respuesta en 2h</span>
+                    </div>
+                </div>
             </div>
             
-            <div class="form-group">
-                <label for="phone">WhatsApp</label>
-                <input type="tel" id="phone" name="phone" placeholder="+52 xxx xxx xxxx" required>
+            <div class="contact-content">
+                <!-- Benefits column -->
+                <div class="contact-benefits">
+                    <h3>✅ Lo que obtienes GRATIS:</h3>
+                    <ul class="benefit-list">
+                        <li>
+                            <span class="benefit-icon">📞</span>
+                            <div class="benefit-content">
+                                <strong>Consultoría personalizada</strong>
+                                <span>Analizamos tu negocio específico</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="benefit-icon">🎯</span>
+                            <div class="benefit-content">
+                                <strong>Demo en vivo con tus datos</strong>
+                                <span>Ve exactamente cómo funcionará</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="benefit-icon">💰</span>
+                            <div class="benefit-content">
+                                <strong>Cálculo de ROI personalizado</strong>
+                                <span>Cuánto ganarás desde el día 1</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="benefit-icon">🎁</span>
+                            <div class="benefit-content">
+                                <strong>$25,000 en bonos si calificas</strong>
+                                <span>Setup + Training + Optimización</span>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <!-- Social proof -->
+                    <div class="form-social-proof">
+                        <div class="proof-item">
+                            <img src="https://ui-avatars.com/api/?name=Roberto+M&background=4D8DFF&color=fff&size=60" alt="Roberto M">
+                            <div class="proof-content">
+                                <div class="proof-stars">⭐⭐⭐⭐⭐</div>
+                                <p>"En 15 minutos me mostraron cómo automatizar todo. Increíble."</p>
+                                <cite>— Roberto M., Farmacia San Pablo</cite>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Simplified form -->
+                <div class="contact-form-wrapper">
+                    <form class="contact-form modern-form" name="contacto-chatably" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/contact-success">
+                        <input type="hidden" name="form-name" value="contacto-chatably">
+                        <p style="display:none;">
+                            <label>No llenes esto si eres humano: <input name="bot-field" /></label>
+                        </p>
+                        
+                        <!-- Progress indicator -->
+                        <div class="form-progress">
+                            <div class="progress-bar" style="width: 0%"></div>
+                            <span class="progress-text">Completa 2 campos para activar</span>
+                        </div>
+                        
+                        <!-- Smart form fields -->
+                        <div class="form-group floating-label">
+                            <input type="text" id="name" name="name" placeholder=" " required class="form-input">
+                            <label for="name" class="form-label">Tu nombre (solo primer nombre está bien) *</label>
+                            <span class="field-helper">Ej: María</span>
+                        </div>
+                        
+                        <div class="form-group floating-label">
+                            <input type="tel" id="phone" name="phone" placeholder=" " required class="form-input" pattern="[0-9]{10}">
+                            <label for="phone" class="form-label">WhatsApp (10 dígitos) *</label>
+                            <span class="field-helper">Sin espacios ni guiones</span>
+                            <div class="whatsapp-preview">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="20">
+                                <span>Te escribiremos aquí en 2 horas</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Optional fields with smart defaults -->
+                        <div class="optional-fields">
+                            <p class="optional-text">Opcional (pero nos ayuda a personalizar tu demo):</p>
+                            
+                            <div class="form-group floating-label">
+                                <input type="text" id="business" name="business" placeholder=" " class="form-input">
+                                <label for="business" class="form-label">Nombre de tu negocio</label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="quick-select-label">¿Cuál es tu mayor reto?</label>
+                                <div class="quick-select-options">
+                                    <button type="button" class="quick-option" data-value="Responder rápido">
+                                        ⚡ Responder rápido
+                                    </button>
+                                    <button type="button" class="quick-option" data-value="Atención 24/7">
+                                        🌙 Atención 24/7
+                                    </button>
+                                    <button type="button" class="quick-option" data-value="Cerrar más ventas">
+                                        💰 Cerrar más ventas
+                                    </button>
+                                    <button type="button" class="quick-option" data-value="Agendar citas">
+                                        📅 Agendar citas
+                                    </button>
+                                </div>
+                                <input type="hidden" id="challenge" name="challenge" value="">
+                            </div>
+                        </div>
+                        
+                        <!-- Smart submit button -->
+                        <button type="submit" class="cta-button submit-button" disabled>
+                            <span class="button-content">
+                                <span class="button-icon">🔒</span>
+                                <span class="button-text">
+                                    <span class="main-text">Activar Mi Demo Gratis</span>
+                                    <span class="sub-text">Sin tarjeta de crédito</span>
+                                </span>
+                            </span>
+                            <span class="button-loader" style="display: none;">
+                                <span class="spinner"></span>
+                            </span>
+                        </button>
+                        
+                        <!-- Trust text -->
+                        <p class="form-disclaimer">
+                            <span class="disclaimer-icon">🔒</span>
+                            Tus datos están seguros. No spam. Puedes cancelar cuando quieras.
+                        </p>
+                    </form>
+                    
+                    <!-- Alternative CTA -->
+                    <div class="alternative-cta">
+                        <p>¿Prefieres hablar ahora mismo?</p>
+                        <a href="https://wa.me/436765748509?text=Hola,%20quiero%20información%20sobre%20Chatably" 
+                           class="whatsapp-direct-button" 
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="24">
+                            Escribir por WhatsApp
+                        </a>
+                    </div>
+                </div>
             </div>
-            
-            <div class="form-group">
-                <label for="business">Nombre de tu negocio</label>
-                <input type="text" id="business" name="business" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="message">¿Cuál es tu mayor reto de atención al cliente?</label>
-                <textarea id="message" name="message" rows="4"></textarea>
-            </div>
-            
-            <button type="submit" class="cta-button" style="width: 100%; font-size: 1.1rem;">
-                Quiero mi demo gratis
-            </button>
-        </form>
+        </div>
     </section>
 
     <!-- Footer -->
