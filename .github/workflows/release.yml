@@ -1,0 +1,92 @@
+name: Release
+
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types:
+      - completed
+    branches:
+      - main
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    
+    permissions:
+      contents: write
+      
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+      - name: Get current version
+        id: version
+        run: echo "version=v${{ github.run_number }}" >> $GITHUB_OUTPUT
+        
+      - name: Generate changelog
+        run: node scripts/release.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NEW_VERSION: ${{ steps.version.outputs.version }}
+          
+      - name: Commit changelog
+        run: |
+          git add CHANGELOG.md
+          git commit -m "chore(release): update changelog for ${{ steps.version.outputs.version }}" || echo "No changes to commit"
+          
+      - name: Create annotated tag
+        run: |
+          git tag -a ${{ steps.version.outputs.version }} -m "Release ${{ steps.version.outputs.version }}"
+          
+      - name: Push changes
+        run: |
+          git push origin main --follow-tags
+          
+      - name: Read changelog section
+        id: changelog
+        run: |
+          # Extract the latest version section from CHANGELOG.md
+          node -e "
+            const fs = require('fs');
+            const changelog = fs.readFileSync('CHANGELOG.md', 'utf8');
+            const match = changelog.match(/## \[${{ steps.version.outputs.version }}\].*?\n([\s\S]*?)(?=\n## \[|$)/);
+            const content = match ? match[1].trim() : 'No changes documented';
+            console.log('content<<EOF');
+            console.log(content);
+            console.log('EOF');
+          " >> $GITHUB_OUTPUT
+          
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.version.outputs.version }}
+          release_name: Release ${{ steps.version.outputs.version }}
+          body: |
+            ## What's Changed
+            
+            ${{ steps.changelog.outputs.content }}
+            
+            **Full Changelog**: https://github.com/${{ github.repository }}/compare/v${{ github.run_number - 1 }}...${{ steps.version.outputs.version }}
+          draft: false
+          prerelease: false

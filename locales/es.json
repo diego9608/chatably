@@ -1,0 +1,89 @@
+{
+  "common": {
+    "loading": "Cargando...",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "close": "Cerrar",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "export": "Exportar",
+    "import": "Importar",
+    "yes": "Sí",
+    "no": "No"
+  },
+  "header": {
+    "newMessage": "Nuevo Mensaje",
+    "notifications": "Notificaciones",
+    "language": "Idioma",
+    "profile": "Perfil",
+    "logout": "Cerrar Sesión"
+  },
+  "sidebar": {
+    "home": "Inicio",
+    "inbox": "Bandeja Unificada",
+    "channels": "Mis Canales",
+    "flows": "Flujos",
+    "sales": "Ventas",
+    "customers": "Clientes",
+    "campaigns": "Campañas",
+    "analytics": "Analytics Pro",
+    "settings": "Configuración"
+  },
+  "dashboard": {
+    "title": "Dashboard - Centro de Comando Chatably",
+    "quickActions": "Acciones Rápidas",
+    "quickActionsDesc": "Acciones más utilizadas en un solo lugar",
+    "newBroadcast": "Nuevo Broadcast",
+    "createFlow": "Crear Flujo",
+    "exportData": "Exportar Datos",
+    "integrations": "Integraciones",
+    "insights": "Insights Personalizados para Ti",
+    "topProducts": "Productos Top",
+    "bestCustomers": "Mejores Clientes",
+    "peakHours": "Horas Pico",
+    "recentActivity": "Actividad Reciente",
+    "newSale": "Nueva venta",
+    "messageFrom": "Mensaje de",
+    "customerRegistered": "Cliente registrado",
+    "flowCompleted": "Flujo completado"
+  },
+  "metrics": {
+    "activeConversations": "Conversaciones Activas",
+    "responseRate": "Tasa de Respuesta",
+    "avgResponseTime": "Tiempo Promedio",
+    "satisfaction": "Satisfacción",
+    "minutes": "minutos"
+  },
+  "plan": {
+    "starter": "Plan Starter",
+    "messagesUsed": "mensajes usados",
+    "upgradeNow": "Actualizar Ahora",
+    "upgradeToPro": "Upgrade a Pro",
+    "getUnlimited": "Obtén mensajes ilimitados y funciones avanzadas"
+  },
+  "channels": {
+    "whatsapp": "WhatsApp",
+    "tiktok": "TikTok Shop",
+    "meta": "Meta Shops",
+    "connectAccount": "Conectar Cuenta",
+    "connected": "Conectado",
+    "notConnected": "No Conectado",
+    "scanQR": "Escanear QR",
+    "instructions": "Instrucciones"
+  },
+  "modals": {
+    "connectWhatsApp": "Conectar WhatsApp",
+    "scanWithPhone": "Escanea este código QR con tu teléfono",
+    "keepPhoneConnected": "Mantén tu teléfono conectado a internet",
+    "dataPrivacy": "Tus datos están encriptados y seguros",
+    "connecting": "Conectando...",
+    "upgradeTitle": "¡Hora de Escalar! 🚀",
+    "unlimitedConversations": "Conversaciones ilimitadas",
+    "advancedAutomation": "Automatización avanzada",
+    "prioritySupport": "Soporte prioritario",
+    "customIntegrations": "Integraciones personalizadas",
+    "upgradeCTA": "Actualizar Ahora"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "search": "Search",
+    "filter": "Filter",
+    "export": "Export",
+    "import": "Import",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "header": {
+    "newMessage": "New Message",
+    "notifications": "Notifications",
+    "language": "Language",
+    "profile": "Profile",
+    "logout": "Logout"
+  },
+  "sidebar": {
+    "home": "Home",
+    "inbox": "Unified Inbox",
+    "channels": "My Channels",
+    "flows": "Flows",
+    "sales": "Sales",
+    "customers": "Customers",
+    "campaigns": "Campaigns",
+    "analytics": "Analytics Pro",
+    "settings": "Settings"
+  },
+  "dashboard": {
+    "title": "Dashboard - Chatably Command Center",
+    "quickActions": "Quick Actions",
+    "quickActionsDesc": "Most used actions in one place",
+    "newBroadcast": "New Broadcast",
+    "createFlow": "Create Flow",
+    "exportData": "Export Data",
+    "integrations": "Integrations",
+    "insights": "Personalized Insights for You",
+    "topProducts": "Top Products",
+    "bestCustomers": "Best Customers",
+    "peakHours": "Peak Hours",
+    "recentActivity": "Recent Activity",
+    "newSale": "New sale",
+    "messageFrom": "Message from",
+    "customerRegistered": "Customer registered",
+    "flowCompleted": "Flow completed"
+  },
+  "metrics": {
+    "activeConversations": "Active Conversations",
+    "responseRate": "Response Rate",
+    "avgResponseTime": "Avg Response Time",
+    "satisfaction": "Satisfaction",
+    "minutes": "minutes"
+  },
+  "plan": {
+    "starter": "Starter Plan",
+    "messagesUsed": "messages used",
+    "upgradeNow": "Upgrade Now",
+    "upgradeToPro": "Upgrade to Pro",
+    "getUnlimited": "Get unlimited messages and advanced features"
+  },
+  "channels": {
+    "whatsapp": "WhatsApp",
+    "tiktok": "TikTok Shop",
+    "meta": "Meta Shops",
+    "connectAccount": "Connect Account",
+    "connected": "Connected",
+    "notConnected": "Not Connected",
+    "scanQR": "Scan QR Code",
+    "instructions": "Instructions"
+  },
+  "modals": {
+    "connectWhatsApp": "Connect WhatsApp",
+    "scanWithPhone": "Scan this QR code with your phone",
+    "keepPhoneConnected": "Keep your phone connected to internet",
+    "dataPrivacy": "Your data is encrypted and secure",
+    "connecting": "Connecting...",
+    "upgradeTitle": "Time to Scale! 🚀",
+    "unlimitedConversations": "Unlimited conversations",
+    "advancedAutomation": "Advanced automation",
+    "prioritySupport": "Priority support",
+    "customIntegrations": "Custom integrations",
+    "upgradeCTA": "Upgrade Now"
+  }
+}

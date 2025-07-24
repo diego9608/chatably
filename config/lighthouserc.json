@@ -1,0 +1,39 @@
+{
+  "ci": {
+    "collect": {
+      "numberOfRuns": 3,
+      "startServerCommand": "npm run preview",
+      "startServerReadyPattern": "Local:",
+      "url": [
+        "http://localhost:3000/",
+        "http://localhost:3000/dashboard.html"
+      ],
+      "settings": {
+        "preset": "desktop",
+        "throttling": {
+          "cpuSlowdownMultiplier": 1,
+          "downloadThroughputKbps": 10240,
+          "uploadThroughputKbps": 10240,
+          "rttMs": 40
+        }
+      }
+    },
+    "assert": {
+      "preset": "lighthouse:no-pwa",
+      "assertions": {
+        "largest-contentful-paint": ["error", {"maxNumericValue": 1800}],
+        "cumulative-layout-shift": ["error", {"maxNumericValue": 0.05}],
+        "total-blocking-time": ["error", {"maxNumericValue": 125}],
+        "first-contentful-paint": ["warn", {"maxNumericValue": 1000}],
+        "interactive": ["warn", {"maxNumericValue": 3000}],
+        "uses-long-cache-ttl": "off",
+        "uses-http2": "off",
+        "canonical": "off"
+      },
+      "budgetsFile": "./config/lighthouse-budget.json"
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    }
+  }
+}
