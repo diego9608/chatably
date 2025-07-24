@@ -12,10 +12,25 @@
     
     <!-- CSS -->
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/design-system.css">
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/dashboard-growth.css">
     
-    <!-- Chart.js para gráficas hermosas -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Performance: Preconnect to external origins -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://ui-avatars.com">
+    
+    <!-- Chart.js - Lazy load for performance -->
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Web Analytics & Tracking -->
+    <script defer src="js/analytics-tracker.js"></script>
+    
+    <!-- Privacy-First User Data Handler -->
+    <script defer src="js/privacy-manager.js"></script>
+    
+    <!-- AI Personalization Engine -->
+    <script defer src="js/ai-personalization.js"></script>
     
     <!-- Trial Manager -->
     <script src="js/trial-manager.js"></script>
@@ -28,7 +43,10 @@
 </head>
 <body class="dashboard-body">
     <!-- Header minimalista estilo Apple -->
-    <header class="dashboard-header">
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="sr-only focus-visible:not-sr-only">Skip to main content</a>
+    
+    <header class="dashboard-header" role="banner">
         <div class="header-left">
             <div class="logo-dashboard">
                 <span class="logo-icon">🤖</span>
@@ -40,7 +58,7 @@
                 <svg class="search-icon" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" />
                 </svg>
-                <input type="text" placeholder="Buscar clientes, mensajes..." />
+                <input type="text" placeholder="Buscar clientes, mensajes..." aria-label="Search" role="searchbox" />
             </div>
         </div>
         <div class="header-right">
@@ -57,7 +75,7 @@
 
     <div class="dashboard-container">
         <!-- Sidebar elegante -->
-        <aside class="dashboard-sidebar">
+        <aside class="dashboard-sidebar" role="navigation" aria-label="Main navigation">
             <nav class="sidebar-nav">
                 <a href="#inicio" class="nav-item active" data-section="inicio">
                     <span class="nav-icon">🏠</span>
@@ -116,9 +134,46 @@
         </aside>
 
         <!-- Contenido principal -->
-        <main class="dashboard-main">
+        <main class="dashboard-main" id="main-content" role="main">
+            <!-- AI Personalization Layer -->
+            <div id="ai-personalization-container" class="ai-personalization-layer" data-user-segment="starter" data-behavior-profile="growth-focused">
+                <!-- Dynamic content will be injected based on user behavior -->
+            </div>
             <!-- Sección: Inicio -->
-            <section id="inicio" class="dashboard-section active">
+            <section id="inicio" class="dashboard-section active" data-track-section="home">
+                <!-- Quick Actions Bar - Maximum 3 clicks to any feature -->
+                <div class="quick-actions-bar card">
+                    <h3 class="text-lg font-semibold mb-3">Acciones Rápidas</h3>
+                    <div class="quick-actions-grid">
+                        <button class="quick-action-btn" data-action="new-message" data-track="quick-action-message">
+                            <span class="action-icon">💬</span>
+                            <span class="action-label">Nuevo Mensaje</span>
+                        </button>
+                        <button class="quick-action-btn" data-action="view-analytics" data-track="quick-action-analytics">
+                            <span class="action-icon">📊</span>
+                            <span class="action-label">Ver Analytics</span>
+                        </button>
+                        <button class="quick-action-btn" data-action="create-campaign" data-track="quick-action-campaign">
+                            <span class="action-icon">🚀</span>
+                            <span class="action-label">Nueva Campaña</span>
+                        </button>
+                        <button class="quick-action-btn" data-action="ai-assistant" data-track="quick-action-ai">
+                            <span class="action-icon">🤖</span>
+                            <span class="action-label">Asistente IA</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- AI-Powered Insights Widget -->
+                <div class="ai-insights-widget card" data-ai-component="insights">
+                    <div class="widget-header">
+                        <h3 class="text-lg font-semibold">🧠 Insights Personalizados para Ti</h3>
+                        <span class="ai-badge">Powered by AI</span>
+                    </div>
+                    <div class="insights-content" id="personalized-insights">
+                        <!-- Dynamic AI content -->
+                    </div>
+                </div>
                 <!-- Freemium Upgrade Banner -->
                 <div class="upgrade-banner">
                     <div class="upgrade-content">
@@ -142,10 +197,38 @@
                     </div>
                 </div>
 
+                <!-- Social Proof Section -->
+                <div class="social-proof-banner card" data-track="social-proof">
+                    <div class="social-proof-content">
+                        <div class="proof-stats">
+                            <div class="stat-item">
+                                <span class="stat-number" data-counter="businesses">12,847</span>
+                                <span class="stat-label">Negocios Activos</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" data-counter="messages">2.3M</span>
+                                <span class="stat-label">Mensajes/Mes</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" data-counter="revenue">$47M</span>
+                                <span class="stat-label">Generado en Ventas</span>
+                            </div>
+                        </div>
+                        <div class="proof-testimonials">
+                            <div class="testimonial-ticker">
+                                <div class="testimonial-item">
+                                    <img src="https://ui-avatars.com/api/?name=Maria+G&background=4D8DFF&color=fff&size=32" alt="Maria G." class="testimonial-avatar">
+                                    <span class="testimonial-text">"Incrementé mis ventas 300% en 2 meses" - Maria G.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Professional Setup Progress -->
                 <!-- Real-Time Sales Dashboard and Professional Setup -->
                 <div class="professional-dashboard" id="professional-dashboard">
-                    <!-- Progress Ring & Level -->
+                    <!-- Progress Ring & Level with Gamification -->
                     <div class="onboarding-progress">
                         <div class="progress-ring-container">
                             <div class="progress-ring">
@@ -378,6 +461,40 @@
                             <button class="tip-action" onclick="showTipModal()">
                                 Ver más tips
                             </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Performance Metrics Bar -->
+                <div class="performance-metrics-bar card" data-track="performance-metrics">
+                    <h3 class="text-lg font-semibold mb-3">🏆 Tu Rendimiento</h3>
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-icon">⏱️</div>
+                            <div class="metric-data">
+                                <span class="metric-value">23s</span>
+                                <span class="metric-label">Tiempo de Respuesta</span>
+                                <div class="metric-progress">
+                                    <div class="progress-bar" style="width: 92%"></div>
+                                </div>
+                                <span class="metric-comparison">Top 5% de usuarios</span>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">💬</div>
+                            <div class="metric-data">
+                                <span class="metric-value">847</span>
+                                <span class="metric-label">Conversaciones Hoy</span>
+                                <div class="metric-trend positive">+23% vs ayer</div>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">🎯</div>
+                            <div class="metric-data">
+                                <span class="metric-value">94%</span>
+                                <span class="metric-label">Satisfacción Cliente</span>
+                                <div class="metric-stars">⭐⭐⭐⭐⭐</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1166,5 +1283,48 @@
     <div class="toast-container"></div>
 
     <script src="js/dashboard.js"></script>
+    
+    <!-- Initialize Growth-Driven Features -->
+    <script>
+        // Performance monitoring
+        if ('PerformanceObserver' in window) {
+            // Monitor long tasks
+            const observer = new PerformanceObserver((list) => {
+                for (const entry of list.getEntries()) {
+                    if (entry.duration > 50) {
+                        console.warn('Long task detected:', entry);
+                        // Send to analytics
+                        if (window.analyticsTracker) {
+                            window.analyticsTracker.track('performance_issue', {
+                                duration: entry.duration,
+                                name: entry.name
+                            });
+                        }
+                    }
+                }
+            });
+            observer.observe({ entryTypes: ['longtask'] });
+        }
+        
+        // Lazy load images for performance
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        if (img.dataset.src) {
+                            img.src = img.dataset.src;
+                            img.removeAttribute('data-src');
+                            imageObserver.unobserve(img);
+                        }
+                    }
+                });
+            });
+            
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+    </script>
 </body>
 </html>
