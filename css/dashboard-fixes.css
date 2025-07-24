@@ -1,0 +1,84 @@
+/* Dashboard Fixes - Ensure content is visible and properly layered */
+
+/* Ensure all sections have proper stacking context */
+.dashboard-section {
+    position: relative;
+    z-index: 10;
+}
+
+/* Fix any potential overflow issues */
+.dashboard-main {
+    position: relative;
+    z-index: 5;
+}
+
+/* Ensure cards and content are above decorative elements */
+.card,
+.kpi-card,
+.channel-card,
+.revenue-card,
+.prediction-card,
+.quick-action-btn,
+.activity-item,
+.metric-card,
+.quick-win-card,
+.achievement-badge {
+    position: relative;
+    z-index: 20;
+}
+
+/* Make sure interactive elements are clickable */
+button,
+a,
+input,
+select,
+.nav-item,
+.connection-method {
+    position: relative;
+    z-index: 30;
+}
+
+/* Ensure modals are always on top */
+.modal {
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    z-index: 1001;
+}
+
+/* Fix any pseudo-element overflow issues */
+.omnichannel-hub::before,
+.upgrade-banner::before,
+.ai-insights-widget::before,
+.social-proof-banner::before {
+    pointer-events: none !important;
+    z-index: 0 !important;
+}
+
+/* Ensure main content areas are not blocked */
+.omnichannel-hub > *,
+.upgrade-banner > *,
+.ai-insights-widget > *,
+.social-proof-banner > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Fix potential sidebar overlap */
+.dashboard-sidebar {
+    z-index: 100;
+}
+
+/* Ensure header is always visible */
+.dashboard-header {
+    z-index: 200;
+}
+
+/* Additional safeguard against large elements */
+*::before,
+*::after {
+    max-width: 100%;
+    max-height: 100%;
+}
