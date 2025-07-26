@@ -476,9 +476,9 @@
                         <span>Soporte por email</span>
                     </li>
                 </ul>
-                <button class="plan-cta" data-action="open-stripe" data-url="https://buy.stripe.com/28E9AS1T99SQcW18Qz7ok0b" data-plan="starter">
+                <a href="https://buy.stripe.com/28E9AS1T99SQcW18Qz7ok0b" class="plan-cta" target="_blank" onclick="trackPricingClick('starter')">
                     Empezar 7 días gratis
-                </button>
+                </a>
             </div>
             
             <!-- Pro Plan -->
@@ -517,9 +517,9 @@
                         <span>Soporte prioritario 24/7</span>
                     </li>
                 </ul>
-                <button class="plan-cta" data-action="open-stripe" data-url="https://buy.stripe.com/7sYfZgcxN3usbRX0k37ok0c" data-plan="pro">
+                <a href="https://buy.stripe.com/7sYfZgcxN3usbRX0k37ok0c" class="plan-cta" target="_blank" onclick="trackPricingClick('pro')">
                     Empezar 7 días gratis
-                </button>
+                </a>
             </div>
             
             <!-- Enterprise Plan -->
@@ -557,9 +557,9 @@
                         <span>SLA garantizado</span>
                     </li>
                 </ul>
-                <button class="plan-cta" data-action="contact-sales">
-                    Contactar Ventas
-                </button>
+                <a href="https://buy.stripe.com/cNifZg0P54yw2hnfeX7ok0d" class="plan-cta" target="_blank" onclick="trackPricingClick('enterprise')">
+                    Solicitar Demo
+                </a>
             </div>
         </div>
     </section>
@@ -616,215 +616,47 @@
         </div>
     </footer>
     
-    <!-- Stripe Modal -->
-    <div id="stripeModal" class="modal stripe-modal" style="display: none;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button class="modal-close" data-action="close-stripe-modal" aria-label="Cerrar">×</button>
-            </div>
-            <div class="modal-body">
-                <div class="modal-loading" id="modalLoading">⌛</div>
-                <iframe id="stripeFrame" src="" frameborder="0" allowpaymentrequest></iframe>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Modal Styles -->
-    <style>
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: none; /* Changed from flex to none as default */
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            padding: 20px;
-        }
-        
-        .modal[style*="display: flex"] {
-            display: flex !important;
-        }
-        
-        .modal-content {
-            background: var(--surface-background);
-            border-radius: var(--radius-lg);
-            max-width: 600px;
-            width: 100%;
-            position: relative;
-            box-shadow: var(--elevation-xl);
-        }
-        
-        .modal-header {
-            padding: 1rem;
-            text-align: right;
-        }
-        
-        .modal-close {
-            background: none;
-            border: none;
-            font-size: 2rem;
-            cursor: pointer;
-            color: var(--text-secondary);
-            line-height: 1;
-            padding: 0;
-            width: 40px;
-            height: 40px;
-        }
-        
-        .stripe-modal .modal-body {
-            padding: 0;
-            height: 600px;
-        }
-        
-        #stripeFrame {
-            width: 100%;
-            height: 600px;
-            border: none;
-            display: block;
-            transition: opacity 0.3s ease;
-        }
-        
-        /* Loading spinner */
-        .modal-loading {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 2rem;
-            color: var(--text-secondary);
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-    </style>
     
     <!-- Scripts -->
     <script src="/shared/js/theme.js"></script>
     <script>
-        // Stripe Modal Functions
-        function openStripeModal(url, plan) {
-            console.log('Opening Stripe modal:', { url, plan });
-            
-            const modal = document.getElementById('stripeModal');
-            const iframe = document.getElementById('stripeFrame');
-            
-            if (!modal || !iframe) {
-                console.error('Modal elements not found');
-                // Fallback: open in new tab
-                window.open(url, '_blank');
-                return;
-            }
-            
-            // Show loading state
-            const loading = document.getElementById('modalLoading');
-            if (loading) loading.style.display = 'block';
-            iframe.style.opacity = '0';
-            
-            // Show modal
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-            
-            // Set iframe source and handle load
-            iframe.src = url;
-            
-            // When iframe loads, remove loading state
-            iframe.onload = function() {
-                console.log('Stripe iframe loaded');
-                if (loading) loading.style.display = 'none';
-                iframe.style.opacity = '1';
+        // Tracking function for pricing clicks
+        function trackPricingClick(plan) {
+            // Map plan names to values
+            const planValues = {
+                'starter': 49,
+                'pro': 99,
+                'enterprise': 299
             };
             
-            // Handle iframe errors
-            iframe.onerror = function() {
-                console.error('Failed to load Stripe checkout');
-                if (loading) loading.style.display = 'none';
-                alert('Error al cargar el checkout. Por favor, intenta de nuevo.');
-            };
-            
-            // Track events
+            // Google Analytics tracking
             if (typeof gtag !== 'undefined') {
-                gtag('event', 'stripe_link_open', {
-                    plan_type: plan,
-                    stripe_url: url,
+                gtag('event', 'pricing_click', {
+                    event_category: 'Sales',
+                    event_label: plan,
+                    value: planValues[plan] || 0,
                     page_variant: 'B'
                 });
             }
             
+            // PostHog tracking
             if (typeof posthog !== 'undefined') {
                 posthog.capture('pricing_click', {
                     plan_type: plan,
+                    plan_value: planValues[plan] || 0,
                     variant: 'B'
                 });
             }
+            
+            console.log('Tracked pricing click:', plan);
         }
-        
-        function closeStripeModal() {
-            const modal = document.getElementById('stripeModal');
-            const iframe = document.getElementById('stripeFrame');
-            
-            modal.style.display = 'none';
-            iframe.src = '';
-            document.body.style.overflow = '';
-        }
-        
-        // Event delegation
-        document.addEventListener('click', function(e) {
-            const target = e.target.closest('[data-action]');
-            if (!target) return;
-            
-            const action = target.getAttribute('data-action');
-            
-            switch(action) {
-                case 'open-stripe':
-                    e.preventDefault();
-                    const url = target.getAttribute('data-url');
-                    const plan = target.getAttribute('data-plan');
-                    openStripeModal(url, plan);
-                    break;
-                    
-                case 'close-stripe-modal':
-                    e.preventDefault();
-                    closeStripeModal();
-                    break;
-                    
-                case 'contact-sales':
-                    e.preventDefault();
-                    window.location.href = 'mailto:sales@chatably.com?subject=Enterprise Plan Inquiry';
-                    break;
-            }
-        });
-        
-        // Close modal on escape
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                const modal = document.getElementById('stripeModal');
-                if (modal.style.display !== 'none') {
-                    closeStripeModal();
-                }
-            }
-        });
-        
-        // Close modal on backdrop click
-        document.getElementById('stripeModal').addEventListener('click', (e) => {
-            if (e.target.classList.contains('modal')) {
-                closeStripeModal();
-            }
-        });
-        
-        // Debug: Check if buttons are being found
-        console.log('Payment buttons found:', document.querySelectorAll('[data-action="open-stripe"]').length);
-        
         // Track page view
         if (typeof posthog !== 'undefined') {
             posthog.capture('landing_page_view', { variant: 'B' });
         }
+        
+        // Log when page loads
+        console.log('Landing B loaded successfully');
     </script>
     
     <!-- Theme Toggle -->
