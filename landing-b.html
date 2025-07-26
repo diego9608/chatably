@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatably - Precios Transparentes, Resultados Extraordinarios</title>
+    <meta name="description" content="Elige el plan perfecto para tu negocio. Sin costos ocultos, sin compromisos. Empieza gratis hoy.">
+    <meta name="color-scheme" content="light dark">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+    <!-- Design Tokens -->
+    <link rel="stylesheet" href="/shared/css/design-tokens.css">
+    
+    <!-- Analytics & Monitoring -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX', { 'anonymize_ip': true });
+    </script>
+    
+    <!-- PostHog -->
+    <script>
+        !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+        const posthogApiKey = '%%POSTHOG_API_KEY%%';
+        if (posthogApiKey && posthogApiKey !== '%%POSTHOG_API_KEY%%') {
+            posthog.init(posthogApiKey, { api_host: 'https://app.posthog.com' });
+        }
+    </script>
+    
+    <!-- Optimizely -->
+    <script src="https://cdn.optimizely.com/js/%%OPTIMIZELY_PROJECT_ID%%.js"></script>
+    
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--surface-background);
+            overflow-x: hidden;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--surface-overlay);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: var(--elevation-xs);
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--brand-500);
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            font-size: 1.8rem;
+            margin-right: 0.5rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--surface-foreground);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-full);
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            animation: fadeInDown 0.6s ease;
+        }
+        
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease 0.1s both;
+        }
+        
+        /* Trust Indicators */
+        .trust-bar {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+            animation: fadeIn 0.8s ease 0.2s both;
+        }
+        
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+        
+        .trust-icon {
+            font-size: 1.5rem;
+        }
+        
+        /* Pricing Cards */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .pricing-card {
+            background: var(--surface-background);
+            border: 2px solid var(--border-light);
+            border-radius: var(--radius-xl);
+            padding: 2.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease 0.3s both;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--elevation-xl);
+            border-color: var(--brand-500);
+        }
+        
+        .pricing-card.featured {
+            border-color: var(--brand-500);
+            transform: scale(1.05);
+            box-shadow: var(--elevation-lg);
+        }
+        
+        .pricing-card.featured::before {
+            content: '🔥 MÁS POPULAR';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--brand-500);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: var(--radius-full);
+            font-size: 0.875rem;
+            font-weight: 700;
+        }
+        
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        
+        .plan-price {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--brand-500);
+            margin-bottom: 0.5rem;
+        }
+        
+        .plan-price .currency {
+            font-size: 1.5rem;
+            font-weight: 600;
+            vertical-align: super;
+        }
+        
+        .plan-price .period {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+        
+        .plan-description {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .plan-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        
+        .feature-icon {
+            color: var(--success-500);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+        
+        .plan-cta {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: var(--brand-500);
+            color: white;
+            border: none;
+            border-radius: var(--radius-lg);
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .plan-cta:hover {
+            background: var(--brand-600);
+            transform: translateY(-2px);
+            box-shadow: var(--elevation-md);
+        }
+        
+        .pricing-card.featured .plan-cta {
+            background: linear-gradient(135deg, var(--brand-500), var(--brand-600));
+            box-shadow: 0 4px 20px rgba(41, 121, 255, 0.3);
+        }
+        
+        /* Guarantee Section */
+        .guarantee {
+            text-align: center;
+            padding: 4rem 0;
+            background: var(--surface-foreground);
+            border-radius: var(--radius-xl);
+            margin-bottom: 4rem;
+        }
+        
+        .guarantee-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .guarantee-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        
+        .guarantee-text {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* FAQ Section */
+        .faq {
+            margin-bottom: 4rem;
+        }
+        
+        .faq-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+        }
+        
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .faq-item {
+            background: var(--surface-foreground);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+        }
+        
+        .faq-question {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        
+        .faq-answer {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid var(--border-light);
+            color: var(--text-secondary);
+        }
+        
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto 4rem;
+            }
+            
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+            
+            .trust-bar {
+                gap: 1.5rem;
+            }
+            
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <a href="/" class="logo">
+                <span class="logo-icon">🤖</span>
+                Chatably
+            </a>
+            <div class="nav-cta">
+                <a href="#pricing" class="plan-cta" style="padding: 0.75rem 1.5rem; font-size: 1rem;">
+                    Empezar Gratis
+                </a>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero container">
+        <div class="hero-badge">
+            <span>⚡</span>
+            <span>Setup en 2 minutos • Sin tarjeta de crédito</span>
+        </div>
+        
+        <h1 class="hero-title">
+            El precio justo para hacer<br>
+            crecer tu negocio
+        </h1>
+        
+        <p class="hero-subtitle">
+            Sin costos ocultos. Sin sorpresas. Solo resultados.
+        </p>
+        
+        <div class="trust-bar">
+            <div class="trust-item">
+                <span class="trust-icon">🛡️</span>
+                <span>Garantía 30 días</span>
+            </div>
+            <div class="trust-item">
+                <span class="trust-icon">🚀</span>
+                <span>+500 negocios activos</span>
+            </div>
+            <div class="trust-item">
+                <span class="trust-icon">⭐</span>
+                <span>4.9/5 satisfacción</span>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing Section -->
+    <section id="pricing" class="container">
+        <div class="pricing-grid">
+            <!-- Starter Plan -->
+            <div class="pricing-card">
+                <h3 class="plan-name">Starter</h3>
+                <div class="plan-price">
+                    <span class="currency">$</span>49
+                    <span class="period">/mes</span>
+                </div>
+                <p class="plan-description">
+                    Perfecto para empezar a automatizar tu WhatsApp Business
+                </p>
+                <ul class="plan-features">
+                    <li>
+                        <span class="feature-icon">✅</span>
+                        <span>5,000 mensajes/mes</span>
+                    </li>
+                    <li>
+                        <span class="feature-icon">✅</span>
+                        <span>1 número WhatsApp</span>
+                    </li>
+                    <li>
+                        <span class="feature-icon">✅</span>
+                        <span>Respuestas automáticas básicas</span>
+                    </li>
+                    <li>
+                        <span class="feature-icon">✅</span>
+                        <span>Panel de analytics</span>
+                    </li>
+                    <li>
+                        <span class="feature-icon">✅</span>
+                        <span>Soporte por email</span>
+                    </li>
+                </ul>
+                <button class="plan-cta" data-action="open-stripe" data-url="https://buy.stripe.com/28E9AS1T99SQcW18Qz7ok0b" data-plan="starter">
+                    Empezar 7 días gratis
+                </button>
+            </div>
+            
+            <!-- Pro Plan -->
+            <div class="pricing-card featured">
+                <h3 class="plan-name">Pro</h3>
+                <div class="plan-price">
+                    <span class="currency">$</span>99
+                    <span class="period">/mes</span>
+                </div>
+                <p class="plan-description">
+                    Para negocios que buscan escalar sus ventas
+                </p>
+                <ul class="plan-features">
+                    <li>
+                        <span class="feature-icon">✅</span>
+                        <span>Mensajes ilimitados</span>
+                    </li>
+                    <li>
+                        <span class="feature-icon">✅</span>
+                        <span>3 números WhatsApp</span>
+                    </li>
+                    <li>
+                        <span class="feature-icon">✅</span>
+                        <span>IA personalizada</span>
+                    </li>
+                    <li>
+                        <span class="feature-icon">✅</span>
+                        <span>Integraciones CRM</span>
+                    </li>
+                    <li>
+                        <span class="feature-icon">✅</span>
+                        <span>Flujos de venta avanzados</span>
+                    </li>
+                    <li>
+                        <span class="feature-icon">✅</span>
+                        <span>Soporte prioritario 24/7</span>
+                    </li>
+                </ul>
+                <button class="plan-cta" data-action="open-stripe" data-url="https://buy.stripe.com/7sYfZgcxN3usbRX0k37ok0c" data-plan="pro">
+                    Empezar 7 días gratis
+                </button>
+            </div>
+            
+            <!-- Enterprise Plan -->
+            <div class="pricing-card">
+                <h3 class="plan-name">Enterprise</h3>
+                <div class="plan-price">
+                    Personalizado
+                </div>
+                <p class="plan-description">
+                    Soluciones a medida para grandes empresas
+                </p>
+                <ul class="plan-features">
+                    <li>
+                        <span class="feature-icon">✅</span>
+                        <span>Todo lo de Pro</span>
+                    </li>
+                    <li>
+                        <span class="feature-icon">✅</span>
+                        <span>Números ilimitados</span>
+                    </li>
+                    <li>
+                        <span class="feature-icon">✅</span>
+                        <span>API personalizada</span>
+                    </li>
+                    <li>
+                        <span class="feature-icon">✅</span>
+                        <span>Servidor dedicado</span>
+                    </li>
+                    <li>
+                        <span class="feature-icon">✅</span>
+                        <span>Gerente de cuenta</span>
+                    </li>
+                    <li>
+                        <span class="feature-icon">✅</span>
+                        <span>SLA garantizado</span>
+                    </li>
+                </ul>
+                <button class="plan-cta" data-action="contact-sales">
+                    Contactar Ventas
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Guarantee Section -->
+    <section class="guarantee container">
+        <div class="guarantee-icon">🛡️</div>
+        <h2 class="guarantee-title">Garantía de 30 días sin riesgo</h2>
+        <p class="guarantee-text">
+            Si no ves resultados en los primeros 30 días, te devolvemos el 100% de tu dinero. 
+            Sin preguntas. Sin letra pequeña. Así de seguros estamos de que Chatably transformará tu negocio.
+        </p>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section class="faq container">
+        <h2 class="faq-title">Preguntas Frecuentes</h2>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h3 class="faq-question">¿Puedo cambiar de plan en cualquier momento?</h3>
+                <p class="faq-answer">
+                    Sí, puedes subir o bajar de plan cuando quieras. Los cambios se aplican inmediatamente 
+                    y se prorratean en tu próxima factura.
+                </p>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">¿Necesito conocimientos técnicos?</h3>
+                <p class="faq-answer">
+                    No. Chatably está diseñado para ser usado por cualquier persona. 
+                    Te guiamos paso a paso y nuestro equipo te ayuda con la configuración inicial.
+                </p>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">¿Qué incluye el soporte?</h3>
+                <p class="faq-answer">
+                    Todos los planes incluyen soporte. Starter por email, Pro por chat 24/7, 
+                    y Enterprise con gerente de cuenta dedicado y llamadas.
+                </p>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">¿Cómo funciona la prueba gratis?</h3>
+                <p class="faq-answer">
+                    Tienes 7 días para probar todas las funciones sin límites. 
+                    No pedimos tarjeta de crédito hasta que decidas continuar.
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Chatably. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    
+    <!-- Stripe Modal -->
+    <div id="stripeModal" class="modal stripe-modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" data-action="close-stripe-modal" aria-label="Cerrar">×</button>
+            </div>
+            <div class="modal-body">
+                <iframe id="stripeFrame" src="" frameborder="0" allowpaymentrequest></iframe>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Styles -->
+    <style>
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background: var(--surface-background);
+            border-radius: var(--radius-lg);
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            box-shadow: var(--elevation-xl);
+        }
+        
+        .modal-header {
+            padding: 1rem;
+            text-align: right;
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            line-height: 1;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+        }
+        
+        .stripe-modal .modal-body {
+            padding: 0;
+            height: 600px;
+        }
+        
+        #stripeFrame {
+            width: 100%;
+            height: 600px;
+        }
+    </style>
+    
+    <!-- Scripts -->
+    <script src="/shared/js/theme.js"></script>
+    <script>
+        // Stripe Modal Functions
+        function openStripeModal(url, plan) {
+            const modal = document.getElementById('stripeModal');
+            const iframe = document.getElementById('stripeFrame');
+            
+            iframe.src = url;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            
+            // Track events
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'stripe_link_open', {
+                    plan_type: plan,
+                    stripe_url: url,
+                    page_variant: 'B'
+                });
+            }
+            
+            if (typeof posthog !== 'undefined') {
+                posthog.capture('pricing_click', {
+                    plan_type: plan,
+                    variant: 'B'
+                });
+            }
+        }
+        
+        function closeStripeModal() {
+            const modal = document.getElementById('stripeModal');
+            const iframe = document.getElementById('stripeFrame');
+            
+            modal.style.display = 'none';
+            iframe.src = '';
+            document.body.style.overflow = '';
+        }
+        
+        // Event delegation
+        document.addEventListener('click', function(e) {
+            const target = e.target.closest('[data-action]');
+            if (!target) return;
+            
+            const action = target.getAttribute('data-action');
+            
+            switch(action) {
+                case 'open-stripe':
+                    e.preventDefault();
+                    const url = target.getAttribute('data-url');
+                    const plan = target.getAttribute('data-plan');
+                    openStripeModal(url, plan);
+                    break;
+                    
+                case 'close-stripe-modal':
+                    e.preventDefault();
+                    closeStripeModal();
+                    break;
+                    
+                case 'contact-sales':
+                    e.preventDefault();
+                    window.location.href = 'mailto:sales@chatably.com?subject=Enterprise Plan Inquiry';
+                    break;
+            }
+        });
+        
+        // Close modal on escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('stripeModal');
+                if (modal.style.display !== 'none') {
+                    closeStripeModal();
+                }
+            }
+        });
+        
+        // Close modal on backdrop click
+        document.getElementById('stripeModal').addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                closeStripeModal();
+            }
+        });
+        
+        // Track page view
+        if (typeof posthog !== 'undefined') {
+            posthog.capture('landing_page_view', { variant: 'B' });
+        }
+    </script>
+    
+    <!-- Theme Toggle -->
+    <button id="themeToggle" aria-label="Cambiar tema">🌓</button>
+</body>
+</html>
