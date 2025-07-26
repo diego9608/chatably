@@ -623,6 +623,7 @@
                 <button class="modal-close" data-action="close-stripe-modal" aria-label="Cerrar">×</button>
             </div>
             <div class="modal-body">
+                <div class="modal-loading" id="modalLoading">⌛</div>
                 <iframe id="stripeFrame" src="" frameborder="0" allowpaymentrequest></iframe>
             </div>
         </div>
@@ -637,11 +638,15 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.8);
-            display: flex;
+            display: none; /* Changed from flex to none as default */
             align-items: center;
             justify-content: center;
             z-index: 9999;
             padding: 20px;
+        }
+        
+        .modal[style*="display: flex"] {
+            display: flex !important;
         }
         
         .modal-content {
@@ -678,6 +683,25 @@
         #stripeFrame {
             width: 100%;
             height: 600px;
+            border: none;
+            display: block;
+            transition: opacity 0.3s ease;
+        }
+        
+        /* Loading spinner */
+        .modal-loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            color: var(--text-secondary);
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
         }
     </style>
     
@@ -686,12 +710,43 @@
     <script>
         // Stripe Modal Functions
         function openStripeModal(url, plan) {
+            console.log('Opening Stripe modal:', { url, plan });
+            
             const modal = document.getElementById('stripeModal');
             const iframe = document.getElementById('stripeFrame');
             
-            iframe.src = url;
+            if (!modal || !iframe) {
+                console.error('Modal elements not found');
+                // Fallback: open in new tab
+                window.open(url, '_blank');
+                return;
+            }
+            
+            // Show loading state
+            const loading = document.getElementById('modalLoading');
+            if (loading) loading.style.display = 'block';
+            iframe.style.opacity = '0';
+            
+            // Show modal
             modal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
+            
+            // Set iframe source and handle load
+            iframe.src = url;
+            
+            // When iframe loads, remove loading state
+            iframe.onload = function() {
+                console.log('Stripe iframe loaded');
+                if (loading) loading.style.display = 'none';
+                iframe.style.opacity = '1';
+            };
+            
+            // Handle iframe errors
+            iframe.onerror = function() {
+                console.error('Failed to load Stripe checkout');
+                if (loading) loading.style.display = 'none';
+                alert('Error al cargar el checkout. Por favor, intenta de nuevo.');
+            };
             
             // Track events
             if (typeof gtag !== 'undefined') {
@@ -762,6 +817,9 @@
                 closeStripeModal();
             }
         });
+        
+        // Debug: Check if buttons are being found
+        console.log('Payment buttons found:', document.querySelectorAll('[data-action="open-stripe"]').length);
         
         // Track page view
         if (typeof posthog !== 'undefined') {
