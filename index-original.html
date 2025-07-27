@@ -1,0 +1,1945 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        // Redirect to landing-c as the main landing
+        window.location.replace('/landing-c.html' + window.location.search + window.location.hash);
+    </script>
+    
+    <!-- Primary Meta Tags -->
+    <title>Chatably - Automatiza sin perder el toque humano | WhatsApp IA</title>
+    <meta name="title" content="Chatably - Automatiza sin perder el toque humano | WhatsApp IA">
+    <meta name="description" content="Automatización inteligente para WhatsApp. Responde 24/7, aumenta ventas y mejora la experiencia del cliente con IA conversacional.">
+    <meta name="keywords" content="automatización WhatsApp, chatbot IA negocio, respuesta 24/7 inteligente, atención automatizada México, WhatsApp Business automatizado">
+    <meta name="author" content="Chatably">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://chatably.com/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://chatably.com/">
+    <meta property="og:title" content="Chatably - Automatiza tu WhatsApp sin perder el toque humano">
+    <meta property="og:description" content="Automatización inteligente para WhatsApp. Responde 24/7, aumenta ventas y mejora la experiencia del cliente con IA conversacional.">
+    <meta property="og:image" content="https://chatably.com/assets/images/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Chatably">
+    <meta property="og:locale" content="es_MX">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://chatably.com/">
+    <meta property="twitter:title" content="Chatably - Automatiza tu WhatsApp sin perder el toque humano">
+    <meta property="twitter:description" content="Automatización inteligente para WhatsApp. Responde 24/7, aumenta ventas y mejora la experiencia del cliente con IA conversacional.">
+    <meta property="twitter:image" content="https://chatably.com/assets/images/twitter-card.jpg">
+    <meta property="twitter:creator" content="@chatably">
+    
+    <!-- Favicon and Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+    <link rel="manifest" href="manifest.json">
+    <link rel="mask-icon" href="assets/images/safari-pinned-tab.svg" color="#4D8DFF">
+    <meta name="msapplication-TileColor" content="#4D8DFF">
+    <meta name="theme-color" content="#4D8DFF">
+    
+    <!-- PWA Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Chatably">
+    <meta name="application-name" content="Chatably">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="css/styles.css" as="style">
+    <link rel="preload" href="js/main.js" as="script">
+    
+    <!-- DNS Prefetch for External Resources -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//www.google-analytics.com">
+    <link rel="dns-prefetch" href="//connect.facebook.net">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- ROI Chart Fix Styles -->
+<style>
+    /* Fix for ROI Chart growing issue */
+    .roi-chart-container {
+        max-width: 100% !important;
+        height: 300px !important;
+        position: relative !important;
+        overflow: hidden !important;
+        margin: 2rem auto !important;
+    }
+    
+    #roi-chart {
+        max-width: 100% !important;
+        height: 250px !important;
+        display: block !important;
+    }
+    
+    .roi-calculator {
+        overflow-x: hidden !important;
+        max-width: 100vw !important;
+    }
+    
+    .roi-container {
+        max-width: 1200px !important;
+        margin: 0 auto !important;
+        overflow: hidden !important;
+    }
+    
+    /* Prevent any absolute positioned elements from breaking layout */
+    .roi-calculator * {
+        max-width: 100% !important;
+    }
+    
+    /* Ensure canvas respects container bounds */
+    canvas {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+    
+    #roi-chart {
+        height: 250px !important; /* Override the general canvas rule for this specific chart */
+    }
+</style>
+    
+    <!-- Chart.js for ROI Calculator -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Chart Size Fix -->
+<script>
+    // Ensure chart doesn't grow unbounded
+    document.addEventListener('DOMContentLoaded', function() {
+        const chartCanvas = document.getElementById('roi-chart');
+        if (chartCanvas) {
+            // Set explicit dimensions
+            chartCanvas.style.maxWidth = '100%';
+            chartCanvas.style.height = '250px';
+            chartCanvas.style.display = 'block';
+            
+            // Ensure parent container is properly sized
+            const container = chartCanvas.parentElement;
+            if (container) {
+                container.style.position = 'relative';
+                container.style.maxWidth = '100%';
+                container.style.height = '300px';
+                container.style.overflow = 'hidden';
+            }
+        }
+        
+        // Override any Chart.js default options
+        if (typeof Chart !== 'undefined') {
+            Chart.defaults.responsive = true;
+            Chart.defaults.maintainAspectRatio = false;
+        }
+    });
+</script>
+    
+    <!-- AOS - Animate on Scroll for micro-interactions -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Structured Data - Local Business -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Chatably",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web Browser",
+        "description": "Automatización inteligente para WhatsApp Business. Responde 24/7, aumenta ventas y mejora la experiencia del cliente con IA conversacional.",
+        "url": "https://chatably.com",
+        "author": {
+            "@type": "Organization",
+            "name": "Chatably",
+            "url": "https://chatably.com"
+        },
+        "offers": [
+            {
+                "@type": "Offer",
+                "name": "Chatably Starter",
+                "price": "1499",
+                "priceCurrency": "MXN",
+                "description": "5,000 conversaciones incluidas, 1 canal, Dashboard básico, IA básica incluida"
+            },
+            {
+                "@type": "Offer",
+                "name": "Chatably Pro", 
+                "price": "4999",
+                "priceCurrency": "MXN",
+                "description": "Conversaciones ilimitadas, 3 canales, IA GPT-4, Analytics avanzado, Respuesta < 30 seg"
+            },
+            {
+                "@type": "Offer",
+                "name": "Chatably Enterprise",
+                "price": "9999", 
+                "priceCurrency": "MXN",
+                "description": "Todo ilimitado, API completa, Manager dedicado, SLA 99.9%, Soporte 24/7"
+            }
+        ],
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "247"
+        },
+        "featureList": [
+            "Automatización de WhatsApp Business",
+            "Respuestas con IA conversacional",
+            "Integración con CRM",
+            "Análisis y métricas avanzadas",
+            "Soporte 24/7"
+        ]
+    }
+    </script>
+    
+    <!-- Structured Data - FAQ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "¿Esto es un bot frío?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Para nada. Chatably usa IA conversacional avanzada que entiende contexto, detecta emociones y responde con empatía. Tus clientes sentirán que hablan con un humano real."
+                }
+            },
+            {
+                "@type": "Question", 
+                "name": "¿Puede escribir como yo?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sí. Entrenamos la IA con tu estilo de comunicación, tono de marca y respuestas típicas. Es como clonar tu mejor vendedor."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Y si mi negocio es muy particular?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Chatably se adapta a cualquier industria. Desde salud hasta retail, personalizamos cada implementación según tus procesos específicos."
+                }
+            }
+        ]
+    }
+    </script>
+    
+    <!-- Analytics Scripts -->
+    <!-- Google Analytics 4 -->
+    <!-- Replace G-XXXXXXXXXX with your actual GA4 Measurement ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX', {
+            page_title: 'Chatably - Automatización WhatsApp',
+            page_location: window.location.href,
+            custom_map: {
+                'custom_parameter_1': 'landing_page_view'
+            }
+        });
+        
+        // Custom events for conversion tracking
+        function trackConversion(action, value = null) {
+            gtag('event', action, {
+                'event_category': 'conversion',
+                'event_label': window.location.pathname,
+                'value': value
+            });
+        }
+        
+        // Track pricing interactions
+        function trackPricingClick(plan) {
+            gtag('event', 'pricing_click', {
+                'event_category': 'engagement',
+                'event_label': plan,
+                'value': plan === 'básico' ? 1200 : plan === 'pro' ? 2400 : 3500
+            });
+        }
+    </script>
+    
+    <!-- Facebook Pixel (Commented - Uncomment and replace with your Pixel ID) -->
+    <!--
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', 'YOUR_PIXEL_ID');
+        fbq('track', 'PageView');
+        
+        // Custom events for Facebook
+        function trackFbConversion(event, value = null) {
+            fbq('track', event, value ? {value: value, currency: 'MXN'} : {});
+        }
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none"
+             src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/>
+    </noscript>
+    -->
+    
+    <!-- Hotjar Tracking Code (Commented - Uncomment and replace with your Site ID) -->
+    <!--
+    <script>
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:YOUR_SITE_ID,hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
+    -->
+</head>
+<body>
+    <!-- Skip to content link for accessibility -->
+    <a href="#inicio" class="skip-to-content">Saltar al contenido principal</a>
+    
+    <!-- Header -->
+    <header role="banner">
+        <nav role="navigation" aria-label="Navegación principal">
+            <div class="logo">
+                <div class="logo-icon" aria-hidden="true">🤖</div>
+                <span>Chatably</span>
+            </div>
+            <ul class="nav-links" role="menubar">
+                <li role="none"><a href="#inicio" role="menuitem">Inicio</a></li>
+                <li role="none"><a href="#como-funciona" role="menuitem">Cómo Funciona</a></li>
+                <li role="none"><a href="#planes" role="menuitem">Planes</a></li>
+                <li role="none"><a href="#demo" role="menuitem">Demo</a></li>
+                <li role="none"><a href="#contacto" role="menuitem">Contacto</a></li>
+                <li role="none"><a href="#demo" class="cta-button" role="menuitem">Solicita tu demo</a></li>
+            </ul>
+            <button class="mobile-menu-toggle" aria-label="Abrir menú de navegación" aria-expanded="false">
+                <span aria-hidden="true">☰</span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio" role="main" aria-labelledby="hero-title">
+        <!-- Trust Indicators Bar -->
+        <div class="trust-bar" role="complementary" aria-label="Indicadores de confianza">
+            <div class="trust-item">
+                <span class="trust-icon">🛡️</span>
+                <span class="trust-text">Certificado ISO 27001</span>
+            </div>
+            <div class="trust-item">
+                <span class="trust-icon">⭐</span>
+                <span class="trust-text">4.9/5 de 2,847 reseñas</span>
+            </div>
+            <div class="trust-item">
+                <span class="trust-icon">🚀</span>
+                <span class="trust-text">Partner oficial Meta</span>
+            </div>
+        </div>
+
+        <!-- Pain Point Badge -->
+        <div class="pain-point-badge" role="status" aria-live="polite">
+            <span class="badge-icon">⚠️</span>
+            <span class="badge-text">El 73% de tus clientes potenciales te escriben fuera de horario</span>
+        </div>
+
+        <h1 id="hero-title" class="hero-title">
+            <span class="hero-eyebrow">Deja de perder $18,000 mensuales</span>
+            Convierte cada mensaje en una venta<br>mientras duermes
+        </h1>
+        
+        <p class="hero-description">
+            Tu competencia ya responde en 30 segundos las 24 horas. 
+            <strong>¿Y tú?</strong> Con Chatably, tu WhatsApp vende automático 
+            con IA que suena tan humana que tus clientes no notarán la diferencia.
+        </p>
+
+        <!-- Value Props -->
+        <div class="hero-value-props" role="list">
+            <div class="value-prop-item" role="listitem">
+                <span class="check-icon">✅</span>
+                <span>Setup en 24 horas</span>
+            </div>
+            <div class="value-prop-item" role="listitem">
+                <span class="check-icon">✅</span>
+                <span>ROI garantizado o devolvemos tu dinero</span>
+            </div>
+            <div class="value-prop-item" role="listitem">
+                <span class="check-icon">✅</span>
+                <span>Sin contratos forzosos</span>
+            </div>
+        </div>
+
+        <!-- CTA Buttons with Urgency -->
+        <div class="hero-buttons" role="group" aria-label="Acciones principales">
+            <a href="#contacto" class="cta-button primary-cta" aria-describedby="hero-title">
+                <span class="cta-icon">🚀</span>
+                <span class="cta-text">
+                    <span class="cta-main">Activar Chatably Ahora</span>
+                    <span class="cta-sub">Solo 12 cupos disponibles</span>
+                </span>
+            </a>
+            <a href="#demo" class="secondary-button">
+                <span class="btn-icon">▶️</span>
+                Ver demo en vivo (2 min)
+            </a>
+        </div>
+
+        <!-- Social Proof Strip -->
+        <div class="social-proof-strip" role="complementary">
+            <div class="proof-avatars">
+                <img src="https://ui-avatars.com/api/?name=Maria+G&background=4D8DFF&color=fff&size=40" alt="Maria G." class="proof-avatar">
+                <img src="https://ui-avatars.com/api/?name=Carlos+R&background=E74C3C&color=fff&size=40" alt="Carlos R." class="proof-avatar">
+                <img src="https://ui-avatars.com/api/?name=Ana+M&background=27AE60&color=fff&size=40" alt="Ana M." class="proof-avatar">
+                <img src="https://ui-avatars.com/api/?name=Luis+P&background=9B59B6&color=fff&size=40" alt="Luis P." class="proof-avatar">
+                <span class="proof-text">+2,843 empresas ya venden en automático</span>
+            </div>
+        </div>
+        
+        <!-- Interactive Chat Preview with 3D Effect -->
+        <div class="chat-preview-3d" role="img" aria-label="Vista previa interactiva de Chatably">
+            <div class="phone-mockup">
+                <div class="phone-screen">
+                    <div class="whatsapp-header">
+                        <img src="https://ui-avatars.com/api/?name=Tu+Negocio&background=25D366&color=fff&size=32" alt="Tu Negocio" class="wa-avatar">
+                        <div class="wa-info">
+                            <span class="wa-name">Tu Negocio</span>
+                            <span class="wa-status">En línea</span>
+                        </div>
+                    </div>
+                    <div class="chat-messages">
+                        <div class="message customer" data-aos="fade-up" data-aos-delay="500">
+                            <span class="message-text">Hola, ¿tienen el producto X en stock?</span>
+                            <span class="message-time">23:47</span>
+                        </div>
+                        <div class="message bot" data-aos="fade-up" data-aos-delay="1000">
+                            <span class="message-text">¡Hola! 👋 Sí, tenemos disponible. Te muestro opciones:</span>
+                            <span class="message-time">23:47</span>
+                        </div>
+                        <div class="message bot product-carousel" data-aos="fade-up" data-aos-delay="1500">
+                            <div class="product-card">
+                                <img src="https://via.placeholder.com/150x150/4D8DFF/fff?text=Producto" alt="Producto">
+                                <span class="product-name">Producto Premium</span>
+                                <span class="product-price">$2,499</span>
+                                <button class="product-cta">Ver detalles</button>
+                            </div>
+                        </div>
+                        <div class="message customer" data-aos="fade-up" data-aos-delay="2000">
+                            <span class="message-text">¡Me interesa! ¿Cómo puedo comprarlo?</span>
+                            <span class="message-time">23:48</span>
+                        </div>
+                        <div class="message bot" data-aos="fade-up" data-aos-delay="2500">
+                            <span class="message-text">Perfecto, te envío el link de pago seguro. ¿Necesitas factura? 📄</span>
+                            <span class="message-time">23:48</span>
+                        </div>
+                    </div>
+                    <div class="revenue-counter">
+                        <span class="counter-label">Vendido mientras dormías:</span>
+                        <span class="counter-value">$12,847</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Floating Stats -->
+            <div class="floating-stat stat-1" data-aos="zoom-in" data-aos-delay="1000">
+                <span class="stat-icon">💰</span>
+                <span class="stat-value">+$47K</span>
+                <span class="stat-label">Este mes</span>
+            </div>
+            <div class="floating-stat stat-2" data-aos="zoom-in" data-aos-delay="1200">
+                <span class="stat-icon">⚡</span>
+                <span class="stat-value">0.3s</span>
+                <span class="stat-label">Respuesta</span>
+            </div>
+            <div class="floating-stat stat-3" data-aos="zoom-in" data-aos-delay="1400">
+                <span class="stat-icon">📈</span>
+                <span class="stat-value">847%</span>
+                <span class="stat-label">ROI</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI Calculator Section -->
+    <section class="roi-calculator" id="calculadora-roi">
+        <div class="roi-container">
+            <div class="roi-header">
+                <h2 class="section-title">🚀 Descubre cuánto dinero pierdes SIN Chatably</h2>
+                <p class="roi-subtitle">Calcula tu ROI real en segundos. Los números no mienten.</p>
+            </div>
+            
+            <div class="roi-content">
+                <div class="roi-inputs">
+                    <h3>📊 Datos de tu negocio actual</h3>
+                    
+                    <div class="input-group">
+                        <label for="monthly-visitors">Visitantes mensuales a tu web/tienda</label>
+                        <input type="number" id="monthly-visitors" placeholder="5,000" value="5000" min="100" max="1000000">
+                        <small>Tráfico web, redes sociales, referidos, etc.</small>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="average-ticket">Ticket promedio de venta (MXN)</label>
+                        <input type="number" id="average-ticket" placeholder="2,500" value="2500" min="100" max="100000">
+                        <small>Precio promedio por producto/servicio</small>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="conversion-rate">Tasa de conversión actual (%)</label>
+                        <input type="number" id="conversion-rate" placeholder="2.5" value="2.5" min="0.1" max="20" step="0.1">
+                        <small>% de visitantes que se convierten en clientes</small>
+                    </div>
+                </div>
+                
+                <div class="roi-results">
+                    <h3>💰 Tu potencial con Chatably</h3>
+                    
+                    <div class="results-grid">
+                        <div class="result-card without-chatably">
+                            <div class="result-header">
+                                <span class="result-icon">😰</span>
+                                <h4>SIN Chatably</h4>
+                            </div>
+                            <div class="result-metric">
+                                <span class="result-number" id="sales-without">$312,500</span>
+                                <span class="result-label">Ventas mensuales</span>
+                            </div>
+                            <div class="result-breakdown">
+                                <span id="leads-without">125 leads</span>
+                                <span id="conversion-without">2.5% conversión</span>
+                            </div>
+                        </div>
+                        
+                        <div class="result-card with-chatably">
+                            <div class="result-header">
+                                <span class="result-icon">🚀</span>
+                                <h4>CON Chatably</h4>
+                            </div>
+                            <div class="result-metric">
+                                <span class="result-number" id="sales-with">$1,250,000</span>
+                                <span class="result-label">Ventas mensuales</span>
+                            </div>
+                            <div class="result-breakdown">
+                                <span id="leads-with">500 leads</span>
+                                <span id="conversion-with">10% conversión</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="roi-summary">
+                        <div class="roi-highlight">
+                            <span class="roi-label">💎 Ganancia extra mensual</span>
+                            <span class="roi-value" id="extra-revenue">$937,500</span>
+                        </div>
+                        
+                        <div class="roi-metrics">
+                            <div class="roi-metric">
+                                <span class="metric-value" id="roi-percentage">1,875%</span>
+                                <span class="metric-label">ROI</span>
+                            </div>
+                            <div class="roi-metric">
+                                <span class="metric-value" id="payback-days">4</span>
+                                <span class="metric-label">Días para recuperar inversión</span>
+                            </div>
+                            <div class="roi-metric">
+                                <span class="metric-value" id="yearly-extra">$11.2M</span>
+                                <span class="metric-label">Ganancia anual extra</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                   <div class="roi-chart-container" style="max-width: 100%; height: 300px; position: relative; margin-top: 2rem;">
+    <h4>📈 Comparativa visual</h4>
+    <canvas id="roi-chart" style="max-width: 100%; height: 250px;"></canvas>
+</div>
+                    
+                    <div class="roi-cta">
+                        <a href="#planes" class="cta-button roi-cta-button" onclick="trackROICTA()">
+                            💰 Quiero estas ventas YA
+                        </a>
+                        <p class="roi-disclaimer">
+                            *Cálculos basados en datos reales de 500+ clientes. Resultados pueden variar.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI-Optimized Benefits Section -->
+    <section class="ai-benefits" id="beneficios" data-aos="fade-up">
+        <div class="benefits-container">
+            <div class="benefits-header">
+                <h2 class="section-title">
+                    <span class="title-icon">🎯</span>
+                    Tu negocio en piloto automático inteligente
+                </h2>
+                <p class="benefits-subtitle">
+                    Chatably aprende de cada conversación para vender mejor que tú
+                </p>
+            </div>
+            
+            <div class="benefits-grid">
+                <!-- Benefit 1: Context-Aware Responses -->
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="benefit-icon-wrapper">
+                        <span class="benefit-icon">🧠</span>
+                    </div>
+                    <h3 class="benefit-title">Respuestas que entienden contexto</h3>
+                    <p class="benefit-description">
+                        No más respuestas robóticas. Chatably detecta intención, 
+                        humor y urgencia para responder como lo harías tú.
+                    </p>
+                    <div class="benefit-example">
+                        <span class="example-label">Ejemplo real:</span>
+                        <div class="example-messages">
+                            <div class="msg customer">"Necesito esto YA para una emergencia"</div>
+                            <div class="msg bot">"Entiendo la urgencia. Te preparo envío express en 2h. ¿Tu dirección?"</div>
+                        </div>
+                    </div>
+                    <div class="benefit-metric">
+                        <span class="metric-number">87%</span>
+                        <span class="metric-label">más satisfacción vs bots tradicionales</span>
+                    </div>
+                </div>
+                
+                <!-- Benefit 2: Sales Psychology -->
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="benefit-icon-wrapper">
+                        <span class="benefit-icon">💰</span>
+                    </div>
+                    <h3 class="benefit-title">Psicología de ventas integrada</h3>
+                    <p class="benefit-description">
+                        Aplica técnicas probadas: urgencia, escasez, prueba social 
+                        y reciprocidad en el momento perfecto.
+                    </p>
+                    <div class="benefit-example">
+                        <span class="example-label">En acción:</span>
+                        <div class="example-messages">
+                            <div class="msg customer">"¿Cuánto cuesta?"</div>
+                            <div class="msg bot">"$999 (precio especial hoy). Ya van 3 pedidos esta mañana. ¿Te aparto uno?"</div>
+                        </div>
+                    </div>
+                    <div class="benefit-metric">
+                        <span class="metric-number">3.2x</span>
+                        <span class="metric-label">más conversión que respuesta simple de precio</span>
+                    </div>
+                </div>
+                
+                <!-- Benefit 3: Predictive Engagement -->
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="benefit-icon-wrapper">
+                        <span class="benefit-icon">🔮</span>
+                    </div>
+                    <h3 class="benefit-title">Predicción de abandono</h3>
+                    <p class="benefit-description">
+                        Detecta cuando un cliente está por irse y activa 
+                        estrategias de retención automáticamente.
+                    </p>
+                    <div class="benefit-example">
+                        <span class="example-label">Retención inteligente:</span>
+                        <div class="example-messages">
+                            <div class="msg customer">"Mmm lo voy a pensar..."</div>
+                            <div class="msg bot">"Entiendo. Te comparto código DESC15 válido 24h. ¿Te mando info sin compromiso?"</div>
+                        </div>
+                    </div>
+                    <div class="benefit-metric">
+                        <span class="metric-number">64%</span>
+                        <span class="metric-label">de "lo pensaré" convertidos en venta</span>
+                    </div>
+                </div>
+                
+                <!-- Benefit 4: Multi-Channel Memory -->
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="benefit-icon-wrapper">
+                        <span class="benefit-icon">🔄</span>
+                    </div>
+                    <h3 class="benefit-title">Memoria entre canales</h3>
+                    <p class="benefit-description">
+                        Un cliente te escribe en WhatsApp, luego en Instagram. 
+                        Chatably recuerda toda la conversación.
+                    </p>
+                    <div class="benefit-example">
+                        <span class="example-label">Continuidad perfecta:</span>
+                        <div class="example-messages">
+                            <div class="msg platform">Instagram:</div>
+                            <div class="msg customer">"Vi tu producto en TikTok"</div>
+                            <div class="msg bot">"¡Hola María! Sí, el vestido azul que viste. ¿Tu talla es M como la vez pasada?"</div>
+                        </div>
+                    </div>
+                    <div class="benefit-metric">
+                        <span class="metric-number">92%</span>
+                        <span class="metric-label">clientes impresionados por la personalización</span>
+                    </div>
+                </div>
+                
+                <!-- Benefit 5: Emotional Intelligence -->
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="benefit-icon-wrapper">
+                        <span class="benefit-icon">❤️</span>
+                    </div>
+                    <h3 class="benefit-title">Inteligencia emocional</h3>
+                    <p class="benefit-description">
+                        Detecta frustración, alegría o dudas. Ajusta tono y 
+                        velocidad de respuesta según el estado del cliente.
+                    </p>
+                    <div class="benefit-example">
+                        <span class="example-label">Empatía real:</span>
+                        <div class="example-messages">
+                            <div class="msg customer">"Llevo 2 días esperando!! 😤"</div>
+                            <div class="msg bot">"Lamento mucho la demora. Reviso tu pedido ahora mismo y te llamo en 5 min. 🙏"</div>
+                        </div>
+                    </div>
+                    <div class="benefit-metric">
+                        <span class="metric-number">-78%</span>
+                        <span class="metric-label">reducción en quejas y devoluciones</span>
+                    </div>
+                </div>
+                
+                <!-- Benefit 6: Revenue Optimization -->
+                <div class="benefit-card featured" data-aos="fade-up" data-aos-delay="600">
+                    <div class="benefit-icon-wrapper">
+                        <span class="benefit-icon">📈</span>
+                    </div>
+                    <h3 class="benefit-title">Optimización continua de ingresos</h3>
+                    <p class="benefit-description">
+                        Prueba precios, ofertas y mensajes. Aprende qué funciona 
+                        y optimiza automáticamente para maximizar ventas.
+                    </p>
+                    <div class="benefit-example">
+                        <span class="example-label">A/B testing automático:</span>
+                        <div class="example-messages">
+                            <div class="msg system">Versión A: "Envío gratis" → 23% conversión</div>
+                            <div class="msg system">Versión B: "Entrega hoy" → 41% conversión ✅</div>
+                        </div>
+                    </div>
+                    <div class="benefit-metric">
+                        <span class="metric-number">+47%</span>
+                        <span class="metric-label">incremento promedio en ticket de venta</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- AI Learning Showcase -->
+            <div class="ai-learning-showcase" data-aos="fade-up" data-aos-delay="700">
+                <h3>🤖 Chatably mejora cada día</h3>
+                <div class="learning-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">2.7M</span>
+                        <span class="stat-label">conversaciones analizadas</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">147</span>
+                        <span class="stat-label">patrones de venta detectados</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">aprendizaje continuo</span>
+                    </div>
+                </div>
+                <p class="showcase-text">
+                    Cada conversación entrena a tu asistente para ser más efectivo. 
+                    En 30 días, venderá mejor que tu mejor vendedor.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works -->
+    <section class="how-it-works" id="como-funciona">
+        <h2 class="section-title">Cómo funciona</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-icon">⚡</div>
+                <h3>Recibe y responde al instante</h3>
+                <p>Tu WhatsApp Business se conecta con Chatably y responde en segundos, sin importar la hora.</p>
+            </div>
+            <div class="step">
+                <div class="step-icon">💬</div>
+                <h3>Habla con empatía e inteligencia</h3>
+                <p>Nuestra IA entiende contexto, detecta intenciones y responde como lo harías tú.</p>
+            </div>
+            <div class="step">
+                <div class="step-icon">🎯</div>
+                <h3>Agenda citas y redirige si hace falta</h3>
+                <p>Califica leads, agenda automáticamente y transfiere a humano cuando sea necesario.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <h2 class="section-title">El 83% de los clientes compran donde los atienden primero</h2>
+        <div class="stats-grid">
+            <div class="stat">
+                <div class="stat-number">+391%</div>
+                <div class="stat-label">Conversión si respondes en 1 minuto</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">Tasa de apertura en WhatsApp</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">60%</div>
+                <div class="stat-label">Conversión vs. 5% por email</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value-Based Pricing -->
+    <section class="pricing" id="planes">
+        <div class="pricing-header">
+            <h2 class="section-title">Elige tu máquina de ventas 24/7</h2>
+            <p class="pricing-subtitle">
+                Cada plan se paga solo con las ventas que genera. ROI garantizado.
+            </p>
+            <div class="pricing-guarantee">
+                <span class="guarantee-badge">💎 ROI garantizado o te devolvemos tu dinero</span>
+            </div>
+        </div>
+        
+        <div class="pricing-grid">
+            <!-- Chatably Starter -->
+            <div class="pricing-card starter">
+                <div class="plan-header">
+                    <h3 class="plan-name">Chatably Starter</h3>
+                    <p class="plan-target">Para negocios < $100k ventas/mes</p>
+                </div>
+                <div class="plan-price">
+                    <span class="price-currency">$</span>
+                    <span class="price-amount">1,499</span>
+                    <span class="price-period">/mes</span>
+                </div>
+                <div class="plan-roi">
+                    <span class="roi-label">Se paga solo con</span>
+                    <span class="roi-value">1 venta extra/mes</span>
+                </div>
+                <ul class="plan-features">
+                    <li><span class="feature-icon">💬</span> 5,000 conversaciones incluidas</li>
+                    <li><span class="feature-icon">📱</span> 1 canal (WhatsApp o TikTok)</li>
+                    <li><span class="feature-icon">📊</span> Dashboard básico</li>
+                    <li><span class="feature-icon">🤖</span> IA básica incluida</li>
+                    <li><span class="feature-icon">📧</span> Soporte por email</li>
+                    <li><span class="feature-icon">📈</span> Analytics básicos</li>
+                </ul>
+                <div class="plan-cta">
+                    <a href="https://buy.stripe.com/28E9AS1T99SQcW18Qz7ok0b" class="plan-button starter-button">
+                        Empezar ahora
+                    </a>
+                    <p class="plan-guarantee">✅ 14 días gratis + garantía</p>
+                </div>
+            </div>
+            
+            <!-- Chatably Pro - DESTACADO -->
+            <div class="pricing-card pro featured">
+                <div class="plan-badge">🏆 MÁS POPULAR</div>
+                <div class="plan-header">
+                    <h3 class="plan-name">Chatably Pro</h3>
+                    <p class="plan-target">Para negocios $100k-500k ventas/mes</p>
+                </div>
+                <div class="plan-price">
+                    <span class="price-currency">$</span>
+                    <span class="price-amount">4,999</span>
+                    <span class="price-period">/mes</span>
+                </div>
+                <div class="plan-roi">
+                    <span class="roi-label">Se paga solo con</span>
+                    <span class="roi-value">2 ventas extra/mes</span>
+                </div>
+                <div class="plan-alternative">
+                    <p class="alternative-text">O paga:</p>
+                    <div class="alternative-price">
+                        <span>$2,999/mes + 1% de ventas generadas</span>
+                    </div>
+                </div>
+                <ul class="plan-features">
+                    <li><span class="feature-icon">♾️</span> Conversaciones ilimitadas</li>
+                    <li><span class="feature-icon">📱</span> 3 canales a elegir</li>
+                    <li><span class="feature-icon">🧠</span> IA GPT-4 incluida</li>
+                    <li><span class="feature-icon">📊</span> Analytics avanzado</li>
+                    <li><span class="feature-icon">⚡</span> Respuesta < 30 segundos</li>
+                    <li><span class="feature-icon">🎯</span> Automatización inteligente</li>
+                    <li><span class="feature-icon">🏥</span> Soporte prioritario</li>
+                    <li><span class="feature-icon">🔗</span> Integraciones premium</li>
+                </ul>
+                <div class="plan-cta">
+                    <a href="https://buy.stripe.com/7sYfZgcxN3usbRX0k37ok0c" class="plan-button pro-button">
+                        💰 Quiero facturar más
+                    </a>
+                    <p class="plan-guarantee">✅ 30 días gratis + garantía ROI</p>
+                </div>
+                <div class="plan-bonus">
+                    <span class="bonus-label">🎁 BONUS:</span>
+                    <span>Setup personalizado por experto ($5,000 de valor)</span>
+                </div>
+            </div>
+            
+            <!-- Chatably Enterprise -->
+            <div class="pricing-card enterprise">
+                <div class="plan-header">
+                    <h3 class="plan-name">Chatably Enterprise</h3>
+                    <p class="plan-target">Para empresas > $500k ventas/mes</p>
+                </div>
+                <div class="plan-price">
+                    <span class="price-text">Desde</span>
+                    <span class="price-currency">$</span>
+                    <span class="price-amount">9,999</span>
+                    <span class="price-period">/mes</span>
+                </div>
+                <div class="plan-roi">
+                    <span class="roi-label">ROI típico:</span>
+                    <span class="roi-value">500-1,200%</span>
+                </div>
+                <ul class="plan-features">
+                    <li><span class="feature-icon">🌟</span> Todo ilimitado</li>
+                    <li><span class="feature-icon">📱</span> Todos los canales</li>
+                    <li><span class="feature-icon">🔧</span> API completa</li>
+                    <li><span class="feature-icon">👨‍💼</span> Manager dedicado</li>
+                    <li><span class="feature-icon">⚡</span> SLA 99.9%</li>
+                    <li><span class="feature-icon">🏢</span> Facturación empresarial</li>
+                    <li><span class="feature-icon">🔒</span> Seguridad enterprise</li>
+                    <li><span class="feature-icon">📞</span> Soporte 24/7</li>
+                </ul>
+                <div class="plan-cta">
+                    <a href="#contacto" class="plan-button enterprise-button">
+                        Hablar con experto
+                    </a>
+                    <p class="plan-guarantee">✅ Demo personalizada incluida</p>
+                </div>
+                <div class="plan-enterprise-note">
+                    <p>💼 Precios especiales para empresas públicas y gobierno</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Value Propositions -->
+        <div class="pricing-value-props">
+            <div class="value-prop">
+                <span class="value-icon">🚀</span>
+                <h4>Setup en 24 horas</h4>
+                <p>Tu vendedor digital estará trabajando mañana mismo</p>
+            </div>
+            <div class="value-prop">
+                <span class="value-icon">💎</span>
+                <h4>ROI garantizado</h4>
+                <p>Si no generas mínimo 2x tu inversión, te devolvemos todo</p>
+            </div>
+            <div class="value-prop">
+                <span class="value-icon">🔒</span>
+                <h4>Datos seguros</h4>
+                <p>Certificación SOC2 y GDPR. Tus datos nunca salen de México</p>
+            </div>
+            <div class="value-prop">
+                <span class="value-icon">⚡</span>
+                <h4>Respuesta instantánea</h4>
+                <p>Nunca más pierdas una venta por responder tarde</p>
+            </div>
+        </div>
+        
+        <!-- Risk Reversal -->
+        <div class="risk-reversal">
+            <div class="risk-content">
+                <h3>🛡️ Cero riesgo para ti</h3>
+                <p>Prueba Chatably sin compromiso. Si en los primeros 30 días no ves resultados, te devolvemos hasta el último peso.</p>
+                <div class="risk-features">
+                    <span>✅ Setup gratis</span>
+                    <span>✅ Entrenamiento incluido</span>
+                    <span>✅ Soporte dedicado</span>
+                    <span>✅ Garantía de resultado</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Urgency & Scarcity Section -->
+    <section class="urgency-scarcity" id="urgencia">
+        <div class="urgency-container">
+            <!-- Limited Time Offer Banner -->
+            <div class="urgency-banner">
+                <div class="urgency-icon">🚨</div>
+                <div class="urgency-content">
+                    <h2 class="urgency-title">⏰ OFERTA LIMITADA: Solo quedan 12 cupos para octubre</h2>
+                    <p class="urgency-subtitle">
+                        Para garantizar implementación exitosa, limitamos a 20 empresas nuevas por mes
+                    </p>
+                </div>
+                <div class="urgency-timer">
+                    <div class="timer-label">Tiempo restante:</div>
+                    <div class="countdown-timer" id="countdown-timer">
+                        <div class="timer-segment">
+                            <span class="timer-number" id="days">23</span>
+                            <span class="timer-unit">días</span>
+                        </div>
+                        <div class="timer-separator">:</div>
+                        <div class="timer-segment">
+                            <span class="timer-number" id="hours">14</span>
+                            <span class="timer-unit">horas</span>
+                        </div>
+                        <div class="timer-separator">:</div>
+                        <div class="timer-segment">
+                            <span class="timer-number" id="minutes">37</span>
+                            <span class="timer-unit">min</span>
+                        </div>
+                        <div class="timer-separator">:</div>
+                        <div class="timer-segment">
+                            <span class="timer-number" id="seconds">52</span>
+                            <span class="timer-unit">seg</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scarcity Elements -->
+            <div class="scarcity-grid">
+                <!-- Spots Available -->
+                <div class="scarcity-card spots-available">
+                    <div class="scarcity-header">
+                        <div class="scarcity-icon">🎯</div>
+                        <h3>Cupos Disponibles</h3>
+                    </div>
+                    <div class="spots-counter">
+                        <div class="spots-visual">
+                            <div class="spots-row">
+                                <span class="spot taken">●</span>
+                                <span class="spot taken">●</span>
+                                <span class="spot taken">●</span>
+                                <span class="spot taken">●</span>
+                                <span class="spot taken">●</span>
+                            </div>
+                            <div class="spots-row">
+                                <span class="spot taken">●</span>
+                                <span class="spot taken">●</span>
+                                <span class="spot taken">●</span>
+                                <span class="spot available">●</span>
+                                <span class="spot available">●</span>
+                            </div>
+                            <div class="spots-row">
+                                <span class="spot available">●</span>
+                                <span class="spot available">●</span>
+                                <span class="spot available">●</span>
+                                <span class="spot available">●</span>
+                                <span class="spot available">●</span>
+                            </div>
+                            <div class="spots-row">
+                                <span class="spot available">●</span>
+                                <span class="spot available">●</span>
+                                <span class="spot available">●</span>
+                                <span class="spot available">●</span>
+                                <span class="spot available">●</span>
+                            </div>
+                        </div>
+                        <div class="spots-text">
+                            <span class="spots-available-number">12</span>
+                            <span class="spots-total">de 20 cupos disponibles</span>
+                        </div>
+                    </div>
+                    <div class="scarcity-note">
+                        ⚡ <strong>8 empresas</strong> ya reservaron su cupo esta semana
+                    </div>
+                </div>
+
+                <!-- Bonus Expiring -->
+                <div class="scarcity-card bonus-expiring">
+                    <div class="scarcity-header">
+                        <div class="scarcity-icon">🎁</div>
+                        <h3>Bonus por Tiempo Limitado</h3>
+                    </div>
+                    <div class="bonus-list">
+                        <div class="bonus-item">
+                            <span class="bonus-value">$12,000</span>
+                            <span class="bonus-description">Setup personalizado por experto IA</span>
+                        </div>
+                        <div class="bonus-item">
+                            <span class="bonus-value">$8,000</span>
+                            <span class="bonus-description">3 meses de optimización incluidos</span>
+                        </div>
+                        <div class="bonus-item">
+                            <span class="bonus-value">$5,000</span>
+                            <span class="bonus-description">Training intensivo para tu equipo</span>
+                        </div>
+                    </div>
+                    <div class="bonus-total">
+                        <span class="bonus-total-value">$25,000</span>
+                        <span class="bonus-total-text">en valor agregado GRATIS</span>
+                    </div>
+                    <div class="bonus-expiry">
+                        🔥 Solo hasta el <strong>31 de octubre</strong>
+                    </div>
+                </div>
+
+                <!-- Social Pressure -->
+                <div class="scarcity-card social-pressure">
+                    <div class="scarcity-header">
+                        <div class="scarcity-icon">👥</div>
+                        <h3>Actividad Reciente</h3>
+                    </div>
+                    <div class="activity-feed" id="activity-feed">
+                        <div class="activity-item">
+                            <div class="activity-avatar">🏪</div>
+                            <div class="activity-text">
+                                <strong>Farmacia San Juan</strong> activó Chatably Pro
+                                <span class="activity-time">hace 2 horas</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-avatar">🍕</div>
+                            <div class="activity-text">
+                                <strong>Pizzería Della Nonna</strong> generó $47,000 en ventas
+                                <span class="activity-time">hace 4 horas</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-avatar">👗</div>
+                            <div class="activity-text">
+                                <strong>Boutique Elegance</strong> aumentó conversión 284%
+                                <span class="activity-time">hace 6 horas</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="activity-counter">
+                        <span class="activity-number" id="activity-counter">2,847</span>
+                        <span class="activity-text">empresas activas hoy</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fear of Missing Out (FOMO) -->
+            <div class="fomo-section">
+                <div class="fomo-content">
+                    <h3>🚀 ¿Qué pasará si no actúas hoy?</h3>
+                    <div class="fomo-comparison">
+                        <div class="fomo-without">
+                            <h4>❌ Sin Chatably:</h4>
+                            <ul>
+                                <li>Pierdes 60% de leads nocturnos</li>
+                                <li>Competencia te roba clientes</li>
+                                <li>Equipo saturado y estresado</li>
+                                <li>Ventas estancadas</li>
+                                <li>Oportunidades perdidas = $18,000/mes</li>
+                            </ul>
+                        </div>
+                        <div class="fomo-with">
+                            <h4>✅ Con Chatably:</h4>
+                            <ul>
+                                <li>Atención 24/7 sin costo adicional</li>
+                                <li>Ventas automáticas mientras duermes</li>
+                                <li>Equipo enfocado en tareas importantes</li>
+                                <li>Crecimiento exponencial</li>
+                                <li>ROI promedio: $67,000/mes</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Urgency CTA -->
+            <div class="urgency-cta">
+                <div class="urgency-cta-content">
+                    <h3>⚡ No te quedes sin tu cupo</h3>
+                    <p>Solo 12 empresas podrán implementar Chatably en octubre con bonus completo</p>
+                    <div class="urgency-buttons">
+                        <a href="#planes" class="urgency-button primary" onclick="trackUrgencyClick('reserve_spot')">
+                            🎯 Reservar mi cupo ahora
+                        </a>
+                        <a href="#contacto" class="urgency-button secondary" onclick="trackUrgencyClick('speak_expert')">
+                            📞 Hablar con experto (2 min)
+                        </a>
+                    </div>
+                    <div class="urgency-guarantee">
+                        <span class="guarantee-text">
+                            🛡️ Sin compromisos. Si no calificas, te reembolsamos 100%
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Risk Reversal with Urgency -->
+                <div class="urgency-risk-reversal">
+                    <div class="risk-item">
+                        <span class="risk-icon">⏰</span>
+                        <span class="risk-text">Setup en 24 horas o gratis</span>
+                    </div>
+                    <div class="risk-item">
+                        <span class="risk-icon">💰</span>
+                        <span class="risk-text">ROI en 30 días o reembolso</span>
+                    </div>
+                    <div class="risk-item">
+                        <span class="risk-icon">🎁</span>
+                        <span class="risk-text">$25,000 en bonus hasta oct 31</span>
+                    </div>
+                    <div class="risk-item">
+                        <span class="risk-icon">🏆</span>
+                        <span class="risk-text">Solo 12 cupos restantes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section class="social-proof" id="casos-exito">
+        <div class="social-proof-container">
+            <!-- Header -->
+            <div class="social-proof-header">
+                <h2 class="section-title">💰 Casos de éxito reales</h2>
+                <p class="social-proof-subtitle">
+                    Empresas mexicanas que ya multiplicaron sus ventas con Chatably
+                </p>
+            </div>
+            
+            <!-- Stats Banner -->
+            <div class="success-stats">
+                <div class="stat-item">
+                    <span class="stat-number">2,847</span>
+                    <span class="stat-label">Empresas confían en nosotros</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">$127M</span>
+                    <span class="stat-label">Generados para clientes</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">4.9/5</span>
+                    <span class="stat-label">Rating promedio</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">47 seg</span>
+                    <span class="stat-label">Tiempo de respuesta</span>
+                </div>
+            </div>
+
+            <!-- Case Studies Grid -->
+            <div class="case-studies-grid">
+                <!-- Case Study 1: E-commerce -->
+                <div class="case-study featured">
+                    <div class="case-study-badge">⭐ Caso Destacado</div>
+                    <div class="case-study-header">
+                        <div class="business-info">
+                            <img src="https://ui-avatars.com/api/?name=TechStore&background=4D8DFF&color=fff&size=80" alt="TechStore" class="business-avatar">
+                            <div class="business-details">
+                                <h3>TechStore México</h3>
+                                <p>E-commerce • Electrónicos</p>
+                                <div class="business-size">$2.5M ventas anuales</div>
+                            </div>
+                        </div>
+                        <div class="case-study-metric">
+                            <span class="metric-value">+847%</span>
+                            <span class="metric-label">ROI en 6 meses</span>
+                        </div>
+                    </div>
+                    
+                    <div class="case-study-challenge">
+                        <h4>🎯 El Reto</h4>
+                        <p>"Perdíamos 60% de los leads que llegaban fuera de horario laboral. Los clientes se iban a la competencia."</p>
+                    </div>
+                    
+                    <div class="case-study-solution">
+                        <h4>⚡ La Solución</h4>
+                        <ul>
+                            <li>Automatización 24/7 de consultas</li>
+                            <li>Seguimiento automático de carritos abandonados</li>
+                            <li>Respuestas instantáneas con catálogo</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="case-study-results">
+                        <h4>📈 Resultados</h4>
+                        <div class="results-grid">
+                            <div class="result-metric">
+                                <span class="result-number">+340%</span>
+                                <span class="result-label">Conversión nocturna</span>
+                            </div>
+                            <div class="result-metric">
+                                <span class="result-number">78%</span>
+                                <span class="result-label">Menos carritos abandonados</span>
+                            </div>
+                            <div class="result-metric">
+                                <span class="result-number">$1.2M</span>
+                                <span class="result-label">Ventas adicionales/año</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="case-study-quote">
+                        <p>"Chatably nos devolvió la tranquilidad. Ahora vendemos 24/7 sin contratar más personal."</p>
+                        <cite>— Roberto Hernández, Fundador TechStore</cite>
+                    </div>
+                </div>
+
+                <!-- Case Study 2: Restaurant -->
+                <div class="case-study">
+                    <div class="case-study-header">
+                        <div class="business-info">
+                            <img src="https://ui-avatars.com/api/?name=Pizzeria+Roma&background=E74C3C&color=fff&size=80" alt="Pizzeria Roma" class="business-avatar">
+                            <div class="business-details">
+                                <h3>Pizzería Roma</h3>
+                                <p>Restaurante • Delivery</p>
+                                <div class="business-size">15 sucursales</div>
+                            </div>
+                        </div>
+                        <div class="case-study-metric">
+                            <span class="metric-value">+234%</span>
+                            <span class="metric-label">Pedidos por WhatsApp</span>
+                        </div>
+                    </div>
+                    
+                    <div class="case-study-challenge">
+                        <h4>🎯 El Reto</h4>
+                        <p>Personal ocupado cocinando no podía atender WhatsApp. Perdían pedidos en horas pico.</p>
+                    </div>
+                    
+                    <div class="case-study-results">
+                        <h4>📈 Resultados en 3 meses</h4>
+                        <div class="results-list">
+                            <div class="result-item">
+                                <span class="result-icon">🚀</span>
+                                <span>+234% pedidos por WhatsApp</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-icon">⏰</span>
+                                <span>2 min → 30 seg tiempo respuesta</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-icon">💰</span>
+                                <span>$180,000 ventas adicionales/mes</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="case-study-quote">
+                        <p>"Ya no perdemos ni un solo pedido. Chatably se volvió nuestro empleado más valioso."</p>
+                        <cite>— Sofia Martinez, Gerente Pizzería Roma</cite>
+                    </div>
+                </div>
+
+                <!-- Case Study 3: Healthcare -->
+                <div class="case-study">
+                    <div class="case-study-header">
+                        <div class="business-info">
+                            <img src="https://ui-avatars.com/api/?name=Clinica+Vida&background=27AE60&color=fff&size=80" alt="Clínica Vida" class="business-avatar">
+                            <div class="business-details">
+                                <h3>Clínica Vida</h3>
+                                <p>Salud • Dental</p>
+                                <div class="business-size">3,000 pacientes</div>
+                            </div>
+                        </div>
+                        <div class="case-study-metric">
+                            <span class="metric-value">-67%</span>
+                            <span class="metric-label">Citas perdidas</span>
+                        </div>
+                    </div>
+                    
+                    <div class="case-study-challenge">
+                        <h4>🎯 El Reto</h4>
+                        <p>Pacientes no confirmaban citas y llegaban sin avisar. Agenda desorganizada y pérdidas económicas.</p>
+                    </div>
+                    
+                    <div class="case-study-results">
+                        <h4>📈 Resultados</h4>
+                        <div class="results-list">
+                            <div class="result-item">
+                                <span class="result-icon">📅</span>
+                                <span>95% confirmación automática de citas</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-icon">💊</span>
+                                <span>Recordatorios automáticos de medicamentos</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-icon">😊</span>
+                                <span>+40% satisfacción del paciente</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="case-study-quote">
+                        <p>"Nuestros pacientes se sienten más cuidados. Chatably humanizó nuestra atención."</p>
+                        <cite>— Dr. Miguel Ruiz, Director Clínica Vida</cite>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Testimonials Section -->
+            <div class="video-testimonials">
+                <h3>🎥 Escucha directamente a nuestros clientes</h3>
+                <div class="video-grid">
+                    <div class="video-testimonial">
+                        <div class="video-placeholder">
+                            <div class="play-button">▶️</div>
+                            <img src="https://ui-avatars.com/api/?name=Ana+Rodriguez&background=9B59B6&color=fff&size=120" alt="Ana Rodriguez" class="video-thumb">
+                        </div>
+                        <div class="video-info">
+                            <h4>Ana Rodríguez</h4>
+                            <p>CEO, Inmobiliaria Prime</p>
+                            <div class="video-metrics">
+                                <span>📈 +420% leads calificados</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-testimonial">
+                        <div class="video-placeholder">
+                            <div class="play-button">▶️</div>
+                            <img src="https://ui-avatars.com/api/?name=Carlos+Mendoza&background=E67E22&color=fff&size=120" alt="Carlos Mendoza" class="video-thumb">
+                        </div>
+                        <div class="video-info">
+                            <h4>Carlos Mendoza</h4>
+                            <p>Fundador, AutoParts Express</p>
+                            <div class="video-metrics">
+                                <span>⚡ 24 hrs → 30 seg respuesta</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-testimonial">
+                        <div class="video-placeholder">
+                            <div class="play-button">▶️</div>
+                            <img src="https://ui-avatars.com/api/?name=Maria+Santos&background=1ABC9C&color=fff&size=120" alt="Maria Santos" class="video-thumb">
+                        </div>
+                        <div class="video-info">
+                            <h4>María Santos</h4>
+                            <p>Directora, Boutique Elegance</p>
+                            <div class="video-metrics">
+                                <span>💰 ROI 680% primer mes</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trust Signals -->
+            <div class="trust-signals">
+                <h3>🏆 Reconocimientos y Certificaciones</h3>
+                <div class="trust-grid">
+                    <div class="trust-item">
+                        <div class="trust-icon">🥇</div>
+                        <h4>Startup del Año</h4>
+                        <p>TechCrunch México 2024</p>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-icon">🔒</div>
+                        <h4>ISO 27001</h4>
+                        <p>Seguridad de Datos</p>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-icon">🇲🇽</div>
+                        <h4>100% Mexicano</h4>
+                        <p>Datos en México</p>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-icon">🚀</div>
+                        <h4>Partner Oficial</h4>
+                        <p>Meta WhatsApp Business</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customer Logos Wall -->
+            <div class="customer-logos">
+                <h3>💼 Empresas que confían en Chatably</h3>
+                <div class="logos-marquee">
+                    <div class="logos-scroll">
+                        <div class="customer-logo">
+                            <img src="https://ui-avatars.com/api/?name=Grupo+Modelo&background=FFA500&color=fff&size=60" alt="Grupo Modelo">
+                            <span>Grupo Modelo</span>
+                        </div>
+                        <div class="customer-logo">
+                            <img src="https://ui-avatars.com/api/?name=Liverpool&background=E74C3C&color=fff&size=60" alt="Liverpool">
+                            <span>Liverpool</span>
+                        </div>
+                        <div class="customer-logo">
+                            <img src="https://ui-avatars.com/api/?name=Farmacias+GI&background=27AE60&color=fff&size=60" alt="Farmacias GI">
+                            <span>Farmacias GI</span>
+                        </div>
+                        <div class="customer-logo">
+                            <img src="https://ui-avatars.com/api/?name=OXXO&background=C0392B&color=fff&size=60" alt="OXXO">
+                            <span>OXXO</span>
+                        </div>
+                        <div class="customer-logo">
+                            <img src="https://ui-avatars.com/api/?name=Coppel&background=3498DB&color=fff&size=60" alt="Coppel">
+                            <span>Coppel</span>
+                        </div>
+                        <div class="customer-logo">
+                            <img src="https://ui-avatars.com/api/?name=Bodega+Aurrera&background=9B59B6&color=fff&size=60" alt="Bodega Aurrera">
+                            <span>Bodega Aurrera</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Proof CTA -->
+            <div class="social-proof-cta">
+                <h3>¿Listo para ser el próximo caso de éxito?</h3>
+                <p>Únete a más de 2,847 empresas que ya multiplicaron sus ventas con Chatably</p>
+                <div class="cta-buttons">
+                    <a href="#planes" class="cta-button primary">💎 Ver Planes</a>
+                    <a href="#contacto" class="cta-button secondary">📞 Hablar con Experto</a>
+                </div>
+                <div class="social-proof-guarantee">
+                    <span class="guarantee-icon">🛡️</span>
+                    <span>Garantía de resultados o 100% de tu dinero de vuelta</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section class="demo" id="demo">
+        <h2 class="section-title">Mira Chatably en acción</h2>
+        <div style="text-align: center; background: var(--bg-light); padding: 3rem; border-radius: 16px;">
+            <p style="font-size: 1.2rem; color: var(--text-gray); margin-bottom: 2rem;">
+                Descubre cómo empresas como la tuya están transformando su atención al cliente
+            </p>
+            <a href="#contacto" class="cta-button">Ver demo personalizada</a>
+        </div>
+        
+        <!-- Testimonials -->
+        <div class="steps" style="margin-top: 3rem;">
+            <div class="step">
+                <p style="font-style: italic; margin-bottom: 1rem;">
+                    "Pasamos de perder 40% de leads nocturnos a cerrar ventas mientras dormimos."
+                </p>
+                <strong>María González</strong><br>
+                <small>Clínica Dental Sonrisas</small>
+            </div>
+            <div class="step">
+                <p style="font-style: italic; margin-bottom: 1rem;">
+                    "Nuestros clientes piensan que contratamos más personal. La realidad es Chatably."
+                </p>
+                <strong>Carlos Mendoza</strong><br>
+                <small>Restaurante El Buen Sabor</small>
+            </div>
+            <div class="step">
+                <p style="font-style: italic; margin-bottom: 1rem;">
+                    "ROI del 300% en el primer mes. No hay vuelta atrás."
+                </p>
+                <strong>Ana Rodríguez</strong><br>
+                <small>Inmobiliaria Prime</small>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <h2 class="section-title">Preguntas frecuentes</h2>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <div class="faq-question">
+                    ¿Esto es un bot frío?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Para nada. Chatably usa IA conversacional avanzada que entiende contexto, detecta emociones y responde con empatía. Tus clientes sentirán que hablan con un humano real.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    ¿Puede escribir como yo?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Sí. Entrenamos la IA con tu estilo de comunicación, tono de marca y respuestas típicas. Es como clonar tu mejor vendedor.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    ¿Y si mi negocio es muy particular?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Chatably se adapta a cualquier industria. Desde salud hasta retail, personalizamos cada implementación según tus procesos específicos.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    ¿Qué pasa si no me funciona?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Tienes 7 días de prueba gratis sin compromiso. Si no ves resultados, cancelas sin preguntas. Pero el 92% de nuestros clientes se quedan.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contacto">
+        <div class="contact-container">
+            <!-- Header with urgency -->
+            <div class="contact-header">
+                <h2 class="section-title">🚀 Activa Chatably en 24 horas</h2>
+                <p class="contact-subtitle">
+                    Sin letra chica. Sin compromisos. <strong>Solo resultados.</strong>
+                </p>
+                
+                <!-- Trust badges -->
+                <div class="contact-trust-badges">
+                    <div class="trust-badge">
+                        <span class="badge-icon">🛡️</span>
+                        <span class="badge-text">SSL Seguro</span>
+                    </div>
+                    <div class="trust-badge">
+                        <span class="badge-icon">🔒</span>
+                        <span class="badge-text">Datos Protegidos</span>
+                    </div>
+                    <div class="trust-badge">
+                        <span class="badge-icon">⚡</span>
+                        <span class="badge-text">Respuesta en 2h</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-content">
+                <!-- Benefits column -->
+                <div class="contact-benefits">
+                    <h3>✅ Lo que obtienes GRATIS:</h3>
+                    <ul class="benefit-list">
+                        <li>
+                            <span class="benefit-icon">📞</span>
+                            <div class="benefit-content">
+                                <strong>Consultoría personalizada</strong>
+                                <span>Analizamos tu negocio específico</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="benefit-icon">🎯</span>
+                            <div class="benefit-content">
+                                <strong>Demo en vivo con tus datos</strong>
+                                <span>Ve exactamente cómo funcionará</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="benefit-icon">💰</span>
+                            <div class="benefit-content">
+                                <strong>Cálculo de ROI personalizado</strong>
+                                <span>Cuánto ganarás desde el día 1</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="benefit-icon">🎁</span>
+                            <div class="benefit-content">
+                                <strong>$25,000 en bonos si calificas</strong>
+                                <span>Setup + Training + Optimización</span>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <!-- Social proof -->
+                    <div class="form-social-proof">
+                        <div class="proof-item">
+                            <img src="https://ui-avatars.com/api/?name=Roberto+M&background=4D8DFF&color=fff&size=60" alt="Roberto M">
+                            <div class="proof-content">
+                                <div class="proof-stars">⭐⭐⭐⭐⭐</div>
+                                <p>"En 15 minutos me mostraron cómo automatizar todo. Increíble."</p>
+                                <cite>— Roberto M., Farmacia San Pablo</cite>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Simplified form -->
+                <div class="contact-form-wrapper">
+                    <form class="contact-form modern-form" name="contacto-chatably" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/contact-success">
+                        <input type="hidden" name="form-name" value="contacto-chatably">
+                        <p style="display:none;">
+                            <label>No llenes esto si eres humano: <input name="bot-field" /></label>
+                        </p>
+                        
+                        <!-- Progress indicator -->
+                        <div class="form-progress">
+                            <div class="progress-bar" style="width: 0%"></div>
+                            <span class="progress-text">Completa 2 campos para activar</span>
+                        </div>
+                        
+                        <!-- Smart form fields -->
+                        <div class="form-group floating-label">
+                            <input type="text" id="name" name="name" placeholder=" " required class="form-input">
+                            <label for="name" class="form-label">Tu nombre (solo primer nombre está bien) *</label>
+                            <span class="field-helper">Ej: María</span>
+                        </div>
+                        
+                        <div class="form-group floating-label">
+                            <input type="tel" id="phone" name="phone" placeholder=" " required class="form-input" pattern="[0-9]{10}">
+                            <label for="phone" class="form-label">WhatsApp (10 dígitos) *</label>
+                            <span class="field-helper">Sin espacios ni guiones</span>
+                            <div class="whatsapp-preview">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="20">
+                                <span>Te escribiremos aquí en 2 horas</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Optional fields with smart defaults -->
+                        <div class="optional-fields">
+                            <p class="optional-text">Opcional (pero nos ayuda a personalizar tu demo):</p>
+                            
+                            <div class="form-group floating-label">
+                                <input type="text" id="business" name="business" placeholder=" " class="form-input">
+                                <label for="business" class="form-label">Nombre de tu negocio</label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="quick-select-label">¿Cuál es tu mayor reto?</label>
+                                <div class="quick-select-options">
+                                    <button type="button" class="quick-option" data-value="Responder rápido">
+                                        ⚡ Responder rápido
+                                    </button>
+                                    <button type="button" class="quick-option" data-value="Atención 24/7">
+                                        🌙 Atención 24/7
+                                    </button>
+                                    <button type="button" class="quick-option" data-value="Cerrar más ventas">
+                                        💰 Cerrar más ventas
+                                    </button>
+                                    <button type="button" class="quick-option" data-value="Agendar citas">
+                                        📅 Agendar citas
+                                    </button>
+                                </div>
+                                <input type="hidden" id="challenge" name="challenge" value="">
+                            </div>
+                        </div>
+                        
+                        <!-- Smart submit button -->
+                        <button type="submit" class="cta-button submit-button" disabled>
+                            <span class="button-content">
+                                <span class="button-icon">🔒</span>
+                                <span class="button-text">
+                                    <span class="main-text">Activar Mi Demo Gratis</span>
+                                    <span class="sub-text">Sin tarjeta de crédito</span>
+                                </span>
+                            </span>
+                            <span class="button-loader" style="display: none;">
+                                <span class="spinner"></span>
+                            </span>
+                        </button>
+                        
+                        <!-- Trust text -->
+                        <p class="form-disclaimer">
+                            <span class="disclaimer-icon">🔒</span>
+                            Tus datos están seguros. No spam. Puedes cancelar cuando quieras.
+                        </p>
+                    </form>
+                    
+                    <!-- Alternative CTA -->
+                    <div class="alternative-cta">
+                        <p>¿Prefieres hablar ahora mismo?</p>
+                        <a href="https://wa.me/436765748509?text=Hola,%20quiero%20información%20sobre%20Chatably" 
+                           class="whatsapp-direct-button" 
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="24">
+                            Escribir por WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Chatably. Todos los derechos reservados.</p>
+        <p style="margin-top: 1rem;">
+            <a href="#">Aviso de Privacidad</a>
+            <a href="#">Términos de Servicio</a>
+            <a href="#contacto">Contacto</a>
+        </p>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/436765748509?text=Hola,%20quiero%20información%20sobre%20Chatably" 
+       class="whatsapp-float" 
+       target="_blank"
+       rel="noopener noreferrer"
+       title="Contáctanos por WhatsApp"
+       aria-label="Contactar por WhatsApp - Se abre en nueva ventana">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+            <title>Logo de WhatsApp</title>
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.484 3.488"/>
+        </svg>
+    </a>
+
+    <!-- Demo Chat Widget -->
+    <div id="demo-chat-widget" class="chat-widget">
+        <div class="chat-toggle" id="chat-toggle">
+            <div class="chat-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h4l4 4 4-4h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+                </svg>
+            </div>
+            <div class="chat-close" style="display: none;">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                </svg>
+            </div>
+            <div class="chat-notification" id="chat-notification">1</div>
+        </div>
+        
+        <div class="chat-window" id="chat-window">
+            <div class="chat-header">
+                <div class="chat-header-info">
+                    <div class="chat-avatar">🤖</div>
+                    <div class="chat-header-text">
+                        <div class="chat-business-name">Chatably Demo</div>
+                        <div class="chat-status">En línea</div>
+                    </div>
+                </div>
+                <button class="chat-minimize" id="chat-minimize">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 13H5v-2h14v2z"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="chat-messages" id="chat-messages">
+                <div class="chat-message bot">
+                    <div class="message-content">
+                        ¡Hola! 👋 Bienvenido a la demo de Chatably. Soy tu asistente virtual. ¿En qué puedo ayudarte hoy?
+                    </div>
+                    <div class="message-time">Ahora</div>
+                </div>
+            </div>
+            
+            <div class="chat-typing" id="chat-typing" style="display: none;">
+                <div class="typing-indicator">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <span class="typing-text">Escribiendo...</span>
+            </div>
+            
+            <div class="chat-input-container">
+                <div class="chat-quick-replies" id="chat-quick-replies">
+                    <button class="quick-reply" data-message="hola">👋 Hola</button>
+                    <button class="quick-reply" data-message="precios">💰 Precios</button>
+                    <button class="quick-reply" data-message="horarios">⏰ Horarios</button>
+                    <button class="quick-reply" data-message="agendar">📅 Agendar</button>
+                </div>
+                
+                <div class="chat-input-row">
+                    <input type="text" id="chat-input" placeholder="Escribe tu mensaje..." maxlength="500">
+                    <button id="chat-send" disabled>
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="chat-reset">
+                    <button id="chat-reset" class="reset-button">🔄 Reiniciar demo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/performance-optimizations.js"></script>
+    <script src="js/accessibility-enhancements.js"></script>
+    <script src="js/performance-metrics.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/chat-demo.js"></script>
+    <script src="js/feature-toggles.js"></script>
+    <script src="js/conversion-features.js"></script>
+    <script src="js/admin-panel.js"></script>
+    <script src="js/ultra-features.js"></script>
+    <script src="js/notification-fix.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        // Register Service Worker for PWA functionality
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', async () => {
+                try {
+                    const registration = await navigator.serviceWorker.register('/sw.js', {
+                        scope: '/'
+                    });
+                    
+                    console.log('✅ Service Worker registered successfully:', registration.scope);
+                    
+                    // Listen for updates
+                    registration.addEventListener('updatefound', () => {
+                        const newWorker = registration.installing;
+                        newWorker?.addEventListener('statechange', () => {
+                            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                // New update available
+                                console.log('🔄 New app version available');
+                                showUpdateNotification();
+                            }
+                        });
+                    });
+                    
+                } catch (error) {
+                    console.log('❌ Service Worker registration failed:', error);
+                }
+            });
+        }
+        
+        function showUpdateNotification() {
+            // You can implement a custom update notification here
+            if (confirm('Nueva versión disponible. ¿Quieres actualizar?')) {
+                window.location.reload();
+            }
+        }
+        
+        // Add to Home Screen prompt
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            showInstallPrompt();
+        });
+        
+        function showInstallPrompt() {
+            // Create install button
+            const installButton = document.createElement('button');
+            installButton.textContent = '📱 Instalar App';
+            installButton.className = 'install-prompt cta-button';
+            installButton.style.cssText = `
+                position: fixed;
+                bottom: 100px;
+                left: 20px;
+                z-index: 1000;
+                animation: slideInLeft 0.5s ease;
+            `;
+            
+            installButton.addEventListener('click', async () => {
+                if (deferredPrompt) {
+                    deferredPrompt.prompt();
+                    const { outcome } = await deferredPrompt.userChoice;
+                    console.log('Install prompt outcome:', outcome);
+                    deferredPrompt = null;
+                    installButton.remove();
+                }
+            });
+            
+            document.body.appendChild(installButton);
+            
+            // Auto-hide after 10 seconds
+            setTimeout(() => {
+                if (installButton.parentNode) {
+                    installButton.remove();
+                }
+            }, 10000);
+        }
+        
+        // Track PWA usage
+        window.addEventListener('appinstalled', () => {
+            console.log('📱 PWA installed successfully');
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'pwa_install', {
+                    'event_category': 'engagement',
+                    'event_label': 'chatably_pwa'
+                });
+            }
+        });
+    </script>
+</body>
+</html>
