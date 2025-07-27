@@ -749,6 +749,393 @@
             opacity: 1;
             transform: translateY(0);
         }
+        
+        /* Interactive Grid Section */
+        .interactive-grid-section {
+            padding: var(--space-3xl) 0;
+            background: var(--premium-white);
+        }
+        
+        .grid-container {
+            background: white;
+            border-radius: 32px;
+            padding: var(--space-xl);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .grid-container.visible {
+            transform: translateY(0);
+            opacity: 1;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.12);
+        }
+        
+        /* Grid Header */
+        .grid-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+            flex-wrap: wrap;
+        }
+        
+        .sector-label {
+            background: var(--premium-gray-light);
+            color: var(--premium-gray);
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        
+        .sector-tabs {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            flex: 1;
+        }
+        
+        .sector-tab {
+            padding: 10px 20px;
+            background: white;
+            border: 2px solid transparent;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--premium-gray);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+        
+        .sector-tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .sector-tab.active {
+            background: var(--premium-black);
+            color: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Subcategories */
+        .subcategories {
+            display: flex;
+            gap: 12px;
+            margin-bottom: var(--space-xl);
+            flex-wrap: wrap;
+        }
+        
+        .subcategory-btn {
+            padding: 12px 24px;
+            background: var(--premium-gray-light);
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--premium-gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .subcategory-btn:hover {
+            background: #e8e8ed;
+            transform: translateY(-1px);
+        }
+        
+        .subcategory-btn.active {
+            background: var(--premium-accent);
+            color: white;
+        }
+        
+        /* Demo Layout */
+        .demo-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-xl);
+            background: var(--premium-gray-light);
+            border-radius: 24px;
+            padding: var(--space-xl);
+            min-height: 500px;
+            align-items: center;
+        }
+        
+        /* Chat Simulation */
+        .chat-simulation {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            max-width: 380px;
+            margin: 0 auto;
+            transform: translateY(-20px);
+        }
+        
+        .chat-header {
+            background: #075E54;
+            color: white;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .chat-avatar {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        
+        .chat-name {
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .chat-status {
+            font-size: 13px;
+            opacity: 0.8;
+        }
+        
+        .chat-messages {
+            padding: 20px;
+            background: #E5DDD5;
+            min-height: 350px;
+            max-height: 350px;
+            overflow-y: auto;
+        }
+        
+        .message {
+            margin-bottom: 16px;
+            display: flex;
+        }
+        
+        .message.bot {
+            justify-content: flex-start;
+        }
+        
+        .message.user {
+            justify-content: flex-end;
+        }
+        
+        .message-bubble {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 16px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        .message.bot .message-bubble {
+            background: white;
+            border-top-left-radius: 4px;
+        }
+        
+        .message.user .message-bubble {
+            background: #DCF8C6;
+            border-top-right-radius: 4px;
+        }
+        
+        .message-options {
+            margin-top: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .option-btn {
+            padding: 8px 16px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: left;
+        }
+        
+        .option-btn:hover {
+            background: #f0f0f0;
+            transform: translateX(4px);
+        }
+        
+        .chat-input {
+            display: flex;
+            padding: 16px;
+            background: white;
+            border-top: 1px solid #eee;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 10px 16px;
+            border: 1px solid #ddd;
+            border-radius: 24px;
+            font-size: 14px;
+            background: #f8f8f8;
+        }
+        
+        .send-btn {
+            margin-left: 8px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #25D366;
+            color: white;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Business Notification */
+        .business-notification {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+        
+        .notification-header {
+            background: linear-gradient(135deg, var(--premium-accent), #5856D6);
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .notification-icon {
+            font-size: 28px;
+        }
+        
+        .notification-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .notification-content {
+            padding: 24px;
+        }
+        
+        .notification-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .notification-item:last-of-type {
+            border-bottom: none;
+        }
+        
+        .item-label {
+            color: var(--premium-gray);
+            font-size: 14px;
+        }
+        
+        .item-value {
+            font-weight: 600;
+            font-size: 15px;
+        }
+        
+        .notification-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+        
+        .action-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .action-btn.confirm {
+            background: #34C759;
+            color: white;
+        }
+        
+        .action-btn.confirm:hover {
+            background: #2CA048;
+            transform: translateY(-2px);
+        }
+        
+        .action-btn.reschedule {
+            background: #F0F0F5;
+            color: var(--premium-gray);
+        }
+        
+        .action-btn.reschedule:hover {
+            background: #E0E0E5;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .sector-tabs {
+                gap: 8px;
+            }
+            
+            .sector-tab {
+                font-size: 13px;
+                padding: 8px 16px;
+            }
+        }
+        
+        @media (max-width: 968px) {
+            .demo-layout {
+                grid-template-columns: 1fr;
+                gap: var(--space-lg);
+            }
+            
+            .chat-simulation {
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .grid-container {
+                padding: var(--space-md);
+            }
+            
+            .grid-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .sector-tabs {
+                width: 100%;
+            }
+            
+            .subcategories {
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 8px;
+            }
+            
+            .subcategory-btn {
+                flex-shrink: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -802,6 +1189,103 @@
             </div>
             <div class="hero-visual">
                 <img src="https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=1200&h=600&fit=crop" alt="Chatably Interface" class="hero-image">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Interactive Grid Section -->
+    <section class="interactive-grid-section">
+        <div class="container">
+            <div class="grid-container">
+                <!-- Header with Sector Label and Tabs -->
+                <div class="grid-header">
+                    <div class="sector-label">Sector</div>
+                    <div class="sector-tabs">
+                        <button class="sector-tab active" data-sector="Servicios Profesionales">Servicios Profesionales</button>
+                        <button class="sector-tab" data-sector="Fitness & Deportes">Fitness & Deportes</button>
+                        <button class="sector-tab" data-sector="Belleza & Estética">Belleza & Estética</button>
+                        <button class="sector-tab" data-sector="Restaurantes">Restaurantes</button>
+                        <button class="sector-tab" data-sector="Salud & Medicina">Salud & Medicina</button>
+                        <button class="sector-tab" data-sector="Educación">Educación</button>
+                        <button class="sector-tab" data-sector="Hotelería & Turismo">Hotelería & Turismo</button>
+                        <button class="sector-tab" data-sector="Industria & B2B">Industria & B2B</button>
+                        <button class="sector-tab" data-sector="Ecommerce & Retail">Ecommerce & Retail</button>
+                        <button class="sector-tab" data-sector="Automotriz">Automotriz</button>
+                    </div>
+                </div>
+                
+                <!-- Subcategories -->
+                <div class="subcategories">
+                    <button class="subcategory-btn active" data-subcategory="Consultorías">Consultorías</button>
+                    <button class="subcategory-btn" data-subcategory="Arquitectos">Arquitectos</button>
+                    <button class="subcategory-btn" data-subcategory="Abogados">Abogados</button>
+                    <button class="subcategory-btn" data-subcategory="Contadores">Contadores</button>
+                    <button class="subcategory-btn" data-subcategory="Nutriólogos">Nutriólogos</button>
+                </div>
+                
+                <!-- Demo Layout -->
+                <div class="demo-layout">
+                    <!-- WhatsApp Chat Simulation -->
+                    <div class="chat-simulation">
+                        <div class="chat-header">
+                            <div class="chat-avatar">🏢</div>
+                            <div class="chat-info">
+                                <div class="chat-name">Consultoría Elite</div>
+                                <div class="chat-status">En línea</div>
+                            </div>
+                        </div>
+                        <div class="chat-messages">
+                            <div class="message bot">
+                                <div class="message-bubble">¡Hola! 👋 Soy el asistente virtual de Consultoría Elite. ¿En qué puedo ayudarte hoy?</div>
+                            </div>
+                            <div class="message user">
+                                <div class="message-bubble">Hola, me gustaría agendar una consultoría</div>
+                            </div>
+                            <div class="message bot">
+                                <div class="message-bubble">¡Perfecto! Me encantaría ayudarte a agendar tu consultoría. ¿Qué tipo de servicio necesitas?</div>
+                                <div class="message-options">
+                                    <button class="option-btn">Estrategia empresarial</button>
+                                    <button class="option-btn">Transformación digital</button>
+                                    <button class="option-btn">Gestión financiera</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-input">
+                            <input type="text" placeholder="Escribe un mensaje..." disabled>
+                            <button class="send-btn">➤</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Business Notification -->
+                    <div class="business-notification">
+                        <div class="notification-header">
+                            <div class="notification-icon">📅</div>
+                            <div class="notification-title">Nueva cita agendada</div>
+                        </div>
+                        <div class="notification-content">
+                            <div class="notification-item">
+                                <span class="item-label">Cliente:</span>
+                                <span class="item-value">María González</span>
+                            </div>
+                            <div class="notification-item">
+                                <span class="item-label">Servicio:</span>
+                                <span class="item-value">Estrategia empresarial</span>
+                            </div>
+                            <div class="notification-item">
+                                <span class="item-label">Fecha:</span>
+                                <span class="item-value">28 de julio, 2024</span>
+                            </div>
+                            <div class="notification-item">
+                                <span class="item-label">Hora:</span>
+                                <span class="item-value">10:00 AM</span>
+                            </div>
+                            <div class="notification-actions">
+                                <button class="action-btn confirm">✓ Confirmar</button>
+                                <button class="action-btn reschedule">⟲ Reagendar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1089,6 +1573,148 @@
                 trackEvent('click', `Plan ${plan}`);
             });
         });
+        
+        // Interactive Grid Functionality
+        const sectorData = {
+            "Servicios Profesionales": ["Consultorías", "Arquitectos", "Abogados", "Contadores", "Nutriólogos"],
+            "Fitness & Deportes": ["Gimnasios", "Padel", "Club de tenis", "Soccer", "Boliche"],
+            "Belleza & Estética": ["Salones de belleza", "Spa & Masajes", "Salón de uñas", "Peluquería / Barbería", "Depilación Láser"],
+            "Restaurantes": ["Fine Dining", "Taquerías", "Marisquerías", "Sushi / Oriental", "Cafeterías"],
+            "Salud & Medicina": ["Consultorio médico", "Dermatólogos", "Oftalmólogos", "Dentistas", "Psicólogos"],
+            "Educación": ["Escuelas", "Universidades", "Cursos Online", "Idiomas", "Coaches"],
+            "Hotelería & Turismo": ["Hoteles", "Hostales", "Agencias de viaje", "Tours", "Rentals"],
+            "Industria & B2B": ["Manufactura de bebidas", "Construcción", "Madera", "Paneles solares", "Fabricación de puertas"],
+            "Ecommerce & Retail": ["Tiendas ecommerce", "Boutiques", "Retail", "Zapaterías", "Marcas de moda"],
+            "Automotriz": ["Llantas", "Taller mecánico", "Refaccionaria", "Suspensión y frenos", "Agencias de autos"]
+        };
+        
+        const chatContent = {
+            "Consultorías": {
+                businessName: "Consultoría Elite",
+                emoji: "🏢",
+                messages: [
+                    { type: "bot", text: "¡Hola! 👋 Soy el asistente virtual de Consultoría Elite. ¿En qué puedo ayudarte hoy?" },
+                    { type: "user", text: "Hola, me gustaría agendar una consultoría" },
+                    { type: "bot", text: "¡Perfecto! Me encantaría ayudarte a agendar tu consultoría. ¿Qué tipo de servicio necesitas?", 
+                      options: ["Estrategia empresarial", "Transformación digital", "Gestión financiera"] }
+                ]
+            },
+            "Gimnasios": {
+                businessName: "FitLife Gym",
+                emoji: "💪",
+                messages: [
+                    { type: "bot", text: "¡Hola! 💪 Bienvenido a FitLife Gym. ¿Listo para transformar tu vida?" },
+                    { type: "user", text: "Quiero información sobre membresías" },
+                    { type: "bot", text: "¡Excelente decisión! Tenemos planes que se adaptan a tus objetivos. ¿Qué te interesa más?", 
+                      options: ["Plan mensual", "Plan trimestral", "Plan anual con descuento"] }
+                ]
+            }
+            // Add more content for other subcategories as needed
+        };
+        
+        // Handle sector tab clicks
+        document.querySelectorAll('.sector-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Update active tab
+                document.querySelectorAll('.sector-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Update subcategories
+                const sector = this.getAttribute('data-sector');
+                const subcategories = sectorData[sector];
+                updateSubcategories(subcategories);
+                
+                // Track event
+                trackEvent('sector_change', sector);
+            });
+        });
+        
+        // Update subcategories function
+        function updateSubcategories(subcategories) {
+            const container = document.querySelector('.subcategories');
+            container.innerHTML = '';
+            
+            subcategories.forEach((subcat, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'subcategory-btn' + (index === 0 ? ' active' : '');
+                btn.setAttribute('data-subcategory', subcat);
+                btn.textContent = subcat;
+                btn.addEventListener('click', handleSubcategoryClick);
+                container.appendChild(btn);
+            });
+            
+            // Update demo content for first subcategory
+            updateDemoContent(subcategories[0]);
+        }
+        
+        // Handle subcategory clicks
+        function handleSubcategoryClick() {
+            document.querySelectorAll('.subcategory-btn').forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            const subcategory = this.getAttribute('data-subcategory');
+            updateDemoContent(subcategory);
+            trackEvent('subcategory_change', subcategory);
+        }
+        
+        // Update demo content
+        function updateDemoContent(subcategory) {
+            const content = chatContent[subcategory] || chatContent["Consultorías"];
+            
+            // Update chat header
+            document.querySelector('.chat-name').textContent = content.businessName;
+            document.querySelector('.chat-avatar').textContent = content.emoji;
+            
+            // Update messages
+            const messagesContainer = document.querySelector('.chat-messages');
+            messagesContainer.innerHTML = '';
+            
+            content.messages.forEach(msg => {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${msg.type}`;
+                
+                const bubble = document.createElement('div');
+                bubble.className = 'message-bubble';
+                bubble.textContent = msg.text;
+                messageDiv.appendChild(bubble);
+                
+                if (msg.options) {
+                    const optionsDiv = document.createElement('div');
+                    optionsDiv.className = 'message-options';
+                    msg.options.forEach(option => {
+                        const optionBtn = document.createElement('button');
+                        optionBtn.className = 'option-btn';
+                        optionBtn.textContent = option;
+                        optionsDiv.appendChild(optionBtn);
+                    });
+                    messageDiv.appendChild(optionsDiv);
+                }
+                
+                messagesContainer.appendChild(messageDiv);
+            });
+            
+            // Update notification content
+            document.querySelector('.item-value').textContent = content.businessName;
+        }
+        
+        // Add click handlers to existing subcategory buttons
+        document.querySelectorAll('.subcategory-btn').forEach(btn => {
+            btn.addEventListener('click', handleSubcategoryClick);
+        });
+        
+        // Intersection Observer for grid animation
+        const gridObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        const gridContainer = document.querySelector('.grid-container');
+        if (gridContainer) {
+            gridObserver.observe(gridContainer);
+        }
     </script>
 </body>
 </html>
