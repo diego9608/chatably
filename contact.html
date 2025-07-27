@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Chatably</title>
+    <meta name="description" content="Contáctanos para transformar tu servicio al cliente con IA conversacional. Respuesta en menos de 24 horas.">
+    <meta name="color-scheme" content="light dark">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+    <!-- Design Tokens -->
+    <link rel="stylesheet" href="/shared/css/design-tokens.css">
+    
+    <!-- Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX', { 'anonymize_ip': true });
+    </script>
+    
+    <style>
+        /* Premium Typography */
+        @font-face {
+            font-family: 'SF Pro Display';
+            src: url('https://developer.apple.com/fonts/');
+            font-display: swap;
+        }
+        
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        ::selection {
+            background: var(--brand-500);
+            color: white;
+        }
+        
+        /* Premium Variables */
+        :root {
+            --premium-black: #000000;
+            --premium-white: #ffffff;
+            --premium-gray: #86868b;
+            --premium-gray-light: #f5f5f7;
+            --premium-accent: #0071e3;
+            --premium-green: #34C759;
+            
+            /* Spacing */
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 2rem;
+            --space-lg: 3rem;
+            --space-xl: 4rem;
+            --space-2xl: 6rem;
+            --space-3xl: 8rem;
+            
+            /* Transitions */
+            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Base */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+            font-size: 17px;
+            line-height: 1.47059;
+            font-weight: 400;
+            letter-spacing: -0.022em;
+            color: var(--premium-black);
+            background: var(--premium-white);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 48px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 24px;
+            }
+        }
+        
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            z-index: 9999;
+            transition: var(--transition-smooth);
+        }
+        
+        .nav-content {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .nav-logo {
+            font-size: 21px;
+            font-weight: 600;
+            letter-spacing: -0.015em;
+            color: var(--premium-black);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .nav-logo:hover {
+            opacity: 0.8;
+        }
+        
+        .nav-cta {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--premium-accent);
+            text-decoration: none;
+            padding: 4px 16px;
+            border-radius: 20px;
+            transition: var(--transition-smooth);
+        }
+        
+        .nav-cta:hover {
+            background: var(--premium-accent);
+            color: white;
+        }
+        
+        /* Contact Hero */
+        .contact-hero {
+            padding-top: calc(48px + var(--space-2xl));
+            padding-bottom: var(--space-xl);
+            text-align: center;
+        }
+        
+        .contact-badge {
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--premium-gray);
+            margin-bottom: var(--space-sm);
+            opacity: 0;
+            animation: fadeInDown 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+        
+        .contact-title {
+            font-size: 64px;
+            line-height: 1.05;
+            letter-spacing: -0.015em;
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #007AFF 0%, #5856D6 50%, #AF52DE 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .contact-subtitle {
+            font-size: 24px;
+            line-height: 1.4;
+            font-weight: 400;
+            color: var(--premium-gray);
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s forwards;
+        }
+        
+        /* Contact Content */
+        .contact-content {
+            padding: var(--space-xl) 0;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-2xl);
+            align-items: start;
+        }
+        
+        @media (max-width: 968px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-xl);
+            }
+        }
+        
+        /* Contact Form */
+        .contact-form-section {
+            opacity: 0;
+            animation: fadeInLeft 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s forwards;
+        }
+        
+        .form-title {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: var(--space-lg);
+        }
+        
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xs);
+        }
+        
+        .form-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--premium-gray);
+            letter-spacing: 0.5px;
+        }
+        
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 16px 20px;
+            font-size: 17px;
+            font-family: inherit;
+            border: 1px solid #d2d2d7;
+            border-radius: 12px;
+            background: white;
+            transition: var(--transition-smooth);
+            -webkit-appearance: none;
+        }
+        
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--premium-accent);
+            box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.1);
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-submit {
+            background: var(--premium-black);
+            color: white;
+            padding: 18px 36px;
+            border: none;
+            border-radius: 980px;
+            font-size: 17px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            margin-top: var(--space-sm);
+        }
+        
+        .form-submit:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+        }
+        
+        .form-submit:active {
+            transform: scale(0.98);
+        }
+        
+        /* Contact Info */
+        .contact-info-section {
+            opacity: 0;
+            animation: fadeInRight 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s forwards;
+        }
+        
+        .info-title {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: var(--space-lg);
+        }
+        
+        .info-cards {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+        
+        .info-card {
+            background: var(--premium-gray-light);
+            padding: var(--space-lg);
+            border-radius: 18px;
+            transition: var(--transition-smooth);
+        }
+        
+        .info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+        }
+        
+        .info-icon {
+            font-size: 32px;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .info-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--premium-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: var(--space-xs);
+        }
+        
+        .info-value {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--premium-black);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .info-value:hover {
+            color: var(--premium-accent);
+        }
+        
+        /* Response Time */
+        .response-time {
+            text-align: center;
+            padding: var(--space-xl) 0;
+            margin-bottom: var(--space-xl);
+        }
+        
+        .response-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            background: var(--premium-green);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 980px;
+            font-size: 16px;
+            font-weight: 600;
+            opacity: 0;
+            animation: fadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s forwards;
+        }
+        
+        .response-icon {
+            font-size: 20px;
+        }
+        
+        /* Footer */
+        .footer {
+            padding: var(--space-xl) 0;
+            background: var(--premium-gray-light);
+            margin-top: var(--space-3xl);
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .footer-copy {
+            color: var(--premium-gray);
+            font-size: 14px;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: var(--space-lg);
+        }
+        
+        .footer-link {
+            color: var(--premium-gray);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            color: var(--premium-black);
+        }
+        
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Success Message */
+        .form-success {
+            display: none;
+            background: var(--premium-green);
+            color: white;
+            padding: var(--space-md);
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 500;
+            margin-top: var(--space-md);
+        }
+        
+        .form-success.show {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-title {
+                font-size: 48px;
+            }
+            
+            .contact-subtitle {
+                font-size: 20px;
+            }
+            
+            .form-title,
+            .info-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container nav-content">
+            <a href="/" class="nav-logo">Chatably</a>
+            <a href="/#pricing" class="nav-cta">Ver planes</a>
+        </div>
+    </nav>
+    
+    <!-- Contact Hero -->
+    <section class="contact-hero">
+        <div class="container">
+            <p class="contact-badge">CONTACTO</p>
+            <h1 class="contact-title">
+                Hablemos de tu <span class="gradient-text">transformación</span>
+            </h1>
+            <p class="contact-subtitle">
+                Estamos listos para ayudarte a revolucionar tu servicio al cliente con IA conversacional
+            </p>
+        </div>
+    </section>
+    
+    <!-- Contact Content -->
+    <section class="contact-content">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form-section">
+                    <h2 class="form-title">Envíanos un mensaje</h2>
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label class="form-label" for="name">Nombre completo</label>
+                            <input type="text" id="name" name="name" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="email">Correo electrónico</label>
+                            <input type="email" id="email" name="email" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="company">Empresa</label>
+                            <input type="text" id="company" name="company" class="form-input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="phone">Teléfono (opcional)</label>
+                            <input type="tel" id="phone" name="phone" class="form-input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="message">¿Cómo podemos ayudarte?</label>
+                            <textarea id="message" name="message" class="form-textarea" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="form-submit">Enviar mensaje</button>
+                        
+                        <div class="form-success" id="formSuccess">
+                            ✅ Mensaje enviado correctamente. Te responderemos pronto.
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="contact-info-section">
+                    <h2 class="info-title">Otras formas de contacto</h2>
+                    <div class="info-cards">
+                        <div class="info-card">
+                            <div class="info-icon">📧</div>
+                            <p class="info-label">Email</p>
+                            <a href="mailto:hola@chatably.ai" class="info-value">hola@chatably.ai</a>
+                        </div>
+                        
+                        <div class="info-card">
+                            <div class="info-icon">💬</div>
+                            <p class="info-label">WhatsApp</p>
+                            <a href="https://wa.me/521234567890" class="info-value">+52 123 456 7890</a>
+                        </div>
+                        
+                        <div class="info-card">
+                            <div class="info-icon">📅</div>
+                            <p class="info-label">Agendar Demo</p>
+                            <a href="https://calendly.com/chatably" class="info-value">calendly.com/chatably</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Response Time -->
+            <div class="response-time">
+                <div class="response-badge">
+                    <span class="response-icon">⚡</span>
+                    <span>Tiempo de respuesta promedio: 2 horas</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-copy">© 2024 Chatably. Todos los derechos reservados.</p>
+                <nav class="footer-links">
+                    <a href="/privacy" class="footer-link">Privacidad</a>
+                    <a href="/terms" class="footer-link">Términos</a>
+                    <a href="/" class="footer-link">Inicio</a>
+                </nav>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script>
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Log form data (in production, send to backend)
+            console.log('Form submitted:', data);
+            
+            // Show success message
+            document.getElementById('formSuccess').classList.add('show');
+            
+            // Reset form
+            this.reset();
+            
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                document.getElementById('formSuccess').classList.remove('show');
+            }, 5000);
+            
+            // Track event
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'form_submit', {
+                    event_category: 'Contact',
+                    event_label: 'Contact Form'
+                });
+            }
+        });
+        
+        // Premium scroll effect on nav
+        let lastScroll = 0;
+        const nav = document.querySelector('.nav');
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+                nav.style.boxShadow = '0 1px 0 rgba(0, 0, 0, 0.1)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.8)';
+                nav.style.boxShadow = 'none';
+            }
+            
+            lastScroll = currentScroll;
+        });
+    </script>
+</body>
+</html>
