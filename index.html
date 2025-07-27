@@ -159,7 +159,7 @@
             color: var(--premium-gray);
             margin-bottom: var(--space-md);
             opacity: 0;
-            animation: fadeInDown 0.8s ease forwards;
+            animation: heroFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
         
         .hero-title {
@@ -168,8 +168,18 @@
             letter-spacing: -0.015em;
             font-weight: 700;
             margin-bottom: var(--space-lg);
+        }
+        
+        .hero-title-line1 {
+            display: block;
             opacity: 0;
-            animation: fadeInUp 1s ease 0.2s forwards;
+            animation: heroFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+        }
+        
+        .hero-title-line2 {
+            display: block;
+            opacity: 0;
+            animation: heroFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
         }
         
         @media (max-width: 768px) {
@@ -195,7 +205,7 @@
             margin-left: auto;
             margin-right: auto;
             opacity: 0;
-            animation: fadeInUp 1s ease 0.4s forwards;
+            animation: heroFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards;
         }
         
         @media (max-width: 768px) {
@@ -219,7 +229,7 @@
             transition: var(--transition-smooth);
             transform: scale(1);
             opacity: 0;
-            animation: fadeInUp 1s ease 0.6s forwards;
+            animation: heroFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
         }
         
         .cta-primary:hover {
@@ -244,7 +254,7 @@
             margin-top: var(--space-3xl);
             position: relative;
             opacity: 0;
-            animation: fadeIn 1.2s ease 0.8s forwards;
+            animation: heroVisualFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.75s forwards;
         }
         
         .hero-image {
@@ -501,6 +511,30 @@
         }
         
         /* Animations */
+        @keyframes heroFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) translateZ(0);
+                filter: blur(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) translateZ(0);
+                filter: blur(0px);
+            }
+        }
+        
+        @keyframes heroVisualFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95) translateZ(0);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1) translateZ(0);
+            }
+        }
+        
         @keyframes fadeInDown {
             from {
                 opacity: 0;
@@ -556,8 +590,8 @@
             <div class="hero-content">
                 <p class="hero-badge">INTELIGENCIA ARTIFICIAL CONVERSACIONAL</p>
                 <h1 class="hero-title">
-                    El futuro de la<br>
-                    <span class="gradient-text">conversación empresarial</span>
+                    <span class="hero-title-line1">El futuro de la</span>
+                    <span class="hero-title-line2 gradient-text">conversación empresarial</span>
                 </h1>
                 <p class="hero-subtitle">
                     Transforma cada interacción en una oportunidad. 
