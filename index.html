@@ -140,9 +140,145 @@
             color: white;
         }
         
+        /* Promotion Banner */
+        .promotion-banner {
+            margin-top: 48px;
+            padding: var(--space-lg) 0;
+            background: linear-gradient(135deg, var(--premium-black) 0%, #1a1a1a 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .promotion-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.1) 50%, 
+                transparent 100%);
+            animation: promotionShimmer 3s ease-in-out infinite;
+        }
+        
+        @keyframes promotionShimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .promotion-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .promotion-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: var(--space-sm);
+            opacity: 0;
+            animation: heroFadeIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+        
+        .promotion-icon {
+            font-size: 16px;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+        }
+        
+        .promotion-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: var(--space-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: heroFadeIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards;
+        }
+        
+        .promotion-price-original {
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: line-through;
+            font-weight: 400;
+        }
+        
+        .promotion-price-now {
+            font-size: 40px;
+            color: #FFD700;
+            font-weight: 800;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        .promotion-subtitle {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: var(--space-md);
+            opacity: 0;
+            animation: heroFadeIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s forwards;
+        }
+        
+        .promotion-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            color: var(--premium-black);
+            padding: 14px 28px;
+            border-radius: 980px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: heroFadeIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s forwards;
+        }
+        
+        .promotion-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+        }
+        
+        .promotion-arrow {
+            transition: transform 0.3s ease;
+        }
+        
+        .promotion-cta:hover .promotion-arrow {
+            transform: translateX(4px);
+        }
+        
+        @media (max-width: 768px) {
+            .promotion-title {
+                font-size: 24px;
+            }
+            
+            .promotion-price-original {
+                font-size: 20px;
+            }
+            
+            .promotion-price-now {
+                font-size: 32px;
+            }
+            
+            .promotion-subtitle {
+                font-size: 16px;
+            }
+        }
+        
         /* Hero Section */
         .hero {
-            padding-top: calc(48px + var(--space-xl));
+            padding-top: var(--space-xl);
             padding-bottom: var(--space-xl);
             text-align: center;
             overflow: hidden;
@@ -623,6 +759,28 @@
             <a href="#pricing" class="nav-cta">Ver planes</a>
         </div>
     </nav>
+    
+    <!-- Promotion Banner -->
+    <section class="promotion-banner">
+        <div class="container">
+            <div class="promotion-content">
+                <div class="promotion-badge">
+                    <span class="promotion-icon">🎯</span>
+                    <span>OFERTA EXCLUSIVA JULIO</span>
+                </div>
+                <h3 class="promotion-title">
+                    Instalación Premium
+                    <span class="promotion-price-original">$54,550</span>
+                    <span class="promotion-price-now">$24,450</span>
+                </h3>
+                <p class="promotion-subtitle">Implementación completa + configuración avanzada + capacitación</p>
+                <a href="#contact" class="promotion-cta">
+                    Aprovechar oferta
+                    <span class="promotion-arrow">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
     
     <!-- Hero Section -->
     <section class="hero">
