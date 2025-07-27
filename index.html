@@ -330,10 +330,16 @@
         
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: var(--space-lg);
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
+        }
+        
+        @media (max-width: 1200px) {
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
         
         @media (max-width: 768px) {
@@ -606,16 +612,16 @@
                 <div class="pricing-card animate-on-scroll">
                     <h3 class="plan-name">Starter</h3>
                     <div class="plan-price">
-                        $49<span>/mes</span>
+                        $1,200<span>/mes</span>
                     </div>
                     <ul class="plan-features">
                         <li>
                             <span class="feature-check">✓</span>
-                            5,000 conversaciones
+                            10,000 conversaciones
                         </li>
                         <li>
                             <span class="feature-check">✓</span>
-                            1 agente IA
+                            2 agentes IA
                         </li>
                         <li>
                             <span class="feature-check">✓</span>
@@ -623,24 +629,28 @@
                         </li>
                         <li>
                             <span class="feature-check">✓</span>
-                            Analytics básico
+                            Analytics esencial
+                        </li>
+                        <li>
+                            <span class="feature-check">✓</span>
+                            Soporte por email
                         </li>
                     </ul>
                     <a href="https://buy.stripe.com/28E9AS1T99SQcW18Qz7ok0b" class="plan-cta" target="_blank">
-                        Empezar gratis
+                        Comenzar ahora
                     </a>
                 </div>
                 
-                <!-- Professional -->
+                <!-- Pro -->
                 <div class="pricing-card featured animate-on-scroll">
-                    <h3 class="plan-name">Professional</h3>
+                    <h3 class="plan-name">Pro</h3>
                     <div class="plan-price">
-                        $99<span>/mes</span>
+                        $2,400<span>/mes</span>
                     </div>
                     <ul class="plan-features">
                         <li>
                             <span class="feature-check">✓</span>
-                            Conversaciones ilimitadas
+                            50,000 conversaciones
                         </li>
                         <li>
                             <span class="feature-check">✓</span>
@@ -658,9 +668,50 @@
                             <span class="feature-check">✓</span>
                             API & Webhooks
                         </li>
+                        <li>
+                            <span class="feature-check">✓</span>
+                            Soporte prioritario
+                        </li>
                     </ul>
                     <a href="https://buy.stripe.com/7sYfZgcxN3usbRX0k37ok0c" class="plan-cta" target="_blank">
-                        Empezar gratis
+                        Comenzar ahora
+                    </a>
+                </div>
+                
+                <!-- Ultra -->
+                <div class="pricing-card animate-on-scroll">
+                    <h3 class="plan-name">Ultra</h3>
+                    <div class="plan-price">
+                        $3,500<span>/mes</span>
+                    </div>
+                    <ul class="plan-features">
+                        <li>
+                            <span class="feature-check">✓</span>
+                            Conversaciones ilimitadas
+                        </li>
+                        <li>
+                            <span class="feature-check">✓</span>
+                            10 agentes IA
+                        </li>
+                        <li>
+                            <span class="feature-check">✓</span>
+                            Automatización avanzada
+                        </li>
+                        <li>
+                            <span class="feature-check">✓</span>
+                            Integraciones premium
+                        </li>
+                        <li>
+                            <span class="feature-check">✓</span>
+                            IA con entrenamiento custom
+                        </li>
+                        <li>
+                            <span class="feature-check">✓</span>
+                            Soporte dedicado 24/7
+                        </li>
+                    </ul>
+                    <a href="https://buy.stripe.com/cNifZg0P54yw2hnfeX7ok0d" class="plan-cta" target="_blank">
+                        Comenzar ahora
                     </a>
                 </div>
                 
@@ -673,7 +724,7 @@
                     <ul class="plan-features">
                         <li>
                             <span class="feature-check">✓</span>
-                            Volumen ilimitado
+                            Todo lo de Ultra
                         </li>
                         <li>
                             <span class="feature-check">✓</span>
@@ -681,18 +732,22 @@
                         </li>
                         <li>
                             <span class="feature-check">✓</span>
-                            Implementación dedicada
+                            Infraestructura dedicada
                         </li>
                         <li>
                             <span class="feature-check">✓</span>
-                            SLA empresarial
+                            SLA empresarial 99.9%
                         </li>
                         <li>
                             <span class="feature-check">✓</span>
-                            Soporte 24/7 premium
+                            Gerente de cuenta
+                        </li>
+                        <li>
+                            <span class="feature-check">✓</span>
+                            Desarrollo a medida
                         </li>
                     </ul>
-                    <a href="https://buy.stripe.com/cNifZg0P54yw2hnfeX7ok0d" class="plan-cta" target="_blank">
+                    <a href="#contact" class="plan-cta">
                         Contactar ventas
                     </a>
                 </div>
