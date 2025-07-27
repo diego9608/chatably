@@ -141,8 +141,8 @@
         
         /* Hero Section */
         .hero {
-            padding-top: calc(48px + var(--space-3xl));
-            padding-bottom: var(--space-3xl);
+            padding-top: calc(48px + var(--space-2xl));
+            padding-bottom: var(--space-2xl);
             text-align: center;
             overflow: hidden;
         }
@@ -157,9 +157,9 @@
             font-size: 14px;
             font-weight: 500;
             color: var(--premium-gray);
-            margin-bottom: var(--space-md);
+            margin-bottom: var(--space-sm);
             opacity: 0;
-            animation: heroFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: heroFadeIn 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
         
         .hero-title {
@@ -167,19 +167,19 @@
             line-height: 1.05;
             letter-spacing: -0.015em;
             font-weight: 700;
-            margin-bottom: var(--space-lg);
+            margin-bottom: var(--space-md);
         }
         
         .hero-title-line1 {
             display: block;
             opacity: 0;
-            animation: heroFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+            animation: heroFadeIn 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards;
         }
         
         .hero-title-line2 {
             display: block;
             opacity: 0;
-            animation: heroFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+            animation: heroFadeIn 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s forwards;
         }
         
         @media (max-width: 768px) {
@@ -200,12 +200,12 @@
             line-height: 1.4;
             font-weight: 400;
             color: var(--premium-gray);
-            margin-bottom: var(--space-xl);
+            margin-bottom: var(--space-lg);
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
             opacity: 0;
-            animation: heroFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards;
+            animation: heroFadeIn 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.9s forwards;
         }
         
         @media (max-width: 768px) {
@@ -229,7 +229,7 @@
             transition: var(--transition-smooth);
             transform: scale(1);
             opacity: 0;
-            animation: heroFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+            animation: heroFadeIn 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.2s forwards;
         }
         
         .cta-primary:hover {
@@ -251,10 +251,10 @@
         
         /* Hero Visual */
         .hero-visual {
-            margin-top: var(--space-3xl);
+            margin-top: var(--space-xl);
             position: relative;
             opacity: 0;
-            animation: heroVisualFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.75s forwards;
+            animation: heroVisualFadeIn 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.5s forwards;
         }
         
         .hero-image {
@@ -514,8 +514,8 @@
         @keyframes heroFadeIn {
             from {
                 opacity: 0;
-                transform: translateY(30px) translateZ(0);
-                filter: blur(10px);
+                transform: translateY(20px) translateZ(0);
+                filter: blur(5px);
             }
             to {
                 opacity: 1;
@@ -527,7 +527,7 @@
         @keyframes heroVisualFadeIn {
             from {
                 opacity: 0;
-                transform: translateY(40px) scale(0.95) translateZ(0);
+                transform: translateY(30px) scale(0.98) translateZ(0);
             }
             to {
                 opacity: 1;
